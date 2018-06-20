@@ -4,8 +4,13 @@ var toolArr = require('./tool.controller.js').toolArr;
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
-	CO.find({}, function(err , db) {
-		res.json(db);
+	CO.find({}).toArray(function (err , doc) {
+		if(err){
+			console.log('error find');
+		}
+		else{
+			res.send(doc);
+		}
 	});
 	
 };
