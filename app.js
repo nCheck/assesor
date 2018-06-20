@@ -13,10 +13,11 @@ app.get('/',function(req,resp){
 app.post('/',coCtrl.addOne);
 
 app.get('/display',coCtrl.getAll );
-
+var tool=[{name:'Ut1'},{name:'Ut2'},{name:'Pracs'},{name:'Free'}]
+var coos=[{co:'Learn'},{co:'Study'},{co:'Play'}];
 app.get('/add/tools',function(req,res){
-	var tools=tool,
-		cos = cos;
+	var tools=tool
+	cos=coos;
 
 	tool = toCtrl.getAll ;
 	cos  = coCtrl.getAll ;
