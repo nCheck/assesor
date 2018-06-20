@@ -7,3 +7,4 @@ mongoose.connection.on('connected' , () =>{
 	console.log('connected')
 });
 
+var text = 'sample';
