@@ -1,6 +1,6 @@
-
+//var mongoose = require('mongoose');
 var CO = require('../data/COModel');
-
+var toolArr = require('./tool.controller.js').toolArr;
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
@@ -28,4 +28,12 @@ module.exports.addOne = function (req , res) {
 		}
 	});
 
+}
+
+module.exports.insertTool = function (req , res) {
+	CO
+		.update(
+   			{"coName":req.coName} ,
+   			{ $push: { tools: req.toolname } }
+			)
 }
