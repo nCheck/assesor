@@ -1,16 +1,12 @@
 //var mongoose = require('mongoose');
 var CO = require('../data/COModel');
-var toolArr = require('./tool.controller.js').toolArr;
+var Tool = require('../data/toolModel').Tool;
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
-	CO.find({}).toArray(function (err , doc) {
-		if(err){
-			console.log('error find');
-		}
-		else{
-			res.send(doc);
-		}
+	CO.find({} , function (err , doc) {
+		console.log(doc);
+		res.send(doc);
 	});
 	
 };
@@ -32,6 +28,20 @@ module.exports.addOne = function (req , res) {
 			res.send("Got it")
 		}
 	});
+
+}
+
+
+module.exports.sendBoth = function (req , res) {
+	CO.find({} , function(err , cos) {
+		console.log(cos + "======");
+	Tool.find({} , function(err , doc) {
+		console.log(doc + "======");
+		res.render('toolselector.ejs',{tools:doc,
+				cos:cos});		
+	});
+	});
+
 
 }
 

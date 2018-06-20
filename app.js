@@ -13,14 +13,7 @@ app.get('/',function(req,resp){
 app.post('/',coCtrl.addOne);
 
 app.get('/display',coCtrl.getAll );
-app.get('/add/tools',function(req,res){
-	var tools , cos;
-
-	tools = toCtrl.getAll ;
-	cos  = coCtrl.getAll ;
-	res.render('toolselector.ejs',{tools:tools,
-			cos:cos});
-});
+app.get('/add/tools', coCtrl.sendBoth);
 
 app.get('/tools' , toCtrl.getAll );
 app.post('/tools' , toCtrl.addOne);

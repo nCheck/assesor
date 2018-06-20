@@ -2,15 +2,11 @@
 var TOOL = require('../data/toolModel').Tool;
 
 
-module.exports.getAll = function (req , res) {
+module.exports.getAll = function () {
 	console.log('Sending Data');
-	TOOL.find({}.toArray(function (err , doc) {
-		if(err){
-			console.log('error find');
-		}
-		else{
-			res.send(doc);
-		}
+	TOOL.find({} , function (err , doc) {
+		console.log(doc);
+		return doc;
 	});
 	
 };
