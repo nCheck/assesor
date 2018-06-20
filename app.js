@@ -12,10 +12,13 @@ app.get('/',function(req,resp){
 app.post('/',coCtrl.addOne);
 
 app.get('/display',coCtrl.getAll );
-var tool=[{name:'Ut1'},{name:'Ut2'},{name :'Pracs'}]//add here tool db
-app.get('/tools',function(req,res){
-	var tools=tool
-	res.render('toolselector.ejs',{tools:tools})
+
+app.get('/add/tools',function(req,res){
+	var tools=tool,
+		cos = cos;
+
+	res.render('toolselector.ejs',{tools:tools,
+			cos:cos});
 });
 
 app.listen(2535 , function () {
