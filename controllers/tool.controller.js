@@ -4,8 +4,13 @@ var TOOL = require('../data/toolModel').Tool;
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
-	TOOL.find({}, function(err , db) {
-		res.json(db);
+	TOOL.find({}.toArray(function (err , doc) {
+		if(err){
+			console.log('error find');
+		}
+		else{
+			res.send(doc);
+		}
 	});
 	
 };
