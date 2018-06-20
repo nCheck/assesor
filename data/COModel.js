@@ -5,7 +5,7 @@ var coSchema = new mongoose.Schema({
 	coNum : Number,
 	coName : String,
 	blooms : String,
-	tools : [toolSchema]
+	tools : [String]
 
 });
 

@@ -48,8 +48,7 @@ module.exports.sendBoth = function (req , res) {
 module.exports.insertTool = function (req , res) {
 	CO
 		.findOneAndUpdate({coName: req.body.cos} ,
-			{$push : {tools : req.body.tool}} ,
-			{upsert : true} , 
+			{$push : {tools : req.body.tool}} , 
 			function(err , doc) {
 				console.log("updated =====",  doc);
 			}
