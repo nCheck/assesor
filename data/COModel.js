@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
-var toolSchema = require('./toolModel');
+var toolSchema = require('./toolModel').toolSchema;
 
 var coSchema = new mongoose.Schema({
-	coNum = Number;
-	coName = String;
-	blooms = String;
-	tools= [toolSchema];
+	coNum : Number,
+	coName : String,
+	blooms : String,
+	tools : [toolSchema]
 
 });
 
-mongoose.model('CO',coSchema, cos);
+module.exports =  mongoose.model('CO',coSchema);

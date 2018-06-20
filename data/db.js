@@ -6,4 +6,3 @@ mongoose.connection.on('connected' , () =>{
 	console.log('connected')
 });
 
-require('./COModel.js');
