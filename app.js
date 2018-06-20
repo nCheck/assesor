@@ -1,5 +1,6 @@
 var express = require('express') , 
 	app		= express(),
+	bodyParser=require('body-parser'),
 	port	= 2535;
 
 
