@@ -6,4 +6,4 @@ mongoose.connection.on('connected' , () =>{
 	console.log('connected')
 });
 
-require('./toolModel.js');
+require('./COModel.js');
