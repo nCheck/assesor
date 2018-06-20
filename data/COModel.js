@@ -4,7 +4,7 @@ var toolSchema = require('./toolModel');
 var coSchema = new mongoose.Schema({
 	coNum = Number;
 	coName = String;
-	blooms = Number;
+	blooms = String;
 	tools= [toolSchema];
 
 });

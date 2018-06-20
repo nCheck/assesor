@@ -12,9 +12,9 @@ module.exports.getAll = function (req , res) {
 
 module.exports.addOne = function (argument) {
 	var myCO = {};
-	myCO['no'] = req.body.no;
-	myCO['name'] = req.body.name;
-	myCO['bloomsLevel'] = req.body.blooms;
+	myCO['coNum'] = req.body.cno;
+	myCO['coName'] = req.body.cname;
+	myCO['blooms'] = req.body.blooms;
 	myCO['tools'] = [];
 	var newCO = new CO(myCO);
 	newCO.save(function(err , doc) {
