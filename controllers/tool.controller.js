@@ -1,5 +1,5 @@
 
-var TOOL = require('../data/toolModel');
+var TOOL = require('../data/toolModel').Tool;
 
 
 module.exports.getAll = function (req , res) {
@@ -12,12 +12,13 @@ module.exports.getAll = function (req , res) {
 
 module.exports.addOne = function (req , res) {
 	var myTOOL = {};
+	console.log('inside adding');
 	myTOOL['toolName'] = req.body.tName;
-	myCO['toolNum'] = req.body.tNum;
-	myCO['targetStudent'] = req.body.tarStu;
-	myCO['targetMark'] = req.body.tarMark;
-	myCO['totalStud'] = req.body.totStu;
-	myCO['attainment'] = req.body.attain;
+	myTOOL['toolNum'] = req.body.tNum;
+	myTOOL['targetStudent'] = req.body.tarStu;
+	myTOOL['targetMark'] = req.body.tarMark;
+	myTOOL['totalStud'] = req.body.totStu;
+	myTOOL['attainment'] = req.body.attain;
 	var newTOOL = new TOOL(myTOOL);
 	console.log(req.body);
 	newTOOL.save(function(err , doc) {
