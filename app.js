@@ -14,6 +14,7 @@ app.post('/',coCtrl.addOne);
 
 app.get('/display',coCtrl.getAll );
 app.get('/add/tools', coCtrl.sendBoth);
+app.post('/add/tools' , coCtrl.insertTool);
 
 app.get('/tools' , toCtrl.getAll );
 app.post('/tools' , toCtrl.addOne);

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<select>
+<form action="/add/tools"method='POST'>
+<select name="tool">
 	<% tools.forEach(function(tool){ %>
-  <option>  <%=tool.toolName%> </option>
+  <option value=<%=tool.toolName%> >  <%=tool.toolName%> </option>
  <% });%>
 </select>
   
-  <select>
+  <select name="cos">
 	<% cos.forEach(function(coo){ %>
-  <option>  <%=coo.coName%> </option>
+  <option value=<%=coo.coName%>>  <%=coo.coName%> </option>
  <% });%>
+
 </select>
+<button>Submit </button>
+</form>
 </body>
 </html>
