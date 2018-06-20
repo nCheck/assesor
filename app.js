@@ -1,11 +1,14 @@
+var exp=require('express')
+var app=exp()
+var parser=require('body-parser')
 
-var express = require('express') ,
-	app		= express(),
-	bodyParser=require('body-parser'),
-	port	= 2535;
-
-require('./data/db.js');
-
-app.listen(port , function() {
-	console.log('listening on '+ port);
-});
+app.use(parser.urlencoded({extended:true}))
+app.get('/',function(req,resp){
+	resp.render('co_form.ejs');
+})
+app.post('/',)
+app.post('/display',function(req,resp){
+	var co=req.body.cname
+	resp.render('codisp.ejs',{co:co})
+})
+app.listen(3000);
