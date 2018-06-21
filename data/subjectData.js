@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Co = mongoose.model('CO');
+var Co = require('./co');
 
 var subjDataSchema = new mongoose.Schema({
 	year:Number,

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
-var Subject=mongoose.model("Subject");
+var Subject=require("./subject");
 
+console.log("i m here");
 
 
 var userSchema = new mongoose.Schema({
@@ -10,4 +11,7 @@ var userSchema = new mongoose.Schema({
 	subjects:[Subject.subjectSchema],
 });
 
-mongoose.model('User' , userSchema);
+mongoose.model("User",userSchema);
+
+
+

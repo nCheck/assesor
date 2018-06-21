@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var SubjectData = mongoose.model('SubjectData');
+var SubjectData = require('./subjectData');
 
 var subjectSchema = new mongoose.Schema({
 	name:String,
