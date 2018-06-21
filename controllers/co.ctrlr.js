@@ -12,8 +12,8 @@ module.exports.getAll = function (req , res) {
 };
 
 module.exports.addOne = function (req , res) {
-	var myCO = {};
-	myCO['coNum'] = req.body.cno;
+	var myCO = {};										//Object
+	myCO['coNum'] = req.body.cno;						//info from ejs
 	myCO['coName'] = req.body.cname;
 	myCO['blooms'] = req.body.blooms;
 	myCO['tools'] = [];
