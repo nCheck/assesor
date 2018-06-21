@@ -6,3 +6,9 @@ mongoose.connection.on('connected' , () =>{
 	console.log('connected')
 });
 
+require('./subject');
+require('./subjectData');
+require('./co');
+require('./tool');
+require('./toolDefault');
+require('./user');
