@@ -14,21 +14,8 @@ var toolSchema = new mongoose.Schema({
 		point : Number,
 });
 
-var toolDefaultSchema = new mongoose.Schema({
-		name : String,
-		weightage : Number,
-		targetStudent : Number,
-		targetMark : Number,
-		totalStud : Number,
-		directAttain : Number,
-		indirectAttain : Number,
-		high : Number,
-		mid : Number,
-		low : Number,
-		point : Number,
-});
-
+module.exports.toolSchema = toolSchema;
 mongoose.model('Tool' , toolSchema);
-mongoose.model('ToolDefault',toolDefaultSchema);
+mongoose.model('ToolDefault',toolSchema);
 
 
