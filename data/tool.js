@@ -9,7 +9,4 @@ var toolSchema = new mongoose.Schema({
 		attainment : Number
 });
 
-module.exports = {toolSchema : toolSchema, 
-			Tool : mongoose.model('Tool',toolSchema)
-			};
-
+module.exports.toolSchema = toolSchema
