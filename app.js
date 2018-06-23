@@ -1,16 +1,20 @@
-var exp=require('express')
-var app=exp()
-var parser=require('body-parser')
-require('./data/db.js');
+var express=require('express');
+var app=express();
+var parser=require('body-parser');
+const dir = __dirname;
 
+app.set('view engine', 'ejs');
+app.use(express.static(dir + '/public'));
+app.use(parser.urlencoded({extended:true}));
+
+
+require('./data/db.js');
 var coCtrl = require('./controllers/co.ctrlr');
 var toCtrl = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
-app.use(parser.urlencoded({extended:true}))
-
 
 app.get('/upload' , (req ,res)=>{
-	res.render('upload.ejs');
+	res.render('upload');
 });
 app.post('/upload', uploadCtrl.uploadFile);
 
