@@ -7,11 +7,11 @@ console.log("i m here");
 var userSchema = new mongoose.Schema({
 	username : String,
 	password : String ,
-	isAdmin: Boolean,
+	role :{
+		type : String,
+		default : 'Teacher'
+	},
 	subjects:[Subject.subjectSchema],
 });
 
 mongoose.model("User",userSchema);
-
-
-
