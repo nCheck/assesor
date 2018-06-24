@@ -61,7 +61,13 @@ module.exports.addOne = function (req , res) {
 		{$push : {tools : Tool.find( {name : req.body.tName} )
 		 } },
 		 function(err, doc) {
-		 	console.log("updated++++++++++++++++ ",doc);
+		 	if(err){
+		 		console.log("Error in co.update of addOne in tool.ctrlr");
+		 	}
+		 	else
+		 	{
+		 		console.log("updated++++++++++++++++ ",doc);
+		 	}
 		 }
 	);
 }
@@ -73,7 +79,12 @@ module.exports.removeOne = function (req, res) {
 		{$pull : {tools : Tool.find( {name : req.body.tName}) 
 		}},
 		function(err, doc) {
-			console.log("updated--------------",doc);
+			if(err){
+				console.log("Err in co.update of RemoveOne in tool.ctrlr");
+			}
+			else{
+				console.log("updated--------------",doc);
+			}
 		}
 	)
 }

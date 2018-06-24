@@ -1,15 +1,20 @@
-// //var mongoose = require('mongoose');
-var CO= require('../data/co');
-var Tool = require('../data/tool');
+var mongoose = require('mongoose');
+var CO = mongoose.model('CO');
+var SubjectData = mongoose.model('SubjectData');
 
-// module.exports.getAll = function (req , res) {
-// 	console.log('Sending Data');
-// 	CO.find({} , function (err , doc) {
-// 		console.log(doc);
-// 		res.send(doc);
-// 	});
+module.exports.getAll = function (req , res) {
+	console.log('Sending Data');
+	CO.find({} , function (err , doc) {
+		if(err){
+				console.log("Err in getAll of co.ctrlr");
+		}
+		else{
+			console.log(doc);
+			res.send(doc);
+		}
+	});
 	
-// };
+};
 
 // module.exports.addOne = function (req , res) {
 // 	var myCO = {};
@@ -31,6 +36,45 @@ var Tool = require('../data/tool');
 
 // }
 
+module.exports.addOne = (req, res)=> {
+	CO.create({
+		name : req.body.name,
+		blooms : req.body.blooms,
+		number : req.body.number,
+		attainment : req.body.attainment
+	});
+	SubjectData.update(
+		{year : req.body.year}, //searches for the required co in which we wish to add tool
+		{$push : {co : CO.find( {name : req.body.name} )
+		 } },
+		 function(err, doc) {
+		 	if(err){
+		 		console.log("Error in SubjectData.update of addOne in co.ctrlr");
+		 	}
+		 	else
+		 	{
+		 		console.log("updated++++++++++++++++ ",doc);
+		 	}
+		 }
+	);
+
+}
+
+module.exports.removeOne = (req, res)=> {
+	SubjectData.update(
+		{year : req.body.year},
+		{$pull : {co : CO.find( {name : req.body.name}) 
+		}},
+		function(err, doc) {
+			if(err){
+				console.log("Err in SubjectData.update of RemoveOne in co.ctrlr");
+			}
+			else{
+				console.log("updated--------------",doc);
+			}
+		}
+	)
+}
 
 // module.exports.sendBoth = function (req , res) {
 // 	CO.find({} , function(err , cos) {

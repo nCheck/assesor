@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
+var SubjectData = mongoose.model('SubjectData');
 var Subject = mongoose.model('Subject');
-var User = mongoose.model('User');
+
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
-	Subject.find({} , function (err , doc) {
+	SubjectData.find({} , function (err , doc) {
 		if(err){
-				console.log("Err in getAll of Subject.ctrlr");
+				console.log("Err in getAll of SubjectData.ctrlr");
 		}
 		else{
 			console.log(doc);
@@ -17,17 +18,16 @@ module.exports.getAll = function (req , res) {
 };
 
 module.exports.addOne = (req, res)=> {
-	Subject.create({
-		name : req.body.name,
-		subjectCode : req.body.subjectCode,
+	SubjectData.create({
+		year : req.body.year,
 	});
-	User.update(
-		{username : req.body.username}, //searches for the required co in which we wish to add tool
-		{$push : {subjects : Subject.find( {name : req.body.name} )
+	Subject.update(
+		{name : req.body.name}, //searches for the required co in which we wish to add tool
+		{$push : {subjectData : SubjectData.find( {year : req.body.year} )
 		 } },
 		 function(err, doc) {
 		 	if(err){
-		 		console.log("Error in User.update of addOne in Subject.ctrlr");
+		 		console.log("Error in Subject.update of addOne in SubjectData.ctrlr");
 		 	}
 		 	else
 		 	{
