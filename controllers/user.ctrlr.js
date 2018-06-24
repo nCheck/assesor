@@ -20,7 +20,7 @@ module.exports.addOne = (req, res)=> {
 	User.create({
 		username : req.body.username,
 		password : req.body.password,
-		role.type : req.body.type,
+		role : req.body.role,
 	});
 }
 
