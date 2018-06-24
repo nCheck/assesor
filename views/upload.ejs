@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <% include ./partials/header %>
-<body>
-<div class="container">
-  <form ref='uploadForm'
-    id='uploadForm'
-    action='/upload'
-    method='post'
-    encType="multipart/form-data">
-    <input type="text" name="folder" placeholder="folder name">
-      <input type="file" name="sampleFile" />
-      <input type='submit' value='Upload!' />
-  </form>
-</div>
+<% include ./partials/header %>
 
-  <% include ./partials/footer %>
-</body>
+  <body>
+    <div class="container">
+      <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+        <input type="file" name="timetable" />
+        <input type="text" name="filename" placeholder="filename">
+        <input type='submit' value='Upload!' />
+      </form>
+    </div>
+
+    <% include ./partials/footer %>
+  </body>
+
 </html>
