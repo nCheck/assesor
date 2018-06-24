@@ -1,15 +1,20 @@
+var mongoose = require('mongoose');
+var Tool = mongoose.model('Tool');
+var CO = mongoose.model('CO');
 
-var Tool = require('../data/tool');
-
-
-// module.exports.getAll = function () {
-// 	console.log('Sending Data');
-// 	TOOL.find({} , function (err , doc) {
-// 		console.log(doc);
-// 		return doc;
-// 	});
+module.exports.getAll = function () {
+	console.log('Sending Data');
+	Tool.find({} , function (err , doc) {
+		if(err){
+			console.log("OhNo error in finding tools ");
+		}
+		else{
+				console.log(doc);
+				return doc;
+		}
+	});
 	
-// };
+};
 
 // module.exports.addOne = function (req , res) {
 // 	var myTOOL = {};
@@ -35,3 +40,40 @@ var Tool = require('../data/tool');
 // }
 
 
+//For this to work the req.body shud contain name of the co in which we wish to add the tool
+module.exports.addOne = function (req , res) {
+	Tool.create({
+		name : req.body.tName,
+		weightage : req.body.weightage,
+		targetStudent : req.body.targetStudent,
+		targetMark : req.body.targetMark,
+		totalStud : req.body.totalStud,
+		directAttain : req.body.directAttain,
+		indirectAttain : req.body.indirectAttain,
+		high : req.body.high,
+		mid : req.body.mid,
+		low : req.body.low,
+		point : req.body.point
+
+	});
+	CO.update(
+		{name : req.body.cName}, //searches for the required co in which we wish to add tool
+		{$push : {tools : Tool.find( {name : req.body.tName} )
+		 } },
+		 function(err, doc) {
+		 	console.log("updated++++++++++++++++ ",doc);
+		 }
+	);
+}
+
+//*****************To remove a tool*********************
+module.exports.removeOne = function (req, res) {
+	CO.update(
+		{name : req.body.cName},
+		{$pull : {tools : Tool.find( {name : req.body.tName}) 
+		}},
+		function(err, doc) {
+			console.log("updated--------------",doc);
+		}
+	)
+}
