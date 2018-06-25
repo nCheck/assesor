@@ -12,6 +12,7 @@ require('./data/db.js');
 var coCtrl = require('./controllers/co.ctrlr');
 var toCtrl = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
+var xlsx=require('./data/xlsx');
 
 app.get('/upload' , (req ,res)=>{
 	res.render('upload');

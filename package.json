@@ -38,6 +38,6 @@
     "passport-local-mongoose": "^5.0.1",
     "popper": "^1.0.1",
     "popper.js": "^1.14.3",
-    "xlsx": "^0.13.0"
+    "xlsx": "^0.13.1"
   }
 }
