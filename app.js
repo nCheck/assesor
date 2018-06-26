@@ -21,7 +21,7 @@ app.use(require('express-session')({
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new localstrategy(User.authenticate()));	//User.authenticate present in passportlocal mongoose so no need to define in users.js
-passport.serializeUser(User.serializeUser())		//No need to define function User.serializeUser since we used 
+passport.serializeUser(User.serializeUser())		//No need to define function User.serializeUser since we used
 passport.deserializeUser(User.deserializeUser())	//passport local mongoose it already has those function
 
 app.use('/',routes);
@@ -36,7 +36,7 @@ var uploadCtrl	 = require('./controllers/upload.ctrlr');
 app
 .route('/register')
 .get(function(req,res){
-	res.render('register.ejs') 
+	res.render('register.ejs')
 })
 .post(function(req,res){
 	var username =req.body.username,
@@ -46,7 +46,7 @@ app
 		if (err)
 			{   console.log(err)
 				return res.render('register')
-			}	
+			}
 		passport.authenticate('local')(req,res,function(){
 			res.redirect('/login')
 		});
@@ -61,13 +61,26 @@ app
 })
 .post(passport.authenticate("local",
 	{successRedirect:'/dashboard',failureRedirect:'/login'}
-));//middleware for checking database 
+));//middleware for checking database
 
 app
 .route('/dashboard')
 .get(function(req,res){
 	res.render('dashboard.ejs')
 });
+
+app.get('/admin' , (req , res)=>{
+	if(req.user.username == 'ncheck'){
+		res.render('admin');
+	}
+	else{
+		res.send("unauthorized");
+	}
+});
+
+
+
+
 //Creating a manual user dataa
 // User.create({username:"Jason",password:"jason"},function(err,user){
 // 	if(err)
@@ -75,6 +88,12 @@ app
 // 	else
 // 		console.log("User addded succesfully",user)
 // })
+
+
+
+
+
+// ========upload page temp==========
 app.get('/upload' , (req ,res)=>{
 	res.render('upload');
 });
@@ -84,4 +103,3 @@ app.post('/upload', uploadCtrl.uploadFile);
 app.listen(2535 , function () {
 	console.log('Site is active on 2535');
 });
- 
