@@ -32,7 +32,9 @@ var toCtrl = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
 var xlsx=require('./data/xlsx');
 
-
+app.get('/' , (req , res)=>{
+	res.send("imaginery landing page");
+})
 //===============Register page================
 
 app
@@ -65,23 +67,18 @@ app
 	{successRedirect:'/dashboard',failureRedirect:'/login'}
 ));//middleware for checking database
 
-app
-.route('/dashboard')
-.get(function(req,res){
-	res.render('dashboard.ejs')
+
+
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
 });
 
-app.get('/admin' , (req , res)=>{
-	if(req.user.username == 'ncheck'){
-		res.render('admin');
-	}
-	else{
-		res.send("unauthorized");
-	}
-});
-
-
-
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+      return next();
+  res.redirect('/login')
+}
 
 //Creating a manual user dataa
 // User.create({username:"Jason",password:"jason"},function(err,user){
@@ -91,6 +88,20 @@ app.get('/admin' , (req , res)=>{
 // 		console.log("User addded succesfully",user)
 // })
 
+app
+.route('/dashboard')
+.get(function(req,res){
+	res.render('dashboard.ejs')
+});
+
+app.get('/admin', isLoggedIn , (req , res)=>{
+	if(req.user.role == "Admin"){
+		res.render('admin');
+	}
+	else{
+		res.send("unauthorized");
+	}
+});
 
 
 
