@@ -26,9 +26,11 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 
 app.use('/',routes);
 
-var coCtrl 		 = require('./controllers/co.ctrlr');
-var toCtrl		 = require('./controllers/tool.ctrlr');
-var uploadCtrl	 = require('./controllers/upload.ctrlr');
+require('./data/db.js');
+var coCtrl = require('./controllers/co.ctrlr');
+var toCtrl = require('./controllers/tool.ctrlr');
+var uploadCtrl = require('./controllers/upload.ctrlr');
+var xlsx=require('./data/xlsx');
 
 
 //===============Register page================
