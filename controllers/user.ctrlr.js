@@ -16,19 +16,41 @@ module.exports.getAll = function (req , res) {
 	
 };
 //===To display all users =============
-module.exports.displayAll=(req,res)=>{
+module.exports.viewingregion=(req,res)=>{
 	var username =req.body.username,
 		password =req.body.password;
-	User.find({},function(err,user){
+	let teacher;
+
+
+	User.find({},function(err,us){
+		teacher=us;		
+
+		if(req.user.role==='Admin')
+		res.render('admin.ejs',{user:us})			//All teachers 
+		else
+		res.render('dashboard.ejs')
+	})
+	
+	// else
+	// 	res.render('dashboard')
+	
+	// User.find({role:"Admin"},function(err,user){
 		
-		if(err)
-			console.log("Error spotted",err);
-		else if(username === user[0].username && password === user[0].password)
-			res.render('admin.ejs',{user:user})
-			res.render('display.ejs',{user:user})
-			
-	});
-}
+	// 	console.log("gleo"+req.user.role)
+	// 	if(err)
+	// 		console.log("Error spotted",err);
+	// 	else  
+	// 	{ 
+	// 		user.forEach(function(usr){
+	// 		if(username === usr.username)
+	//    	 		 res.render('admin.ejs',{user:teacher});	
+		
+	// 		})
+
+	// 	}		
+	// 		res.render('dashboard.ejs')
+	// 	});
+		}
 module.exports.addOne = (req, res)=> {
 	User.create({
 		username : req.body.username,

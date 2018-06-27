@@ -2,7 +2,7 @@ var express		= require('express');
 var parser	=require('body-parser');
 const dir 		= __dirname;
 var User 		=require('./data/user');
-var routes		=require('./routes/index');
+var authroutes		=require('./routes/index');
 var passport=require('passport')
 var localstrategy=require('passport-local')
 var passportlocalmongoose=require('passport-local-mongoose')
@@ -24,89 +24,15 @@ passport.use(new localstrategy(User.authenticate()));	//User.authenticate presen
 passport.serializeUser(User.serializeUser())		//No need to define function User.serializeUser since we used
 passport.deserializeUser(User.deserializeUser())	//passport local mongoose it already has those function
 
-app.use('/',routes);
+app.use('/',authroutes);
 
 require('./data/db.js');
 var coCtrl = require('./controllers/co.ctrlr');
 var toCtrl = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
 
-app.get('/' , (req , res)=>{
-	res.send("imaginery landing page");
-})
-//===============Register page================
-
-app
-.route('/register')
-.get(function(req,res){
-	res.render('register.ejs')
-})
-.post(function(req,res){
-	var username =req.body.username,
-	password = req.body.password;
-	console.log(req.body);
-	User.register(new User({username:username}),password,function(err,user){
-		if (err)
-			{   console.log(err)
-				return res.render('register')
-			}
-		passport.authenticate('local')(req,res,function(){
-			res.redirect('/login')
-		});
-	})
-});
-//=================Login Page===============================
-
-app
-.route('/login')
-.get(function(req,res){
-	res.render('login.ejs')
-})
-.post(passport.authenticate("local",
-	{successRedirect:'/dashboard',failureRedirect:'/login'}
-));//middleware for checking database
-
-
-
-app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-});
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-      return next();
-  res.redirect('/login')
-}
-
-//Creating a manual user dataa
-// User.create({username:"Jason",password:"jason"},function(err,user){
-// 	if(err)
-// 		console.log("eRROR FOUND :",err)
-// 	else
-// 		console.log("User addded succesfully",user)
-// })
-
-app
-.route('/dashboard')
-.get(function(req,res){
-	res.render('dashboard.ejs')
-});
-
-app.get('/admin', isLoggedIn , (req , res)=>{
-	if(req.user.role == "Admin"){
-		res.render('admin');
-	}
-	else{
-		res.send("unauthorized");
-	}
-});
-
-
-
-
-// ========upload page temp==========
 var xlsx = require('./controllers/xlsx.ctrlr');
+// ========upload page temp==========
 app.get('/upload' , (req ,res)=>{
 	res.render('upload');
 });
