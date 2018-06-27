@@ -14,16 +14,17 @@ module.exports.getAll = function (req , res) {
 			res.send(doc);
 		}
 	});
-	
+
 };
 
 module.exports.addOne = (req, res)=> {
 	SubjectData.create({
+		name : req.body.name ,
 		year : req.body.year,
 	});
 	Subject.update(
-		{name : req.body.name}, //searches for the required co in which we wish to add tool
-		{$push : {subjectData : SubjectData.find( {year : req.body.year} )
+		{name : req.body.name}, //Adding SubjectData to Subject every year
+		{$push : {subjectData : SubjectData.find( {year : req.body.year , req.body.name} )
 		 } },
 		 function(err, doc) {
 		 	if(err){
@@ -43,7 +44,7 @@ module.exports.addOne = (req, res)=> {
 module.exports.removeOne = (req, res)=> {
 	Subject.update(
 		{name : req.body.name},
-		{$pull : {subjectData : SubjectData.find( {year : req.body.year}) 
+		{$pull : {subjectData : SubjectData.find( {year : req.body.year})
 		}},
 		function(err, doc) {
 			if(err){

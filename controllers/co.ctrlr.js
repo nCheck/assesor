@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var CO = mongoose.model('CO');
 var SubjectData = mongoose.model('SubjectData');
+var Subject = mongoose.model('Subject');
 
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
@@ -43,20 +44,29 @@ module.exports.addOne = (req, res)=> {
 		number : req.body.number,
 		attainment : req.body.attainment
 	});
-	SubjectData.update(
-		{year : req.body.year}, //searches for the required co in which we wish to add tool
-		{$push : {co : CO.find( {name : req.body.name} )
-		 } },
-		 function(err, doc) {
-		 	if(err){
-		 		console.log("Error in SubjectData.update of addOne in co.ctrlr");
-		 	}
-		 	else
-		 	{
-		 		console.log("updated++++++++++++++++ ",doc);
-		 	}
-		 }
-	);
+	var query = {name : req.params.subject , year : 2018};
+	SubjectData.findOne(query , (err , doc )=>{
+		CO.findOne( {name : req.body.name} ,  (err , doc2)=>{
+			doc.co.push(doc2);
+			doc.save();
+		});
+	});
+
+
+	// SubjectData.update(
+	// 	{year : req.body.year}, //searches for the required co in which we wish to add tool
+	// 	{$push : {co : CO.find( {name : req.body.name} )
+	// 	 } },
+	// 	 function(err, doc) {
+	// 	 	if(err){
+	// 	 		console.log("Error in SubjectData.update of addOne in co.ctrlr");
+	// 	 	}
+	// 	 	else
+	// 	 	{
+	// 	 		console.log("updated++++++++++++++++ ",doc);
+	// 	 	}
+	// 	 }
+	// );
 
 }
 
