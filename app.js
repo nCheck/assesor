@@ -59,7 +59,14 @@ app.get('/upload' , (req ,res)=>{
 
 app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal);
 
-
+function isLoggedIn(req, res, next){
+	console.log(req);
+	console.log(req.isAuthenticated());
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 app.listen(2535 , function () {
 	console.log('Site is active on 2535');
 });

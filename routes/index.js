@@ -32,5 +32,12 @@ router
 	res.render('login.ejs')
 })
 .post(passport.authenticate("local",),usercntrlr.viewingregion)//middleware for checking database 
-
+function isLoggedIn(req, res, next){
+	console.log(req);
+	console.log(req.isAuthenticated());
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 module.exports=router
