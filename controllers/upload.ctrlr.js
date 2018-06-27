@@ -3,11 +3,11 @@ var express=require("express");
 const multer = require('multer');
 const path = require('path');
 var parser=require('body-parser');
-var xlsx = require('../data/xlsx');
+
 var app    = express();
 app.use(parser.urlencoded({extended:true}));
 
-module.exports.uploadFile = (req , res) =>{
+module.exports.uploadFile = (req , res , next) =>{
 	const storage = multer.diskStorage({
 	  destination: './uploads/',
 	  filename: function(req, file, cb){
@@ -22,7 +22,9 @@ module.exports.uploadFile = (req , res) =>{
 			if(req.file == undefined){
 				res.send('Error: No File Selected!');
 			} else {
-				xlsx.xlsxCal;
+				console.log("shitted");
+				next();
+				// xlsx.xlsxCal;
 
 			}
 		}

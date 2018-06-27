@@ -30,7 +30,6 @@ require('./data/db.js');
 var coCtrl = require('./controllers/co.ctrlr');
 var toCtrl = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
-var xlsx=require('./data/xlsx');
 
 app.get('/' , (req , res)=>{
 	res.send("imaginery landing page");
@@ -107,10 +106,11 @@ app.get('/admin', isLoggedIn , (req , res)=>{
 
 
 // ========upload page temp==========
+var xlsx = require('./controllers/xlsx.ctrlr');
 app.get('/upload' , (req ,res)=>{
 	res.render('upload');
 });
-app.post('/upload', uploadCtrl.uploadFile);
+app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal);
 
 
 app.listen(2535 , function () {

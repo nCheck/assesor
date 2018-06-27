@@ -6,11 +6,9 @@ const app = express();
 const XLSX = require('xlsx');
 
 
-
-
 module.exports.xlsxCal = (req , res)=>{
   var header =req.body.header;
-  const workbook = XLSX.readFile('./data/temp.xlsx');
+  const workbook = XLSX.readFile('./uploads/temp.xlsx');
   var flag=0;
   const sheet = workbook.Sheets[workbook.SheetNames[0]];
    var range = XLSX.utils.decode_range(sheet['!ref']);
@@ -59,5 +57,5 @@ module.exports.xlsxCal = (req , res)=>{
   console.log("total students " + student);
   console.log("avg marks " + totalMarks/student);
   console.log("above Average students "+ aboveAvg);
-  res.send("total students " + student + " " + "avg marks " + totalMarks/student + " " + "above Average students "+ aboveAvg);
+  res.send("total students " + student + "\n" + "avg marks " + totalMarks/student + "\n" + "above Average students "+ aboveAvg);
 }
