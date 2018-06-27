@@ -11,5 +11,4 @@ router
   res.send(req.params.subject);
 })
 
-
 module.exports = router;

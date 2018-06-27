@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-<form action ='/tools' method="POST">
-<input type="text" name="tName" placeholder="name">
-<input type="text" name="tNum" placeholder="num" >
-<input type="text" name="tarStu" placeholder="tarStu">
-<input type="text" name="tarMark" placeholder="tarMark">
-<input type="text" name="totStu" placeholder="totStu" >
-<input type="text" name="attain" placeholder="attain"> 
+<% include ./partials/header %>
 
-	<button>Submit </button>
-</form>
-</body>
+	<body>
+
+
+
+		<%# WRITE YOUR HTML INSIDE THIS %>
+
+			<form action='/tools' method="POST">
+				<input type="text" name="tName" placeholder="name">
+				<input type="text" name="tNum" placeholder="num">
+				<input type="text" name="tarStu" placeholder="tarStu">
+				<input type="text" name="tarMark" placeholder="tarMark">
+				<input type="text" name="totStu" placeholder="totStu">
+				<input type="text" name="attain" placeholder="attain">
+
+				<button>Submit </button>
+			</form>
+
+
+			<% include ./partials/footer %>
+	</body>
+
 </html>

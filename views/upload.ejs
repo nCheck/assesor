@@ -1,18 +1,23 @@
 <!DOCTYPE html>
+
+
 <html>
 <% include ./partials/header %>
 
   <body>
-    <div class="container">
+
+
+
+    <%# WRITE YOUR HTML INSIDE THIS %>
+
       <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
         <input type="file" name="timetable" />
         <input type="text" name="header" placeholder="filename">
         <input type='submit' value='Upload!' />
       </form>
-    </div>
 
-    <% include ./partials/footer %>
+
+      <% include ./partials/footer %>
   </body>
 
 </html>
- <!-- lets go back -->
