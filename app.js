@@ -3,7 +3,7 @@ var parser	=require('body-parser');
 const dir 		= __dirname;
 var User 		=require('./data/user');
 var authroutes		=require('./routes/index');
-var coRoutes	= require('./routes/co');
+var subRoutes	= require('./routes/subject');
 var passport=require('passport')
 var localstrategy=require('passport-local')
 var passportlocalmongoose=require('passport-local-mongoose')
@@ -35,7 +35,7 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 // =======Routes=======
 
 app.use('/',authroutes);
-app.use('/co' , coRoutes);
+app.use('/subject' , subRoutes);
 
 
 

@@ -38,7 +38,7 @@ module.exports.deleteFile = (req , res ) =>{
 			if (err) throw err;
 			console.log('File uploaded Deleted ' );
 	});
-
+	res.send('Done');
 }
 
 
