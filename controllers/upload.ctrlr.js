@@ -24,28 +24,24 @@ module.exports.uploadFile = (req , res , next) =>{
 				res.send('Error: No File Selected!');
 			} else {
 				console.log("shitted");
-				 // get the temporary location of the file
-	//var tmp_path = req.file.temp.path;
-	var tmp_path ='./uploads/temp.xlsx';
-	// set where the file should actually exists - in this case it is in the "images" directory
-	//var target_path = './public/images/' + req.file.temp.name;
-	var target_path ='./public/images/'+temp.xlsx;
-	// move the file from the temporary location to the intended location
-	fs.rename('tmp_path', 'target_path', function(err) {
-			if (err) throw err;
-			// delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
-			fs.unlink('tmp_path', function(err) {
-					if (err) throw err;
-					res.send('File uploaded to: ' + target_path );
-			});
-	});
-
-	next();
+				next();
 			}
 		}
 	});
 
 }
+
+module.exports.deleteFile = (req , res ) =>{
+
+	var tmp_path ='./uploads/temp.xlsx';
+	fs.unlink(tmp_path, function(err) {
+			if (err) throw err;
+			console.log('File uploaded Deleted ' );
+	});
+
+}
+
+
 // try now! wait
 
 //in comments i have written meaning of each

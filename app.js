@@ -57,7 +57,7 @@ app.get('/upload' , (req ,res)=>{
 	res.render('upload');
 });
 
-app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal);
+app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
 	console.log(req);
