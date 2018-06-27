@@ -1,7 +1,15 @@
 var express		= require('express');
-var router    = exppress.Router();
+var router    = express.Router();
 var parser    = require('body-parser');
 const dir 		= __dirname;
-var User 		 =    require('./data/user');
 var passport  =   require('passport')
-var app			   =   express();
+
+
+router
+  .route('/:subject')   //Displays Current CO Info
+    .get((req , res)=>{
+  res.send(req.params.subject);
+})
+
+
+module.exports = router;

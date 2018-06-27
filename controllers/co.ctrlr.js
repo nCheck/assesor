@@ -13,7 +13,7 @@ module.exports.getAll = function (req , res) {
 			res.send(doc);
 		}
 	});
-	
+
 };
 
 // module.exports.addOne = function (req , res) {
@@ -63,7 +63,7 @@ module.exports.addOne = (req, res)=> {
 module.exports.removeOne = (req, res)=> {
 	SubjectData.update(
 		{year : req.body.year},
-		{$pull : {co : CO.find( {name : req.body.name}) 
+		{$pull : {co : CO.find( {name : req.body.name})
 		}},
 		function(err, doc) {
 			if(err){
@@ -82,7 +82,7 @@ module.exports.removeOne = (req, res)=> {
 // 	Tool.find({} , function(err , doc) {
 // 		console.log(doc + "======");
 // 		res.render('toolselector.ejs',{tools:doc,
-// 				cos:cos});		
+// 				cos:cos});
 // 	});
 // 	});
 
@@ -92,7 +92,7 @@ module.exports.removeOne = (req, res)=> {
 // module.exports.insertTool = function (req , res) {
 // 	CO
 // 		.findOneAndUpdate({coName: req.body.cos} ,
-// 			{$push : {tools : req.body.tool}} , 
+// 			{$push : {tools : req.body.tool}} ,
 // 			function(err , doc) {
 // 				console.log("updated =====",  doc);
 // 			}
