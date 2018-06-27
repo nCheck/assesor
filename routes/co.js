@@ -11,4 +11,10 @@ router
   res.send(req.params.subject);
 })
 
+router
+  .route('/addTool')
+  .get( (req , res)=>{
+    res.render('toolsAdd');
+    })
+    
 module.exports = router;

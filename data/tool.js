@@ -6,8 +6,7 @@ var toolSchema = new mongoose.Schema({
 		targetStudent : Number,
 		targetMark : Number,
 		totalStud : Number,
-		directAttain : Number,
-		indirectAttain : Number,
+		toolType : String,
 		high : Number,
 		mid : Number,
 		low : Number,
@@ -17,5 +16,3 @@ var toolSchema = new mongoose.Schema({
 module.exports.toolSchema = toolSchema;
 mongoose.model('Tool' , toolSchema);
 mongoose.model('ToolDefault',toolSchema);
-
-
