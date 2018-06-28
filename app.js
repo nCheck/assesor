@@ -4,6 +4,7 @@ const dir 		= __dirname;
 var User 		=require('./data/user');
 var authroutes		=require('./routes/index');
 var subRoutes	= require('./routes/subject');
+var adminroutes=require('./routes/admin');
 var passport=require('passport')
 var localstrategy=require('passport-local')
 var passportlocalmongoose=require('passport-local-mongoose')
@@ -36,7 +37,7 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 
 app.use('/',authroutes);
 app.use('/subject' , subRoutes);
-
+app.use('/admin',adminroutes);
 
 
 // =====Required Controllers======

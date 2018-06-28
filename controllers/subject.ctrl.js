@@ -13,17 +13,17 @@ module.exports.getAll = function (req , res) {
 			res.send(doc);
 		}
 	});
-	
+
 };
 
 module.exports.addOne = (req, res)=> {
 	Subject.create({
-		name : req.body.name,
+		name : req.body.courseName,
 		subjectCode : req.body.subjectCode,
 	});
 	User.update(
-		{username : req.body.username}, //searches for the required co in which we wish to add tool
-		{$push : {subjects : Subject.find( {name : req.body.name} )
+		{username : req.body.teacherName}, //searches for the required co in which we wish to add tool
+		{$push : {subjects : Subject.find( {name : req.body.courseName} )
 		 } },
 		 function(err, doc) {
 		 	if(err){
@@ -32,9 +32,11 @@ module.exports.addOne = (req, res)=> {
 		 	else
 		 	{
 		 		console.log("updated++++++++++++++++ ",doc);
+				res.redirect('/admin')
 		 	}
 		 }
 	);
+
 
 }
 
@@ -43,7 +45,7 @@ module.exports.addOne = (req, res)=> {
 module.exports.removeOne = (req, res)=> {
 	Subject.update(
 		{name : req.body.name},
-		{$pull : {subjectData : SubjectData.find( {year : req.body.year}) 
+		{$pull : {subjectData : SubjectData.find( {year : req.body.year})
 		}},
 		function(err, doc) {
 			if(err){
