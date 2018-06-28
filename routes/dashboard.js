@@ -23,11 +23,7 @@ router
 
 router
   .route('/:subject/CO')
-    .get( (req , res)=>{
-      query = {name : 'OOPM' , year : 2017};
-      console.log(coCtrl.getData(query));
-      res.render('co_form', {subject : req.params.subject});
-      })
+    .get(coCtrl.getData)
       .post((req , res)=>{
         res.send('co_form alive '+req.params.subject);
         })

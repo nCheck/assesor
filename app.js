@@ -36,8 +36,9 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 // =======Routes=======
 
 app.use('/',authroutes);
-app.use('/dashboard', isLoggedIn , dashRoutes);
+app.use('/dashboard', dashRoutes);
 app.use('/admin',adminroutes);
+
 
 
 // =====Required Controllers======
@@ -61,7 +62,6 @@ app.get('/upload' , (req ,res)=>{
 app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
-	console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         return next();
     }

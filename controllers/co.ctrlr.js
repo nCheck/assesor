@@ -17,17 +17,19 @@ module.exports.getAll = function (req , res) {
 
 };
 
-module.exports.getData = function (query) {
+module.exports.getData = function (req , res , next) {
+
+	query = {name : req.params.subject , year : 2018};
 	console.log('Sending Data');
-	// SubjectData.findOne(query , (err , doc)=>{
-	// 	if(err){
-	// 		console.log("not found " + err);
-	// 	}
-	// 	else {
-	// 		return doc;
-	// 	}
-	// })
-	return query.name;
+	var ret;
+	SubjectData.findOne(query).exec((err , doc)=>{
+		if(err){
+			console.log("not found " + err);
+		}
+		else {
+			res.render('coPage' , {data : doc.co});
+		}
+	})
 
 };
 
