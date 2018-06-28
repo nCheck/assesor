@@ -45,7 +45,7 @@ module.exports.addSubject = (req, res)=> {
 		name : req.body.subjectName,
 		subjectCode : req.body.subjectCode,
 	});
-	res.send("Subject Added");
+	res.redirect('/admin')
 }
 
 
