@@ -36,23 +36,61 @@
       </li>
     </ul>
     <form  action='/register' method='get'class="form-inline my-2 my-lg-0">
-    
+
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Register</button>
+    </form>
+    <form class="/admin/addsubject" action="post" method="post">
+      <button type="button" class="btn btn-outline-warning">Add subject</button>
     </form>
   </div>
 </nav>
 
-<form action="">
-<div class ='center'>
-	 <div class="dropdown ">
-  <button class="btn btn-primary dropdown-toggle" type="button" name ='teacher' data-toggle="dropdown">Select teacher
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-  	<%user.forEach(function(usr){ %>
-  	   <li><%= usr.username ; %> </li>
-  	<% }) ;%>
-  </ul>
-     
-</div> 
+
+</div>
 </div>
 </form>
+<div class="row">
+                   <!-- column -->
+                   <div class="col-sm-12">
+                       <div class="card">
+                           <div class="card-block">
+                               <h4 class="card-title">Assign Course</h4>
+                               <!-- <div class="flot-chart">
+                                   <div class="flot-chart-content" id="flot-line-chart"></div>
+                               </div> -->
+                               <form role="form" data-toggle="validator" class="shake" method="post" action="/admin/assign">
+                                       <div class="row">
+                                         <div class="col">
+                                                 <label for="teacher">Select Teacher</label>
+                                                 <select class="form-control"id ='teacher' name="teacherName">
+                                                   <%user.forEach(function(usr){ %>
+                                                      <option><%= usr.username ; %> </option>
+                                                   <% }) ;%>
+                                                 </select>
+                                         </div>
+                                           <div class="col">
+                                                   <label for="course">Select Course</label>
+                                                   <select class="form-control"  id ='course' name="courseName">
+                                                   <option name=" ">OOPM</option>
+                                                   <option name="">TCS</option>
+                                                   <option name="">BIG DATA</option>
+                                                   <option name="">DATA STRUCTURES</option>
+
+                                                   </select>
+                                           </div>
+
+                                           <div class="col">
+                                             <label for="scode">Subject Cdde</label>
+                                             <input class="form-control" type="text" name="subjectCode" id='scode' value="Enter subject code">
+                                           </div>
+                                       </div>
+
+                                        <br>
+                                         <button name="submit" type="submit" id="form-submit" class="btn btn-success btn-md pull-right ">Submit</button>
+                                         <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                         <div class="clearfix"></div>
+                                     </form>
+                               </form>
+                           </div>
+                       </div>
+                   </div>
