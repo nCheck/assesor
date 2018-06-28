@@ -3,9 +3,18 @@
 <% include ./partials/header %>
 
   <body>
-
-<%= data %>
-
+<div style="width:100%;border:1px solid black">
+  <h4> Your COs </h4>
+</div>
+<br>
+<br>
+<% for( var a in data ){%>
+<%=data[a].number + " -- " +  data[a].name + " -- " + data[a].blooms + " -- "  %>
+<br>
+<hr>
+<% }%>
+<hr>
+<br>
 		<form action ='co' method="POST">
 			<input type="text" name="name" placeholder="CO Name">
 			<input type="text" name="number" placeholder="Course no">

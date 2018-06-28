@@ -24,9 +24,7 @@ router
 router
   .route('/:subject/CO')
     .get(coCtrl.getData)
-      .post((req , res)=>{
-        res.send('co_form alive '+req.params.subject);
-        })
+      .post(coCtrl.addOne)
 
 
 module.exports = router;

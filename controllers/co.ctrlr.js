@@ -22,7 +22,7 @@ module.exports.getData = function (req , res , next) {
 	query = {name : req.params.subject , year : 2018};
 	console.log('Sending Data');
 	var ret;
-	SubjectData.findOne(query).exec((err , doc)=>{
+	SubjectData.findOne(query).lean().exec((err , doc)=>{
 		if(err){
 			console.log("not found " + err);
 		}
@@ -54,19 +54,23 @@ module.exports.getData = function (req , res , next) {
 // }
 
 module.exports.addOne = (req, res)=> {
+	console.log("im inside add one");
+	var query = {name : req.params.subject , year : 2018};
 	CO.create({
 		name : req.body.name,
 		blooms : req.body.blooms,
-		number : req.body.number,
-		attainment : req.body.attainment
+		number : req.body.number
+	}, (err , doc)=>{
+
+		SubjectData.findOne(query , (err , sub )=>{
+				sub.co.push(doc);
+				sub.save();
+				res.redirect('co');
+			});
+
 	});
-	var query = {name : req.params.subject , year : 2018};
-	SubjectData.findOne(query , (err , doc )=>{
-		CO.findOne( {name : req.body.name} ,  (err , doc2)=>{
-			doc.co.push(doc2);
-			doc.save();
-		});
-	});
+
+};
 
 
 	// SubjectData.update(
@@ -84,7 +88,7 @@ module.exports.addOne = (req, res)=> {
 	// 	 }
 	// );
 
-}
+
 
 module.exports.removeOne = (req, res)=> {
 	SubjectData.update(
