@@ -36,8 +36,16 @@ module.exports.addOne = (req, res)=> {
 		 	}
 		 }
 	);
+}
 
 
+
+module.exports.addSubject = (req, res)=> {
+	Subject.create({
+		name : req.body.name,
+		subjectCode : req.body.code,
+	});
+	res.send("Subject Added");
 }
 
 
