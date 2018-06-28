@@ -3,7 +3,7 @@ var parser	=require('body-parser');
 const dir 		= __dirname;
 var User 		=require('./data/user');
 var authroutes		=require('./routes/index');
-var subRoutes	= require('./routes/subject');
+var dashRoutes	= require('./routes/dashboard');
 var passport=require('passport')
 var localstrategy=require('passport-local')
 var passportlocalmongoose=require('passport-local-mongoose')
@@ -35,7 +35,7 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 // =======Routes=======
 
 app.use('/',authroutes);
-app.use('/subject' , subRoutes);
+app.use('/dashboard', isLoggedIn , dashRoutes);
 
 
 
@@ -60,7 +60,6 @@ app.get('/upload' , (req ,res)=>{
 app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
-	console.log(req);
 	console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         return next();

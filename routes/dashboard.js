@@ -3,13 +3,13 @@ var router    = express.Router();
 var parser    = require('body-parser');
 const dir 		= __dirname;
 var passport  =   require('passport')
-
+var coCtrl = require('../controllers/co.ctrlr');
 
 
 router
   .route('/:subject')   //Displays Current CO Info
     .get((req , res)=>{
-  res.send(req.params.subject);
+  res.render('dashboard', {subject : req.params.subject , req : req });
 })
 
 router
@@ -24,10 +24,13 @@ router
 router
   .route('/:subject/CO')
     .get( (req , res)=>{
+      query = {name : 'OOPM' , year : 2017};
+      console.log(coCtrl.getData(query));
       res.render('co_form', {subject : req.params.subject});
       })
       .post((req , res)=>{
         res.send('co_form alive '+req.params.subject);
         })
+
 
 module.exports = router;

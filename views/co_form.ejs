@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-<form action =<%= '/subject/'+subject+'/CO' %> method="POST">
-	<input type="text" name="name" placeholder="CO Name">
-	<input type="text" name="number" placeholder="Course no" >
-	<input type="text" name="blooms" placeholder="blooms level">
-	<button>Submit </button>
-</form>
-</body>
+<% include ./partials/header %>
+
+  <body>
+
+
+
+		<form action ='co' method="POST">
+			<input type="text" name="name" placeholder="CO Name">
+			<input type="text" name="number" placeholder="Course no">
+			<input type="text" name="blooms" placeholder="blooms level">
+			<button>Submit</button>
+		</form>
+
+
+    <% include ./partials/footer %>
+  </body>
+
 </html>

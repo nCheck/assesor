@@ -17,6 +17,20 @@ module.exports.getAll = function (req , res) {
 
 };
 
+module.exports.getData = function (query) {
+	console.log('Sending Data');
+	// SubjectData.findOne(query , (err , doc)=>{
+	// 	if(err){
+	// 		console.log("not found " + err);
+	// 	}
+	// 	else {
+	// 		return doc;
+	// 	}
+	// })
+	return query.name;
+
+};
+
 // module.exports.addOne = function (req , res) {
 // 	var myCO = {};
 // 	myCO['coNum'] = req.body.cno;

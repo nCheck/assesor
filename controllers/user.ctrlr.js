@@ -13,7 +13,7 @@ module.exports.getAll = function (req , res) {
 			res.send(doc);
 		}
 	});
-	
+
 };
 //===To display all users =============
 module.exports.viewingregion=(req,res)=>{
@@ -23,31 +23,31 @@ module.exports.viewingregion=(req,res)=>{
 
 
 	User.find({},function(err,us){
-		teacher=us;		
+		teacher=us;
 
 		if(req.user.role==='Admin')
-		res.render('admin.ejs',{user:us})			//All teachers 
+		res.render('admin.ejs',{user:us})			//All teachers
 		else
-		res.render('dashboard.ejs')
+		res.render('index.ejs')
 	})
-	
+
 	// else
 	// 	res.render('dashboard')
-	
+
 	// User.find({role:"Admin"},function(err,user){
-		
+
 	// 	console.log("gleo"+req.user.role)
 	// 	if(err)
 	// 		console.log("Error spotted",err);
-	// 	else  
-	// 	{ 
+	// 	else
+	// 	{
 	// 		user.forEach(function(usr){
 	// 		if(username === usr.username)
-	//    	 		 res.render('admin.ejs',{user:teacher});	
-		
+	//    	 		 res.render('admin.ejs',{user:teacher});
+
 	// 		})
 
-	// 	}		
+	// 	}
 	// 		res.render('dashboard.ejs')
 	// 	});
 		}
@@ -58,4 +58,3 @@ module.exports.addOne = (req, res)=> {
 		role : req.body.role,
 	});
 }
-
