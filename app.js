@@ -1,9 +1,9 @@
 var express		= require('express');
 var parser	=require('body-parser');
+var mongoose=require('mongoose');
 const dir 		= __dirname;
 var User 		=require('./data/user');
 var authroutes		=require('./routes/index');
-var dashRoutes	= require('./routes/dashboard');
 var adminroutes=require('./routes/admin');
 var passport=require('passport')
 var localstrategy=require('passport-local')
@@ -13,7 +13,7 @@ var app			=express();
 
 // =======initialize data base =======
 require('./data/db.js');
-
+var Subject = mongoose.model('Subject');
 app.set('view engine', 'ejs');
 app.use(express.static(dir + '/public'));
 app.use(parser.urlencoded({extended:true}));
@@ -26,6 +26,25 @@ app.use(require('express-session')({
 	resave:false,
 	saveUninitialized:false
 }))
+//This makes all users available globally to be used in any ejs file
+app.use((req,res,next)=>{
+	User.find({},(err,user)=>{
+		res.locals.user=user;
+		next();
+	})
+})
+//This for all subjects
+app.use((req,res,next)=>{
+	Subject.find({} , function (err , sub) {
+		if(err){
+				console.log("Err in getAll of Subject.ctrlr");
+		}
+		else{
+			res.locals.subject=sub;
+			next();
+		}
+	});
+})
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new localstrategy(User.authenticate()));	//User.authenticate present in passportlocal mongoose so no need to define in users.js
@@ -36,9 +55,8 @@ passport.deserializeUser(User.deserializeUser())	//passport local mongoose it al
 // =======Routes=======
 
 app.use('/',authroutes);
-app.use('/dashboard', dashRoutes);
-app.use('/admin',adminroutes);
 
+app.use('/admin',adminroutes);
 
 
 // =====Required Controllers======
@@ -62,6 +80,8 @@ app.get('/upload' , (req ,res)=>{
 app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
+	console.log(req);
+	console.log(req.isAuthenticated());
     if(req.isAuthenticated()){
         return next();
     }

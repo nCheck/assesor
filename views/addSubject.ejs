@@ -1,0 +1,22 @@
+<%include ./partials/adminheader %>
+
+
+<form class="" action="/admin/addsubject" method="post">
+
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <input type="text" class="form-control mb-2" name='subjectName' placeholder="Enter subject name">
+    </div>
+    <div class="col-auto">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        <input type="text" class="form-control" name='subjectCode' placeholder="Enter subject code">
+      </div>
+    </div>
+
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </div>
+  </div>
+</form>
