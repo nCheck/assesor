@@ -4,7 +4,7 @@ var parser    = require('body-parser');
 const dir 		= __dirname;
 var passport  =   require('passport')
 var coCtrl = require('../controllers/co.ctrlr');
-
+var toolCtrl = require('../controllers/tool.ctrlr');
 
 router
   .route('/:subject')   //Displays Current CO Info
@@ -13,13 +13,11 @@ router
 })
 
 router
-  .route('/:subject/Tool')
+  .route('/:subject/co/:coName/Tool')
   .get( (req , res)=>{
-    res.render('toolsAdd', {subject : req.params.subject });
+    res.render('toolsAdd', {subject : req.params.subject , coName : req.params.coName });
     })
-    .post((req , res)=>{
-      res.send('tool alive '+req.params.subject);
-      })
+    .post(toolCtrl.addOne);
 
 router
   .route('/:subject/CO')

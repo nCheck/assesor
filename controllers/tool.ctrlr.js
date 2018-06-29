@@ -43,33 +43,26 @@ module.exports.getAll = function () {
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
 	Tool.create({
-		name : req.body.tName,
+		name : req.body.name,
 		weightage : req.body.weightage,
 		targetStudent : req.body.targetStudent,
 		targetMark : req.body.targetMark,
 		totalStud : req.body.totalStud,
-		directAttain : req.body.directAttain,
-		indirectAttain : req.body.indirectAttain,
 		high : req.body.high,
 		mid : req.body.mid,
 		low : req.body.low,
-		point : req.body.point
+		toolType:req.body.toolType
+
+	}, (err , doc)=>{
+		var toolId = doc._id;
+		CO.findOne({name:req.params.coName} , (err,docc)=>{
+			docc.tools.push(toolId);
+			docc.save();
+			res.redirect('/dashboard/'+req.params.subject+'/co');
+		})
 
 	});
-	CO.update(
-		{name : req.body.cName}, //searches for the required co in which we wish to add tool
-		{$push : {tools : Tool.findOne( {name : req.body.tName} )._id
-		 } },
-		 function(err, doc) {
-		 	if(err){
-		 		console.log("Error in co.update of addOne in tool.ctrlr");
-		 	}
-		 	else
-		 	{
-		 		console.log("updated++++++++++++++++ ",doc);
-		 	}
-		 }
-	);
+
 }
 
 //*****************To remove a tool*********************
