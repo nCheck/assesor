@@ -17,20 +17,12 @@ module.exports.getAll = function (req , res) {
 };
 //===To display all users =============
 module.exports.viewingregion=(req,res)=>{
-	var username =req.body.username,
-		password =req.body.password;
-	let teacher;
-
-
-	User.find({},function(err,us){
-		teacher=us;
 
 		if(req.user.role==='Admin')
-		res.render('admin.ejs',{user:us})			//All teachers
+			res.render('admin.ejs')			//All teachers
 		else
 		res.redirect('/');
-	})
-		}
+	}
 
 
 module.exports.addOne = (req, res)=> {

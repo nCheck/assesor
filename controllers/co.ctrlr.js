@@ -54,14 +54,14 @@ module.exports.getData = function (req , res , next) {
 // }
 
 module.exports.addOne = (req, res)=> {
-	console.log("im inside add one");
+	console.log("im inside add one"+req.params.subject);
 	var query = {name : req.params.subject , year : 2018};
 	CO.create({
 		name : req.body.name,
 		blooms : req.body.blooms,
 		number : req.body.number
 	}, (err , doc)=>{
-		
+
 		SubjectData.findOne(query , (err , sub )=>{
 				sub.co.push(doc);
 				sub.save();

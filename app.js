@@ -69,9 +69,7 @@ var uploadCtrl = require('./controllers/upload.ctrlr');
 var xlsx       = require('./controllers/xlsx.ctrlr');
 var usercntrlr = require('./controllers/user.ctrlr');
 
-
-
-
+//Teacher's subject view
 app.get('/',(req,res)=>{
 
   console.log("Hello from subjects");
@@ -80,7 +78,6 @@ app.get('/',(req,res)=>{
         console.log("Err in getAll of User.ctrlr");
     }
     else{
-      console.log(user);
       res.locals.subjects=user.subjects;
         res.render('index')
     }

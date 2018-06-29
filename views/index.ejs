@@ -8,7 +8,10 @@
     <ol>
       <% subjects.forEach(function(sub){%>
         <li>
-          <%= sub.name %>
+          <a href="/dashboard/<%=sub.name%>">
+            <%= sub.name %>
+          </a>
+
         </li>
         <%  })%>
           <li> <a href="./dashboard/OOPM"> OOPM </a> </li>

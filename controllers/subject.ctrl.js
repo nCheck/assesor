@@ -17,7 +17,7 @@ module.exports.getAll = function (req , res) {
 
 };
 
-module.exports.addOne = (req, res)=> {
+module.exports.assignCourse = (req, res)=> {
 	console.log(req.body.teacherName);
 	console.log(req.body.courseName);
 	User.findOne({username:req.body.teacherName} , (err , doc)=>{

@@ -15,38 +15,40 @@
   <!-- Links -->
   <ul class="navbar-nav float-right">
     <% if (typeof req != 'undefined') {%>
-    <li class="nav-item">
-      <a class="nav-link" href="../login"> <%= "Hi " +  req.user.username + " !! Paani Peelo" %> </a>
-    </li>
-    <% } %>
-    <li class="nav-item mr-2">
-      <a class="nav-link" href="../logout">Logout</a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../login">
+          <%= "Hi " +  req.user.username + " !! Paani Peelo" %>
+        </a>
+      </li>
+      <% } %>
+        <li class="nav-item mr-2">
+          <a class="nav-link" href="../logout">Logout</a>
+        </li>
   </ul>
 
 </nav>
- <% if( typeof subject != 'undefined' ) { %>
-   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-     <!-- Brand/logo -->
-     <a class="navbar-brand" href="#">Assesor</a>
+<% if( typeof subject != 'undefined' ) { %>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">Assesor</a>
 
-     <!-- Links -->
-     <ul class="navbar-nav">
-       <li class="nav-item">
-         <a class="nav-link" href="#">Upload File</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link" href=<%= subject+"/co" %> >CO</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link" href="#">Upload Marks</a>
-       </li>
-     </ul>
-   </nav>
- <% } %>
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Upload File</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=subject%>/CO">CO</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Upload Marks</a>
+      </li>
+    </ul>
+  </nav>
+  <% } %>
 
-<br>
-<br>
-<br>
-<br>
-<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">

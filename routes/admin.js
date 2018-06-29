@@ -9,7 +9,7 @@ router
 
 router
   .route('/assign')
-  .post((Subject.addOne))
+  .post((Subject.assignCourse))
     // var courseName=req.body.courseName,
     //     teachers  =req.body.teacherName;
     // res.render('assign',{courseName:courseName,teacherName:teachers})})
