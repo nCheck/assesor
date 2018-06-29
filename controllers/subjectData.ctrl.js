@@ -24,7 +24,7 @@ module.exports.addOne = (req, res)=> {
 	});
 	Subject.update(
 		{name : req.body.name}, //Adding SubjectData to Subject every year
-		{$push : {subjectData : SubjectData.find( {year : req.body.year , req.body.name} )
+		{$push : {subjectData : SubjectData.findOne( {year : req.body.year , req.body.name} )._id
 		 } },
 		 function(err, doc) {
 		 	if(err){

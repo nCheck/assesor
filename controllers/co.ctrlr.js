@@ -22,7 +22,7 @@ module.exports.getData = function (req , res , next) {
 	query = {name : req.params.subject , year : 2018};
 	console.log('Sending Data');
 	var ret;
-	SubjectData.findOne(query).lean().exec((err , doc)=>{
+	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
 		if(err){
 			console.log("not found " + err);
 		}
@@ -68,7 +68,7 @@ module.exports.addOne = (req, res)=> {
 				blooms : req.body.blooms,
 				number : req.body.number
 			} , (err , docc)=>{
-				doc.co.push(docc);
+				doc.co.push(docc._id);
 				doc.save();
 				res.redirect('co');
 			})

@@ -13,7 +13,7 @@ module.exports.getAll = function () {
 				return doc;
 		}
 	});
-	
+
 };
 
 // module.exports.addOne = function (req , res) {
@@ -58,7 +58,7 @@ module.exports.addOne = function (req , res) {
 	});
 	CO.update(
 		{name : req.body.cName}, //searches for the required co in which we wish to add tool
-		{$push : {tools : Tool.find( {name : req.body.tName} )
+		{$push : {tools : Tool.findOne( {name : req.body.tName} )._id
 		 } },
 		 function(err, doc) {
 		 	if(err){
@@ -76,7 +76,7 @@ module.exports.addOne = function (req , res) {
 module.exports.removeOne = function (req, res) {
 	CO.update(
 		{name : req.body.cName},
-		{$pull : {tools : Tool.find( {name : req.body.tName}) 
+		{$pull : {tools : Tool.findOne( {name : req.body.tName})._id
 		}},
 		function(err, doc) {
 			if(err){

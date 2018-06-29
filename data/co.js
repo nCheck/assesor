@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var Tool=require('./tool.js');
 
 
@@ -6,7 +7,7 @@ var coSchema = new mongoose.Schema({
 	name : String,
 	blooms : String,
 	number: Number,
-	tools:[Tool.toolSchema],
+	tools:[{type:Schema.Types.ObjectId, ref: 'Tool'}],
 	attainment : Number,
 });
 

@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var Co = require('./co');
 
 var subjDataSchema = new mongoose.Schema({
 	name : String,
 	year:Number,
-	co:[Co.coSchema],
+	co:[{type : Schema.Types.ObjectId, ref: 'CO'}],
 
 });
 

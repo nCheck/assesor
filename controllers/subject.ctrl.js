@@ -27,7 +27,7 @@ module.exports.assignCourse = (req, res)=> {
 		}
 		else {
 			Subject.findOne({name : req.body.courseName}, (err , docc)=>{
-				doc.subjects.push(docc);
+				doc.subjects.push(docc._id);
 				doc.save();
 
 
@@ -40,7 +40,7 @@ module.exports.assignCourse = (req, res)=> {
 						SubjectData.create({year:year , name:req.body.courseName}).then(
 							SubjectData.findOne({year:year , name:req.body.courseName}, (err, sub)=>{
 								console.log(sub);
-								docc.subjectData.push(sub);
+								docc.subjectData.push(sub._id);
 								docc.save();
 							})
 						)
