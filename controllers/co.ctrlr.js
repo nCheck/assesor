@@ -27,6 +27,7 @@ module.exports.getData = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
+			console.log(doc);
 			res.render('coPage' , {data : doc.co});
 		}
 	})
@@ -60,15 +61,19 @@ module.exports.addOne = (req, res)=> {
 		name : req.body.name,
 		blooms : req.body.blooms,
 		number : req.body.number
-	}, (err , doc)=>{
-
-		SubjectData.findOne(query , (err , sub )=>{
-				sub.co.push(doc);
-				sub.save();
+	}).then(
+		SubjectData.findOne(query, (err,doc)=>{
+			CO.findOne({
+				name : req.body.name,
+				blooms : req.body.blooms,
+				number : req.body.number
+			} , (err , docc)=>{
+				doc.co.push(docc);
+				doc.save();
 				res.redirect('co');
-			});
-
-	});
+			})
+		})
+	);
 
 };
 
