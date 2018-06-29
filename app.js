@@ -73,13 +73,12 @@ var usercntrlr = require('./controllers/user.ctrlr');
 app.get('/',(req,res)=>{
 
   console.log("Hello from subjects");
-  User.findOne({username:req.user.username} , function (err , user) {
+  User.findOne({username:req.user.username}).populate('subjects').exec(function (err , user) {
     if(err){
         console.log("Err in getAll of User.ctrlr");
     }
     else{
-      res.locals.subjects=user.subjects;
-        res.render('index')
+        res.render('index' , {subjects : user.subjects})
     }
 
 })
