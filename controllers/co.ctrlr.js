@@ -61,7 +61,7 @@ module.exports.addOne = (req, res)=> {
 		blooms : req.body.blooms,
 		number : req.body.number
 	}, (err , doc)=>{
-
+		
 		SubjectData.findOne(query , (err , sub )=>{
 				sub.co.push(doc);
 				sub.save();
