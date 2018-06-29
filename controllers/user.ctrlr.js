@@ -19,7 +19,7 @@ module.exports.getAll = function (req , res) {
 module.exports.viewingregion=(req,res)=>{
 
 		if(req.user.role==='Admin')
-			res.render('admin.ejs')			//All teachers
+			res.redirect('/admin');			//All teachers
 		else
 		res.redirect('/');
 	}

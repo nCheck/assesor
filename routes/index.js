@@ -8,7 +8,7 @@ var User=require('../data/user')
 router
 .route('/register')
 .get(function(req,res){
-	res.render('register.ejs') 
+	res.render('register.ejs')
 })
 .post(function(req,res){
 	var username =req.body.username,
@@ -18,8 +18,8 @@ router
 		if (err)
 			{   console.log(err)
 				return res.render('register')
-			}	
-		passport.authenticate('local')(function(req,res){
+			}
+		passport.authenticate('local')(req,res,function(){
 			res.redirect('/login')
 		});
 	})
@@ -31,7 +31,7 @@ router
 .get(function(req,res){
 	res.render('login.ejs')
 })
-.post(passport.authenticate("local",),usercntrlr.viewingregion)//middleware for checking database 
+.post(passport.authenticate("local",),usercntrlr.viewingregion)//middleware for checking database
 function isLoggedIn(req, res, next){
 	console.log(req);
 	console.log(req.isAuthenticated());
@@ -40,4 +40,10 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 }
+router
+.route('/logout')
+.get( function(req, res){
+    req.logout();
+    res.redirect("/login");
+});
 module.exports=router

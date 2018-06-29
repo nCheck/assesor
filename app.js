@@ -52,7 +52,7 @@ passport.use(new localstrategy(User.authenticate()));	//User.authenticate presen
 passport.serializeUser(User.serializeUser())		//No need to define function User.serializeUser since we used
 passport.deserializeUser(User.deserializeUser())	//passport local mongoose it already has those function
 
-
+app.use(isLoggedIn);
 // =======Routes=======
 
 app.use('/',authroutes);
@@ -94,9 +94,7 @@ app.get('/upload' , (req ,res)=>{
 app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
-	console.log(req);
-	console.log(req.isAuthenticated());
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated()||req.path==='/login'){
         return next();
     }
     res.redirect("/login");
