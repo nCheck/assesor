@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Subject = mongoose.model('Subject');
 var User = mongoose.model('User');
-
+var SubjectData = mongoose.model('SubjectData');
+var year = 2018;
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
 	Subject.find({} , function (err , doc) {
@@ -17,25 +18,42 @@ module.exports.getAll = function (req , res) {
 };
 
 module.exports.addOne = (req, res)=> {
-	Subject.create({
-		name : req.body.courseName,
-		subjectCode : req.body.subjectCode,
-	});
-	User.update(
-		{username : req.body.teacherName}, //searches for the required co in which we wish to add tool
-		{$push : {subjects : Subject.find( {name : req.body.courseName} )
-		 } },
-		 function(err, doc) {
-		 	if(err){
-		 		console.log("Error in User.update of addOne in Subject.ctrlr");
-		 	}
-		 	else
-		 	{
-		 		console.log("updated++++++++++++++++ ",doc);
+	console.log(req.body.teacherName);
+	console.log(req.body.courseName);
+	User.findOne({username:req.body.teacherName} , (err , doc)=>{
+		if(err){
+			console.log("doc not found " + err);
+			res.send("error")
+		}
+		else {
+			Subject.findOne({name : req.body.courseName}, (err , docc)=>{
+				doc.subjects.push(docc);
+				doc.save();
+
+
+				SubjectData.findOne({year:year , name:req.body.courseName} , (err , doc)=>{
+					if(err){
+						console.log(err);
+					}
+					else if (doc == null) {
+						console.log("Im inside null");
+						SubjectData.create({year:year , name:req.body.courseName}).then(
+							SubjectData.findOne({year:year , name:req.body.courseName}, (err, sub)=>{
+								console.log(sub);
+								docc.subjectData.push(sub);
+								docc.save();
+							})
+						)
+
+					}
+				});
+
+
+
 				res.redirect('/admin')
-		 	}
-		 }
-	);
+			})
+		}
+	})
 }
 
 
