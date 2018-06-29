@@ -4,14 +4,19 @@
 
   <body>
 
-		<h3>Teacher's viewing area </h3>
-		<ol>
-			<li> <a href="./dashboard/OOPM"> OOPM </a> </li>
-			<li> <a href="./dashboard/BDA"> BDA </a> </li>
-		<ol>
+    <h3>Teacher's viewing area </h3>
+    <ol>
+      <% subjects.forEach(function(sub){%>
+        <li>
+          <%= sub.name %>
+        </li>
+        <%  })%>
+          <li> <a href="./dashboard/OOPM"> OOPM </a> </li>
+          <li> <a href="./dashboard/BDA"> BDA </a> </li>
+          <ol>
 
 
-    <% include ./partials/footer %>
+            <% include ./partials/footer %>
   </body>
 
 </html>

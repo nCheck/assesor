@@ -1,51 +1,51 @@
 <%include ./partials/adminheader %>
-</div>
-</div>
-</form>
-<div class="row">
-                   <!-- column -->
-                   <div class="col-sm-12">
-                       <div class="card">
-                           <div class="card-block">
-                               <h4 class="card-title">Assign Course</h4>
-                               <!-- <div class="flot-chart">
+  </div>
+  </div>
+  </form>
+  <div class="row">
+    <!-- column -->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">Assign Course</h4>
+          <!-- <div class="flot-chart">
                                    <div class="flot-chart-content" id="flot-line-chart"></div>
                                </div> -->
-                               <form role="form" data-toggle="validator" class="shake" method="post" action="/admin/assign">
-                                       <div class="row">
-                                         <div class="col">
-                                                 <label for="teacher">Select Teacher</label>
-                                                 <select class="form-control"id ='teacher' name="teacherName">
+          <form role="form" data-toggle="validator" class="shake" method="post" action="/admin/assign">
+            <div class="row">
+              <div class="col">
+                <label for="teacher">Select Teacher</label>
+                <select class="form-control" id='teacher' name="teacherName">
                                                    <%user.forEach(function(usr){ %>
                                                       <option><%= usr.username ; %> </option>
                                                    <% }) ;%>
                                                  </select>
-                                         </div>
-                                           <div class="col">
-                                                   <label for="course">Select Course</label>
-                                                   <select class="form-control"  id ='course' name="courseName">
+              </div>
+              <div class="col">
+                <label for="course">Select Course</label>
+                <select class="form-control" id='course' name="courseName">
                                                      <%subject.forEach(function(sub){%>
                                                        <option><%= sub.name %></option>
                                                          <%})%>
                                                    </select>
-                                           </div>
+              </div>
 
-                                           <div class="col">
-                                             <label for="scode">Subject Code</label>
-                                              <select class="form-control"  id ='scode' name="courseName">
+              <div class="col">
+                <label for="scode">Subject Code</label>
+                <select class="form-control" id='scode' name="subjectCode">
                                              <%subject.forEach(function(sub){%>
                                                <option><%= sub.subjectCode %></option>
                                                  <%})%>
                                                </select>
-                                           </div>
-                                       </div>
+              </div>
+            </div>
 
-                                        <br>
-                                         <button name="submit" type="submit" id="form-submit" class="btn btn-success btn-md pull-right ">Submit</button>
-                                         <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                         <div class="clearfix"></div>
-                                     </form>
-                               </form>
-                           </div>
-                       </div>
-                   </div>
+            <br>
+            <button name="submit" type="submit" id="form-submit" class="btn btn-success btn-md pull-right ">Submit</button>
+            <div id="msgSubmit" class="h3 text-center hidden"></div>
+            <div class="clearfix"></div>
+          </form>
+          </form>
+        </div>
+      </div>
+    </div>

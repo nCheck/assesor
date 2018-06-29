@@ -1,15 +1,15 @@
-var express		= require('express');
-var parser	=require('body-parser');
-var mongoose=require('mongoose');
-const dir 		= __dirname;
-var User 		=require('./data/user');
-var authroutes		=require('./routes/index');
-var adminroutes=require('./routes/admin');
-var dashRoutes=require('./routes/dashboard');
-var passport=require('passport')
-var localstrategy=require('passport-local')
-var passportlocalmongoose=require('passport-local-mongoose')
-var app			=express();
+var express               = require('express');
+var parser                = require('body-parser');
+var mongoose              = require('mongoose');
+const dir                 = __dirname;
+var User                  = require('./data/user');
+var authroutes            = require('./routes/index');
+var adminroutes           = require('./routes/admin');
+var dashRoutes            = require('./routes/dashboard');
+var passport              = require('passport');
+var localstrategy         = require('passport-local');
+var passportlocalmongoose = require('passport-local-mongoose');
+var app		               	=express();
 
 
 // =======initialize data base =======
@@ -63,14 +63,30 @@ app.use('/admin',adminroutes);
 
 // =====Required Controllers======
 
-var coCtrl = require('./controllers/co.ctrlr');
-var toCtrl = require('./controllers/tool.ctrlr');
+var coCtrl     = require('./controllers/co.ctrlr');
+var toCtrl     = require('./controllers/tool.ctrlr');
 var uploadCtrl = require('./controllers/upload.ctrlr');
-var xlsx = require('./controllers/xlsx.ctrlr');
+var xlsx       = require('./controllers/xlsx.ctrlr');
+var usercntrlr = require('./controllers/user.ctrlr');
 
 
 
 
+app.get('/',(req,res)=>{
+
+  console.log("Hello from subjects");
+  User.findOne({username:req.user.username} , function (err , user) {
+    if(err){
+        console.log("Err in getAll of User.ctrlr");
+    }
+    else{
+      console.log(user);
+      res.locals.subjects=user.subjects;
+        res.render('index')
+    }
+
+})
+});
 
 // ========upload page temp==========
 
