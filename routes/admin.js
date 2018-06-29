@@ -4,7 +4,7 @@ var Subject=require('../controllers/subject.ctrl')
 router
   .route('/')
   .get((req,res)=>{
-    res.render('admin.ejs')
+    res.render('admin.ejs',{req:req})
   });
 
 router
