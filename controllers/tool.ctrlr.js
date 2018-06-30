@@ -13,15 +13,6 @@ module.exports.getAll = function (req , res) {
 
 };
 
-module.exports.getToolData = function (req , res) {
-	console.log('Sending Tool Data');
-	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
-		console.log(doc);
-		res.send(doc.tools);
-	})
-
-};
-
 
 // ================send toolsname ================
 

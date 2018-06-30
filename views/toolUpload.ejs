@@ -7,12 +7,12 @@
 <form action="/add/tools" method='POST' >
 		<select name="tool" id='dropdown'>
 		<% tools.forEach(function(tool){ %>
-	  <option class="co-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
+	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
 	 <% });%>
 		</select>
 <br>
 <hr>
-			<select name="tool" id="tooldrop">
+			<select name="coName" id="coDrop">
 			</select>
 <br>
 <hr>
@@ -24,18 +24,19 @@
 
 		<script>
 		// Dynamic Loading of Tools
-			// $('.co-dropdown').click(function () {
-			// 	var coID = $("#dropdown option:selected").val();
-			// 	$.get('/api/co/'+coID, function(data, status){
-		  //       // console.log(data);
-			// 			var tools = [];
-			// 			for(t in data){
-			// 				tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
-			// 			}
-			// 			$('#tooldrop').html(tools.join("  "))
-		  //   });
-			//
-			// })
+			$('.to-dropdown').click(function () {
+				var toolID = $("#dropdown option:selected").val();
+				console.log(toolID);
+				$.get('/api/OOPM/co/'+toolID, function(data, status){
+		        console.log(data);
+						var tools = [];
+						for(t in data){
+							tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
+						}
+						$('#coDrop').html(tools.join("  "))
+		    });
+
+			})
 		</script>
 	</body>
 

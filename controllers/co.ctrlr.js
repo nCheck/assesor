@@ -37,25 +37,34 @@ module.exports.getData = function (req , res , next) {
 
 };
 
-// module.exports.addOne = function (req , res) {
-// 	var myCO = {};
-// 	myCO['coNum'] = req.body.cno;
-// 	myCO['coName'] = req.body.cname;
-// 	myCO['blooms'] = req.body.blooms;
-// 	myCO['tools'] = [];
-// 	var newCO = new CO(myCO);
-// 	console.log(req.body);
-// 	newCO.save(function(err , doc) {
-// 		if(err){
-// 			console.log('error' + err);
-// 		}
-// 		else{
-// 			console.log('saved ' + doc);
-// 			res.send("Got it")
-// 		}
-// 	});
-
+// ==========paste=========
+// if(d.tools.indexOf(req.params.toolID)!=-1){
+// 	dc.push(d);
 // }
+
+// ============get co of tool id ========
+
+module.exports.getCO = (req , res)=>{
+	var dc = []
+	SubjectData.findOne({name:req.params.subject , year : 2018}).populate({
+		path : 'co' , populate : {
+			path : 'tools',
+			model : 'ToolData'
+		}
+	}).exec((err , doc)=>{
+		doc.co.forEach(function (c) {
+			c.tools.forEach(function (t) {
+				if(t.tool == req.params.toolID){
+					dc.push(c);
+					return ;
+				}
+			})
+		})
+		res.send(dc)
+	})
+}
+
+
 
 module.exports.addOne = (req, res)=> {
 	console.log("im inside add one"+req.params.subject);
