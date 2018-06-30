@@ -31,7 +31,7 @@ module.exports.assignCourse = (req, res)=> {
 				console.log("Cannot find it "+err);
 				else{
 					console.log(docc);
-				doc.subjects.push(docc._id);
+				doc.subjects.push(docc);
 				doc.save();
 			};
 
@@ -41,13 +41,12 @@ module.exports.assignCourse = (req, res)=> {
 					}
 					else if (doc == null) {
 						console.log("Im inside null");
-						SubjectData.create({year:year , name:req.body.courseName}).then(
-							SubjectData.findOne({year:year , name:req.body.courseName}).exec((err, sub)=>{
+						SubjectData.create({year:year , name:req.body.courseName},(err, sub)=>{
 								console.log(sub);
-								docc.subjectData.push(sub._id);
+								docc.subjectData.push(sub);
 								docc.save();
 							})
-						)
+
 
 					}
 				});
@@ -66,6 +65,8 @@ module.exports.addSubject = (req, res)=> {
 	Subject.create({
 		name : req.body.subjectName,
 		subjectCode : req.body.subjectCode,
+	},(err,sub)=>{
+		console.log(sub.name+" iS BORN  "+ sub)
 	});
 	res.redirect('/admin')
 }
