@@ -2,17 +2,13 @@ var mongoose = require('mongoose');
 var Tool = mongoose.model('Tool');
 var CO = mongoose.model('CO');
 
-module.exports.getAll = function () {
-	console.log('Sending Data');
-	Tool.find({} , function (err , doc) {
-		if(err){
-			console.log("OhNo error in finding tools ");
-		}
-		else{
-				console.log(doc);
-				return doc;
-		}
-	});
+module.exports.getAll = function (req , res) {
+	console.log('Sending Tool Data');
+	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
+		console.log(doc);
+		res.render('toolsAdd', {subject : req.params.subject
+			, coID : req.params.coID , tools : doc.tools });
+	})
 
 };
 
@@ -55,10 +51,11 @@ module.exports.addOne = function (req , res) {
 
 	}, (err , doc)=>{
 		var toolId = doc._id;
-		CO.findOne({name:req.params.coName} , (err,docc)=>{
+		CO.findById(req.params.coID , (err,docc)=>{
 			docc.tools.push(toolId);
 			docc.save();
-			res.redirect('/dashboard/'+req.params.subject+'/co');
+			backURL=req.header('Referer')||'/';
+			res.redirect(backURL);
 		})
 
 	});
@@ -67,17 +64,11 @@ module.exports.addOne = function (req , res) {
 
 //*****************To remove a tool*********************
 module.exports.removeOne = function (req, res) {
-	CO.update(
-		{name : req.body.cName},
-		{$pull : {tools : Tool.findOne( {name : req.body.tName})._id
-		}},
-		function(err, doc) {
-			if(err){
-				console.log("Err in co.update of RemoveOne in tool.ctrlr");
-			}
-			else{
-				console.log("updated--------------",doc);
-			}
-		}
-	)
+	Tool.deleteOne({_id:req.params.toolID});
+	CO.findById(req.params.coID,(err , doc)=>{
+		doc.tools.splice( doc.tools.indexOf(req.params.toolID), 1 );
+		doc.save();
+	})
+		backURL=req.header('Referer');
+		res.redirect(backURL)
 }

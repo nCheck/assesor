@@ -13,10 +13,8 @@ router
 })
 
 router
-  .route('/:subject/co/:coName/Tool')
-  .get( (req , res)=>{
-    res.render('toolsAdd', {subject : req.params.subject , coName : req.params.coName });
-    })
+  .route('/:subject/co/:coID/Tool')
+  .get(toolCtrl.getAll)
     .post(toolCtrl.addOne);
 
 router
@@ -24,5 +22,9 @@ router
     .get(coCtrl.getData)
       .post(coCtrl.addOne)
 
+
+router
+  .route('/co/:coID/:toolID/delete')
+    .get(toolCtrl.removeOne)
 
 module.exports = router;

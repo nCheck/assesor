@@ -20,8 +20,9 @@ module.exports.viewingregion=(req,res)=>{
 
 		if(req.user.role==='Admin')
 			res.redirect('/admin');			//All teachers
-		else
-		res.redirect('/');
+		else{
+			res.redirect('/');
+		}
 	}
 
 

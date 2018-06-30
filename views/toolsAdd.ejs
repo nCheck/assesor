@@ -3,8 +3,12 @@
 <% include ./partials/header %>
 
 	<body>
-
-		<%# WRITE YOUR HTML INSIDE THIS %>
+		<% for(t in tools){ %>
+		<%= tools[t].name + " ====== "+ tools[t].weightage + " ====== "+ tools[t].toolType + " ====== " %>
+		<a href=<%=  "/dashboard/co/"+ coID + "/" +tools[t]._id+"/delete" %> >Delete</a>
+		<br>
+		<hr>
+		<%}%>
 
 			<form action=<%= 'Tool' %> method="POST">
 				<input type="text" name="name" placeholder="name">
