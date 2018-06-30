@@ -4,7 +4,7 @@
 
 	<body>
 
-		<form ref='uploadForm' id='uploadForm' action="/upload" method='POST'>
+		<form ref='uploadForm' id='uploadForm' action="/upload" method='POST' encType="multipart/form-data">
 			<select name="tool" id='dropdown'>
 		<% tools.forEach(function(tool){ %>
 	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
@@ -16,10 +16,11 @@
 			<ol name="coName" id="coList">
 
 			</ol>
+
 			<br>
 			<hr>
 			<input type="file" name="timetable">
-			<input type="text" name="header" placeholder="filename">
+
 			<input type='submit' value='Upload!'>
 		</form>
 
