@@ -27,9 +27,13 @@ module.exports.assignCourse = (req, res)=> {
 		}
 		else {
 			Subject.findOne({name : req.body.courseName}, (err , docc)=>{
+				if(err)
+				console.log("Cannot find it "+err);
+				else{
+					console.log(docc);
 				doc.subjects.push(docc._id);
 				doc.save();
-
+			};
 
 				SubjectData.findOne({year:year , name:req.body.courseName} , (err , doc)=>{
 					if(err){

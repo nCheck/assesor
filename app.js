@@ -74,20 +74,7 @@ var uploadCtrl = require('./controllers/upload.ctrlr');
 var xlsx       = require('./controllers/xlsx.ctrlr');
 var usercntrlr = require('./controllers/user.ctrlr');
 
-//Teacher's subject view
-app.get('/',(req,res)=>{
 
-  console.log("Hello from subjects");
-  User.findOne({username:req.user.username}).populate('subjects').exec(function (err , user) {
-    if(err){
-        console.log("Err in getAll of User.ctrlr");
-    }
-    else{
-        res.render('index' , {subjects : user.subjects , hidenav : true})
-    }
-
-})
-});
 
 
 // ========upload page temp==========

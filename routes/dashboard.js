@@ -1,9 +1,11 @@
-var express		= require('express');
-var router    = express.Router();
-var parser    = require('body-parser');
-const dir 		= __dirname;
-var coCtrl = require('../controllers/co.ctrlr');
+var express  = require('express');
+var router   = express.Router();
+var parser   = require('body-parser');
+const dir    = __dirname;
+var coCtrl   = require('../controllers/co.ctrlr');
 var toolCtrl = require('../controllers/tool.ctrlr');
+var User     = require('../data/user');
+
 
 router
   .route('/:subject')   //Displays Current CO Info
@@ -25,5 +27,22 @@ router
 router
   .route('/co/:coID/:toolID/delete')
     .get(toolCtrl.removeOne)
+
+//Teacher's subject view
+router
+  .route('/')
+  .get((req,res)=>{
+
+      console.log("Hello from subjects");
+      User.findOne({username:req.user.username}).populate('subjects').exec(function (err , user) {
+        if(err){
+            console.log("Err in getAll of User.ctrlr");
+        }
+        else{
+            res.render('index' , {subjects : user.subjects , hidenav : true})
+        }
+
+    })
+    });
 
 module.exports = router;

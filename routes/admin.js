@@ -15,6 +15,6 @@ router
     // res.render('assign',{courseName:courseName,teacherName:teachers})})
 router
   .route('/addsubject')
-  .get((req,res)=>res.render('addSubject.ejs' , {req:req}))
+  .get((req,res)=>res.render('addSubject.ejs',{req:req}))
   .post((Subject.addSubject))
 module.exports=router;
