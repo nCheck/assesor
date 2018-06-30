@@ -10,7 +10,7 @@
 <br>
 <% for( var a in data ){%>
 <%=data[a].number + " -- " +  data[a].name + " -- " + data[a].blooms + " -- "  %>
-<span>----<a href=<%= "co/" + data[a].name + "/tool" %> > Add Tool </a> </span>
+<span>----<a href=<%= "co/" + data[a]._id + "/tool" %> > Add Tool </a> </span>
 <br>
 <hr>
 <% }%>
