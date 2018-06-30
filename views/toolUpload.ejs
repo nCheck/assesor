@@ -4,40 +4,44 @@
 
 	<body>
 
-<form action="/add/tools" method='POST' >
-		<select name="tool" id='dropdown'>
+		<form ref='uploadForm' id='uploadForm' action="/upload" method='POST'>
+			<select name="tool" id='dropdown'>
 		<% tools.forEach(function(tool){ %>
 	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
 	 <% });%>
 		</select>
-<br>
-<hr>
-			<select name="coName" id="coDrop">
-			</select>
-<br>
-<hr>
-			<button>Submit </button>
+			<br>
+			<hr>
+
+			<ol name="coName" id="coList">
+
+			</ol>
+			<br>
+			<hr>
+			<input type="file" name="timetable">
+			<input type="text" name="header" placeholder="filename">
+			<input type='submit' value='Upload!'>
 		</form>
 
 
 		<% include ./partials/footer %>
 
-		<script>
-		// Dynamic Loading of Tools
-			$('.to-dropdown').click(function () {
-				var toolID = $("#dropdown option:selected").val();
-				console.log(toolID);
-				$.get('/api/OOPM/co/'+toolID, function(data, status){
-		        console.log(data);
+			<script>
+				// Dynamic Loading of Tools
+				$('.to-dropdown').click(function() {
+					var toolID = $("#dropdown option:selected").val();
+					console.log(toolID);
+					$.get('/api/<%=subject%>/co/' + toolID, function(data, status) {
+						console.log(data);
 						var tools = [];
-						for(t in data){
-							tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
-						}
-						$('#coDrop').html(tools.join("  "))
-		    });
+						data.forEach(function(cos) {
+							tools.push('<li value= cos._id > ' + cos.name + ' </li> ')
+						})
+						$('#coList').html(tools)
+					});
 
-			})
-		</script>
+				})
+			</script>
 	</body>
 
 </html>

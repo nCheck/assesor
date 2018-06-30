@@ -9,7 +9,7 @@ var authroutes            = require('./routes/index');
 var adminroutes           = require('./routes/admin');
 var dashRoutes            = require('./routes/dashboard');
 var uploadRoutes					= require('./routes/upload');
-var apiRoutes					= require('./routes/api');
+var apiRoutes				  		= require('./routes/api');
 // ======Passport=======
 var passport              = require('passport');
 var localstrategy         = require('passport-local');
@@ -70,8 +70,7 @@ app.use('/upload',uploadRoutes);
 
 var coCtrl     = require('./controllers/co.ctrlr');
 var toCtrl     = require('./controllers/tool.ctrlr');
-var uploadCtrl = require('./controllers/upload.ctrlr');
-var xlsx       = require('./controllers/xlsx.ctrlr');
+
 var usercntrlr = require('./controllers/user.ctrlr');
 
 
@@ -79,12 +78,6 @@ var usercntrlr = require('./controllers/user.ctrlr');
 
 // ========upload page temp==========
 
-
-app.get('/upload' , (req ,res)=>{
-	res.render('upload');
-});
-
-app.post('/upload', uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()||req.path==='/login'){
