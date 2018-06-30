@@ -38,7 +38,7 @@ module.exports.assignCourse = (req, res)=> {
 					else if (doc == null) {
 						console.log("Im inside null");
 						SubjectData.create({year:year , name:req.body.courseName}).then(
-							SubjectData.findOne({year:year , name:req.body.courseName}, (err, sub)=>{
+							SubjectData.findOne({year:year , name:req.body.courseName}).exec((err, sub)=>{
 								console.log(sub);
 								docc.subjectData.push(sub._id);
 								docc.save();

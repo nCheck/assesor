@@ -8,7 +8,7 @@ var User=require('../data/user')
 router
 .route('/register')
 .get(function(req,res){
-	res.render('register.ejs')
+	res.render('register.ejs' , {req:req})
 })
 .post(function(req,res){
 	var username =req.body.username,

@@ -9,6 +9,6 @@ var toolCtrl = require('../controllers/tool.ctrlr');
 
 router
   .route('/:subject/tool')   //Displays Current CO Info
-    .get(coCtrl.getDataDoc)
+    .get(toolCtrl.getToolDoc)
 
 module.exports=router

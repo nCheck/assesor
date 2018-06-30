@@ -5,14 +5,14 @@
 	<body>
 
 <form action="/add/tools" method='POST' >
-		<select name="cos" id='dropdown'>
-		<% coData.forEach(function(coo){ %>
-	  <option class="co-dropdown" value=<%=coo._id%> >  <%=coo.name%> </option>
+		<select name="tool" id='dropdown'>
+		<% tools.forEach(function(tool){ %>
+	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
 	 <% });%>
 		</select>
 <br>
 <hr>
-			<select name="tool" id="tooldrop">
+			<select name="coName" id="coDrop">
 			</select>
 <br>
 <hr>
@@ -24,15 +24,16 @@
 
 		<script>
 		// Dynamic Loading of Tools
-			$('.co-dropdown').click(function () {
-				var coID = $("#dropdown option:selected").val();
-				$.get('/api/co/'+coID, function(data, status){
-		        // console.log(data);
+			$('.to-dropdown').click(function () {
+				var toolID = $("#dropdown option:selected").val();
+				console.log(toolID);
+				$.get('/api/OOPM/co/'+toolID, function(data, status){
+		        console.log(data);
 						var tools = [];
 						for(t in data){
 							tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
 						}
-						$('#tooldrop').html(tools.join("  "))
+						$('#coDrop').html(tools.join("  "))
 		    });
 
 			})
