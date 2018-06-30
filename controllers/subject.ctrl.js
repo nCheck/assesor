@@ -43,7 +43,7 @@ module.exports.assignCourse = (req, res)=> {
 						console.log("Im inside null");
 						SubjectData.create({year:year , name:req.body.courseName},(err, sub)=>{
 								console.log(sub);
-								docc.subjectData.push(sub);
+								docc.subjectData.push(sub._id);
 								docc.save();
 							})
 
