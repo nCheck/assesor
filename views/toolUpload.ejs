@@ -5,9 +5,9 @@
 	<body>
 
 <form action="/add/tools" method='POST' >
-		<select name="cos" id='dropdown'>
-		<% coData.forEach(function(coo){ %>
-	  <option class="co-dropdown" value=<%=coo._id%> >  <%=coo.name%> </option>
+		<select name="tool" id='dropdown'>
+		<% tools.forEach(function(tool){ %>
+	  <option class="co-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
 	 <% });%>
 		</select>
 <br>
@@ -24,18 +24,18 @@
 
 		<script>
 		// Dynamic Loading of Tools
-			$('.co-dropdown').click(function () {
-				var coID = $("#dropdown option:selected").val();
-				$.get('/api/co/'+coID, function(data, status){
-		        // console.log(data);
-						var tools = [];
-						for(t in data){
-							tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
-						}
-						$('#tooldrop').html(tools.join("  "))
-		    });
-
-			})
+			// $('.co-dropdown').click(function () {
+			// 	var coID = $("#dropdown option:selected").val();
+			// 	$.get('/api/co/'+coID, function(data, status){
+		  //       // console.log(data);
+			// 			var tools = [];
+			// 			for(t in data){
+			// 				tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
+			// 			}
+			// 			$('#tooldrop').html(tools.join("  "))
+		  //   });
+			//
+			// })
 		</script>
 	</body>
 

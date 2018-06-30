@@ -3,27 +3,34 @@
 <% include ./partials/header %>
 
 	<body>
-		<% for(t in tools){ %>
-		<%= tools[t].name + " ====== "+ tools[t].weightage + " ====== "+ tools[t].toolType + " ====== " %>
+		<% for(t in toolData){ %>
+		<%= toolData[t].name + " ====== "+ toolData[t].weightage + " ====== "+ toolData[t].toolType + " ====== " %>
 		<a href=<%=  "/dashboard/co/"+ coID + "/" +tools[t]._id+"/delete" %> >Delete</a>
 		<br>
 		<hr>
 		<%}%>
 
 			<form action=<%= 'Tool' %> method="POST">
-				<input type="text" name="name" placeholder="name">
-				<input type="text" name="weightage" placeholder="weightage">
-				<input type="text" name="targetStudent" placeholder="targetStudent">
-				<input type="text" name="targetMark" placeholder="targetMark">
-				<input type="text" name="totalStud" placeholder="totalStud">
-				<input type="text" name="high" placeholder="high">
-				<input type="text" name="mid" placeholder="mid">
-				<input type="text" name="low" placeholder="low">
+				<span>
+				<select name="tool" id="dropdown">
+				<% for(t in tools){ %>
+					<option value= <%=tools[t]._id%> > <%=tools[t].name%> </option>
+				<%}%>
+				</select>
+				<br>
+				<input type="text" name="weightage" placeholder="weightage"><br>
+				<input type="text" name="targetStudent" placeholder="targetStudent"><br>
+				<input type="text" name="targetMark" placeholder="targetMark"><br>
+				<input type="text" name="totalStud" placeholder="totalStud"><br>
+				<input type="text" name="high" placeholder="high"><br>
+				<input type="text" name="mid" placeholder="mid"><br>
+				<input type="text" name="low" placeholder="low"><br>
 				<select name="toolType">
 				<option value="Direct" >Direct</option>
 				<option value="Indirect" >Indirect</option>
-				</select>
+				</select><br>
 				<button>Submit </button>
+			</span>
 			</form>
 
 

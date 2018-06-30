@@ -13,7 +13,7 @@ router
 
 router
   .route('/:subject/co/:coID/Tool')
-  .get(toolCtrl.getAll)
+  .get(toolCtrl.sendTool)
     .post(toolCtrl.addOne);
 
 router

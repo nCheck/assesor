@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Tool = mongoose.model('Tool');
+var ToolData = mongoose.model('ToolData');
 var CO = mongoose.model('CO');
 
 module.exports.getAll = function (req , res) {
@@ -21,34 +22,27 @@ module.exports.getToolData = function (req , res) {
 
 };
 
-// module.exports.addOne = function (req , res) {
-// 	var myTOOL = {};
-// 	console.log('inside adding');
-// 	myTOOL['toolName'] = req.body.tName;
-// 	myTOOL['toolNum'] = req.body.tNum;
-// 	myTOOL['targetStudent'] = req.body.tarStu;
-// 	myTOOL['targetMark'] = req.body.tarMark;
-// 	myTOOL['totalStud'] = req.body.totStu;
-// 	myTOOL['attainment'] = req.body.attain;
-// 	var newTOOL = new TOOL(myTOOL);
-// 	console.log(req.body);
-// 	newTOOL.save(function(err , doc) {
-// 		if(err){
-// 			console.log('error' + err);
-// 		}
-// 		else{
-// 			console.log('saved ' + doc);
-// 			res.send("Got it")
-// 		}
-// 	});
 
-// }
+// ================send toolsname ================
 
+module.exports.sendTool = (req , res)=>{
+	Tool.find({}, (err,doc)=>{
+		res.render('toolsAdd', {subject : req.params.subject
+			, coID : req.params.coID , tools : doc , toolData : {} });
+	});
+}
+
+module.exports.getToolDoc = (req , res)=>{
+	Tool.find({}, (err,doc)=>{
+		res.render('toolUpload', {subject : req.params.subject
+			, coID : req.params.coID , tools : doc });
+	});
+}
 
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
-	Tool.create({
-		name : req.body.name,
+	ToolData.create({
+		tool : req.body.tool,
 		weightage : req.body.weightage,
 		targetStudent : req.body.targetStudent,
 		targetMark : req.body.targetMark,

@@ -7,7 +7,7 @@ var toolCtrl = require('../controllers/tool.ctrlr');
 
 
 router
-  .route('/co/:coID')   //Displays Current CO Info
+  .route('/co/:toolID')   //Displays Current CO Info
     .get(toolCtrl.getToolData)
 
 module.exports=router

@@ -2,6 +2,7 @@ var express               = require('express');
 var parser                = require('body-parser');
 var mongoose              = require('mongoose');
 const dir                 = __dirname;
+require('./data/db.js');
 var User                  = require('./data/user');
 // =====Require Routes====
 var authroutes            = require('./routes/index');
@@ -17,7 +18,6 @@ var app		               	=express();
 
 
 // =======initialize data base =======
-require('./data/db.js');
 var Subject = mongoose.model('Subject');
 app.set('view engine', 'ejs');
 app.use(express.static(dir + '/public'));
@@ -88,6 +88,7 @@ app.get('/',(req,res)=>{
 
 })
 });
+
 
 // ========upload page temp==========
 
