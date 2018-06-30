@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+
+	<body>
+
+<form action="/add/tools" method='POST' >
+		<select name="cos" id='dropdown'>
+		<% coData.forEach(function(coo){ %>
+	  <option class="co-dropdown" value=<%=coo._id%> >  <%=coo.name%> </option>
+	 <% });%>
+		</select>
+<br>
+<hr>
+			<select name="tool" id="tooldrop">
+			</select>
+<br>
+<hr>
+			<button>Submit </button>
+		</form>
+
+
+		<% include ./partials/footer %>
+
+		<script>
+		// Dynamic Loading of Tools
+			$('.co-dropdown').click(function () {
+				var coID = $("#dropdown option:selected").val();
+				$.get('/api/co/'+coID, function(data, status){
+		        // console.log(data);
+						var tools = [];
+						for(t in data){
+							tools.push('<option value=' + data[t]._id + '>' + data[t].name +  '</option> ')
+						}
+						$('#tooldrop').html(tools.join("  "))
+		    });
+
+			})
+		</script>
+	</body>
+
+</html>

@@ -27,7 +27,7 @@
   </ul>
 
 </nav>
-<% if( typeof subject != 'undefined' ) { %>
+<% if( typeof hidenav == 'undefined' ) { %>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#">Assesor</a>
@@ -41,7 +41,7 @@
         <a class="nav-link" href="<%=subject%>/CO">CO</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Upload Marks</a>
+        <a class="nav-link" href= <%="/upload/"+ subject +"/tool"%> >Upload Marks</a>
       </li>
     </ul>
   </nav>

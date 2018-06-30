@@ -3,17 +3,20 @@ var CO = mongoose.model('CO');
 var SubjectData = mongoose.model('SubjectData');
 var Subject = mongoose.model('Subject');
 
-module.exports.getAll = function (req , res) {
-	console.log('Sending Data');
-	CO.find({} , function (err , doc) {
+module.exports.getDataDoc = function (req , res) {
+
+	query = {name : req.params.subject , year : 2018};
+	console.log('Sending DataDoc');
+	var ret;
+	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
 		if(err){
-				console.log("Err in getAll of co.ctrlr");
+			console.log("not found " + err);
 		}
-		else{
+		else {
 			console.log(doc);
-			res.send(doc);
+			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] });
 		}
-	});
+	})
 
 };
 
