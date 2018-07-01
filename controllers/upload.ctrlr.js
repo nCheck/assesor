@@ -15,7 +15,7 @@ module.exports.uploadFile = (req , res , next) =>{
 	    cb(null,"temp"  + path.extname(file.originalname));
 	  }
 	});
-	var upload = multer({ storage: storage }).single('timetable');
+	var upload = multer({ storage: storage }).single('selected-file');
 	upload(req, res, (err) => {
 		if(err){
 			res.send('err ' + err);
@@ -24,7 +24,8 @@ module.exports.uploadFile = (req , res , next) =>{
 				res.send('Error: No File Selected!');
 			} else {
 				console.log("shitted");
-				next();
+				// next();
+				res.send('done');
 			}
 		}
 	});

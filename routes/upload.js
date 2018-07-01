@@ -10,8 +10,8 @@ var xlsx       = require('../controllers/xlsx.ctrlr');
 router
 .route('/')
 .get((req,res)=>res.render('upload'))
-.post( uploadCtrl.uploadFile , xlsx.xlsxCal , uploadCtrl.deleteFile);
-
+.post( uploadCtrl.uploadFile);
+// , xlsx.xlsxCal , uploadCtrl.deleteFile
 router
   .route('/:subject/tool')   //Displays Current CO Info
     .get(toolCtrl.getToolDoc)

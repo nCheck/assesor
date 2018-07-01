@@ -4,7 +4,7 @@
   "description": "assesment app for teachers",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon --ignore uploads/ app.js",
     "test": "nodemon test.js"
   },
   "repository": {

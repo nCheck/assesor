@@ -3,8 +3,11 @@
 <% include ./partials/header %>
 
 	<body>
+		<!-- Awesome script to Uploading Jquery Form -->
+		<script src="http://malsup.github.com/jquery.form.js"></script>
 
-		<form ref='uploadForm' id='uploadForm' action="/upload" method='POST' encType="multipart/form-data">
+
+
 			<select name="tool" id='dropdown'>
 		<% tools.forEach(function(tool){ %>
 	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
@@ -12,17 +15,20 @@
 		</select>
 			<br>
 			<hr>
+			<form ref='uploadForm' id='upload-file' action="/upload" method='POST' encType="multipart/form-data">
+			<input type="file" id="selected-file" name="selected-file">
+			</form>
+
+			<br>
+			<hr>
 
 			<ol name="coName" id="coList">
 
 			</ol>
 
-			<br>
-			<hr>
-			<input type="file" name="timetable">
 
-			<input type='submit' value='Upload!'>
-		</form>
+
+
 
 
 		<% include ./partials/footer %>
@@ -36,12 +42,40 @@
 						console.log(data);
 						var tools = [];
 						data.forEach(function(cos) {
-							tools.push('<li value= cos._id > ' + cos.name + ' </li> ')
+							tools.push('<form class="" action="/" method="post">' +
+								'<li value= cos._id > ' + cos.name
+							+'  ' + '<input type="text" placeholder="header" name="header"/>'
+							+ '<input type="submit" value="submit">' + '</form>' + ' </li> '
+						)
 						})
 						$('#coList').html(tools)
 					});
 
 				})
+
+				$('#selected-file').change(function () {
+					console.log("file seletec");
+					$("#upload-file").trigger('submit');
+				})
+
+				var fil = $("#upload-file");
+
+				fil.submit(function (e) {
+					
+					console.log("inside submit");
+					e.preventDefault();
+					var url = "/upload";
+					$(this).ajaxSubmit({
+								 contentType: 'application/json',
+								 success: function(data)
+								 {
+										 console.log(data);
+								 }
+							 });
+
+				})
+
+
 			</script>
 	</body>
 
