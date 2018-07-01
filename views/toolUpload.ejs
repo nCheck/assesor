@@ -5,78 +5,91 @@
 	<body>
 		<!-- Awesome script to Uploading Jquery Form -->
 		<script src="http://malsup.github.com/jquery.form.js"></script>
+		<style media="screen">
+			input {
+				display: block;
 
+				border-radius: 25px;
+				padding: 5px 20px;
+			}
+		</style>
 
-
-			<select name="tool" id='dropdown'>
 		<% tools.forEach(function(tool){ %>
-	  <option class="to-dropdown" value=<%=tool._id%> >  <%=tool.name%> </option>
-	 <% });%>
-		</select>
-			<br>
-			<hr>
-			<form ref='uploadForm' id='upload-file' action="/upload" method='POST' encType="multipart/form-data">
-			<input type="file" id="selected-file" name="selected-file">
-			</form>
+			<a href="./tool/<%=tool._id%>/cos">
+				<%=tool.name%>
+			</a>
+			<br> <br>
+			<!-- <form class="" action="./tool/<%=tool._id%>/cos" method="get">
+				<input type="submit" name="button" value="<%=tool.name%>">
 
-			<br>
-			<hr>
+				</input>
+				<br> -->
+			<% });%>
 
-			<ol name="coName" id="coList">
+				</form>
 
-			</ol>
+				</select>
+				<br>
+				<hr>
+				<form ref='uploadForm' id='upload-file' action="/upload " method='POST' encType="multipart/form-data ">
+					<input type="file " id="selected-file " name="selected-file ">
+				</form>
+
+				<br>
+				<hr>
+
+				<ol name="coName " id="coList ">
+
+				</ol>
 
 
 
 
 
 
-		<% include ./partials/footer %>
+				<% include ./partials/footer %>
 
-			<script>
-				// Dynamic Loading of Tools
-				$('.to-dropdown').click(function() {
-					var toolID = $("#dropdown option:selected").val();
-					console.log(toolID);
-					$.get('/api/<%=subject%>/co/' + toolID, function(data, status) {
-						console.log(data);
-						var tools = [];
-						data.forEach(function(cos) {
-							tools.push('<form class="" action="/" method="post">' +
-								'<li value= cos._id > ' + cos.name
-							+'  ' + '<input type="text" placeholder="header" name="header"/>'
-							+ '<input type="submit" value="submit">' + '</form>' + ' </li> '
-						)
+					<script>
+						// Dynamic Loading of Tools
+						$('.to-dropdown').click(function() {
+							var toolID = $("#dropdown option:selected ").val();
+							console.log(toolID);
+							$.get('/api/<%=subject%>/co/' + toolID, function(data, status) {
+								console.log(data);
+								var tools = [];
+								data.forEach(function(cos) {
+									tools.push('<form class=" " action="/ " method="post ">' +
+										'<li value= cos._id > ' + cos.name +
+										'  ' + '<input type="text " placeholder="header " name="header "/>' +
+										'<input type="submit " value="submit ">' + '</form>' + ' </li> '
+									)
+								})
+								$('#coList').html(tools)
+							});
+
 						})
-						$('#coList').html(tools)
-					});
 
-				})
+						$('#selected-file').change(function() {
+							console.log("file seletec ");
+							$("#upload-file ").trigger('submit');
+						})
 
-				$('#selected-file').change(function () {
-					console.log("file seletec");
-					$("#upload-file").trigger('submit');
-				})
+						var fil = $("#upload-file ");
 
-				var fil = $("#upload-file");
+						fil.submit(function(e) {
 
-				fil.submit(function (e) {
-					
-					console.log("inside submit");
-					e.preventDefault();
-					var url = "/upload";
-					$(this).ajaxSubmit({
-								 contentType: 'application/json',
-								 success: function(data)
-								 {
-										 console.log(data);
-								 }
-							 });
+							console.log("inside submit ");
+							e.preventDefault();
+							var url = "/upload ";
+							$(this).ajaxSubmit({
+								contentType: 'application/json',
+								success: function(data) {
+									console.log(data);
+								}
+							});
 
-				})
-
-
-			</script>
+						})
+					</script>
 	</body>
 
 </html>

@@ -15,7 +15,7 @@ var passport              = require('passport');
 var localstrategy         = require('passport-local');
 var passportlocalmongoose = require('passport-local-mongoose');
 var app		               	=express();
-
+var Tool =mongoose.model('Tool')
 
 // =======initialize data base =======
 var Subject = mongoose.model('Subject');
