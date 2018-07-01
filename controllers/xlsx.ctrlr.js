@@ -7,14 +7,16 @@ const app     = express();
 const XLSX    = require('xlsx');
 
 const ToolData = mongoose.model('ToolData');
+const  CO = mongoose.model('CO');
 
-
-module.exports.xlsxCal = (req , res , next)=>{
-header=req.body.header[0];
+module.exports.xlsxCal = (req , res )=>{
+header=req.body.header;
 var toolID=req.params.toolID;
-console.log(req.body.co_id);
+co_id=req.body.co_id;
+console.log("Course id  "+req.body.co_id);
+CO.findById(req.body.co_id,function(err,co){
 ToolData.find({tool:toolID},function(err,tool){
-tool.forEach(function(splitool){
+tool.forEach(function(splitool){        //DIFFERENT COS MAPPED TO SAME TOOL
   var high,mid,low,student = 0 , aboveAvg = 0 , totalMarks = 0,c_high=0,c_mid=0,c_low=0;
   high=splitool.high;
   mid=splitool.mid;
@@ -81,7 +83,7 @@ tool.forEach(function(splitool){
       var percentH=c_high/totalStud*100,
           percentM=c_mid+c_high/totalStud*100,
           percentL=c_mid+c_high+c_low/totalStud*100;
-          console.log("percnetage "+percentL+" "+percentM+" "+percentL)
+          console.log("percnetage "+percentH+" "+percentM+" "+percentL)
       if(percentH>=targetStudent)
         splitool.point=3;
       else if(percentM>=targetStudent)
@@ -93,11 +95,9 @@ tool.forEach(function(splitool){
       }
       console.log("POint inserted is "+splitool.point)
       console.log(splitool)
+      res.render("eval",{tool:splitool,co:co})      //with query when we hit  submit to particular co in toolcos you can select individual tool(here its called splitool)
 })
   })
+})
 
-  // console.log("total students " + student);
-  // console.log("avg marks " + totalMarks/student);
-  // console.log("above Average students "+ aboveAvg);
-  next();
 }

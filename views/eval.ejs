@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<% include ./partials/header%>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <h3>Course objective <%=co.name%></h3>
+  <table class="table">
+
+
+    <tbody>
+
+      <tr>
+        <td>Weightage:</td>
+        <td>
+          <%=tool.weightage%>
+        </td>
+
+      </tr>
+      <tr>
+        <td> Target Student
+        </td>
+        <td>
+          <%=tool.targetStudent%>
+        </td>
+        <tr>
+
+          <td> Target mark</td>
+          <td>
+            <%=tool.targetMark%>
+          </td>
+        </tr>
+        <tr>
+          <td>Total students</td>
+          <td>
+            <%=tool.totalStud%>
+          </td>
+        </tr>
+        <tr>
+          <td> Type of tool</td>
+          <td>
+            <%=tool.toolType%>
+          </td>
+        </tr>
+        <tr>
+          <td> High</td>
+          <td>
+            <%=tool.high%>
+          </td>
+        </tr>
+        <tr>
+          <td> Mid
+          </td>
+          <td>
+            <%=tool.mid %>
+          </td>
+        </tr>
+        <tr>
+          <td> Low
+          </td>
+          <td>
+            <%=tool.low %>
+          </td>
+        </tr>
+        <tr>
+          <td>Point assigned
+          </td>
+          <td>
+            <%=tool.point%>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</html>
