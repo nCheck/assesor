@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Subject = mongoose.model('Subject');
 var User = mongoose.model('User');
-
+var Tool=mongoose.model('Tool');
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
 	Subject.find({} , function (err , doc) {

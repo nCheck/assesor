@@ -15,7 +15,7 @@ module.exports.getAll = function (req , res) {
 
 
 // ================send toolsname ================
-
+//shouldnt this be found first by subject then all tools selected by that id
 module.exports.sendTool = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
 		res.render('toolsAdd', {subject : req.params.subject

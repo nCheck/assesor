@@ -1,0 +1,53 @@
+<%include ./partials/header%>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+  <style media="screen">
+    button {
+      margin-left: 50px !important;
+    }
+  </style>
+  <form ref='uploadForm' id='upload-file' action="/upload" method='POST' encType="multipart/form-data">
+    <input type="file" id="selected-file" name="selected-file">
+  </form>
+  <form class="" method="POST">
+
+    <div na>
+
+    </div>
+    <ol>
+      <%cos.forEach(function(co){%>
+        <INPUT TYPE="hidden" name="co_id" id="co_id" VALUE="<%=co._id%>" />
+        <li>
+          <%=co.name%>
+
+            <input type="text" name="header" placeholder="filename">
+            <button type="submit" name="button">Submit</button>
+
+        </li>
+        <br>
+
+        <%    })%>
+    </ol>
+  </form>
+
+  <script>
+    $('#selected-file').change(function() {
+      console.log(" file seletec ");
+      $("#upload-file ").trigger('submit');
+    })
+
+    var fil = $("#upload-file ");
+
+    fil.submit(function(e) {
+
+      console.log("inside submit ");
+      e.preventDefault();
+      var url = "/upload ";
+      $(this).ajaxSubmit({
+        contentType: 'application/json',
+        success: function(data) {
+          console.log(data);
+        }
+      });
+
+    })
+  </script>

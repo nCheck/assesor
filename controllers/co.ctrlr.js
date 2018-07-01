@@ -56,15 +56,17 @@ module.exports.getCO = (req , res)=>{
 			c.tools.forEach(function (t) {
 				if(t.tool == req.params.toolID){
 					dc.push(c);
+
 					return ;
 				}
 			})
 		})
-		res.send(dc)
+		res.render('toolcos',{cos:dc,req:req})
 	})
 }
 
 
+//waste create then find better find sub inside it create n oush
 
 module.exports.addOne = (req, res)=> {
 	console.log("im inside add one"+req.params.subject);
