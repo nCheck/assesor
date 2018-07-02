@@ -10,10 +10,9 @@ const ToolData = mongoose.model('ToolData');
 const  CO = mongoose.model('CO');
 
 module.exports.xlsxCal = (req , res )=>{
-header=req.body.header;
-var toolID=req.params.toolID;
-co_id=req.params.coID;
-console.log("Course id  "+req.body.co_id);
+var header=req.body.header;
+var toolID=req.params.toolID , co_id = req.params.coID;
+console.log("Course id  "+co_id);
 
 
 
@@ -101,7 +100,8 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
       else {
         tool.point=0;
       }
-      console.log("POint inserted is "+tool.point)
+			tool.save();
+      console.log("Point inserted is "+tool.point)
       console.log(tool)
       res.render("eval",{tool:tool,co:co})      //with query when we hit  submit to particular co in toolcos you can select individual tool(here its called tool)
 

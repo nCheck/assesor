@@ -18,7 +18,7 @@ router
 
 router
   .route('/:subject/toolUpload')
-    .get(toolCtrl.sendTool)
+    .get(toolCtrl.getToolDoc)
 
 router
 .route('/xlsx/:subject/:coID/:toolID')

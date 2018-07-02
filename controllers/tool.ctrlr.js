@@ -6,7 +6,6 @@ var CO = mongoose.model('CO');
 module.exports.getAll = function (req , res) {
 	console.log('Sending Tool Data');
 	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
-		console.log(doc);
 		res.render('toolsAdd', {subject : req.params.subject
 			, coID : req.params.coID , tools : doc.tools });
 	})
@@ -18,14 +17,13 @@ module.exports.getAll = function (req , res) {
 //shouldnt this be found first by subject then all tools selected by that id
 module.exports.sendTool = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
-		res.render('toolUpload', {subject : req.params.subject
+		res.render('toolAdd', {subject : req.params.subject
 			, coID : req.params.coID , tools : doc , toolData : {} });
 	});
 }
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
-		console.log(doc);
 		res.render('toolUpload', {subject : req.params.subject
 			, coID : req.params.coID , tools : doc });
 	});

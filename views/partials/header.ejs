@@ -13,21 +13,21 @@
 <nav class="navbar navbar-expand-sm bg-light">
 
   <!-- Links -->
-  <ul class="navbar-nav float-right">
+  <ul class="navbar-nav" style="float:right">
     <% if (typeof req != 'undefined') {%>
       <li class="nav-item">
         <a class="nav-link" href="../login">
           <%= "Welcome " +  req.user.username %>
         </a>
       </li>
+      <li class="nav-item mr-2">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
       <% } %>
-        <li class="nav-item mr-2">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
   </ul>
 
 </nav>
-<% if( typeof hidenav == 'undefined' ) { %>
+<% if (typeof req != 'undefined')  { %>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="/dashboard">Assesor</a>

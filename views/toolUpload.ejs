@@ -14,6 +14,15 @@
 		</style>
 
 
+		<form ref='uploadForm' id="upload-file"  action='/upload' method='post' encType="multipart/form-data">
+			<input type="file" id='selected-file' name="selected-file" />
+		</form>
+
+
+		<br>
+		<hr>
+
+
 <select name="" id="dropdown" class="to-dropdown">
 		<% tools.forEach(function(tool){ %>
 			<option value="<%= tool._id %>">
@@ -47,9 +56,9 @@
 								data.forEach(function(cos) {
 									console.log(cos.name);
 									tools.push(
-										'<form method=post action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + '>' +
+										'<form method="post" action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + '>' +
 											'<li> ' + cos.name +
-											'  ' + '<input type="text" placeholder="header"/>'+
+											'  ' + '<input type="text" name="header" placeholder="header"/>'+
 											'<input type="submit" value="submit">' + '</form>' + ' </li> '
 									)
 								})
@@ -60,7 +69,7 @@
 						})
 
 						$('#selected-file').change(function() {
-							console.log("file seletec ");
+							console.log("file selected ");
 							$("#upload-file ").trigger('submit');
 						})
 
