@@ -1,13 +1,12 @@
-const express = require('express');//haa wait
-const multer  = require('multer');
-const ejs     = require('ejs');
-const path    = require('path');
-const mongoose=require('mongoose');
-const app     = express();
-const XLSX    = require('xlsx');
-
+const express  = require('express');//haa wait
+const multer   = require('multer');
+const ejs      = require('ejs');
+const path     = require('path');
+const mongoose = require('mongoose');
+const app      = express();
+const XLSX     = require('xlsx');
 const ToolData = mongoose.model('ToolData');
-const  CO = mongoose.model('CO');
+const  CO      = mongoose.model('CO');
 
 module.exports.xlsxCal = (req , res )=>{
 var header=req.body.header;
@@ -19,6 +18,8 @@ console.log("Course id  "+co_id);
 
 CO.findById(co_id).populate('tools').exec(function(err,co){
 	var tools = co.tools.map(function(a) { return a; });
+	console.log("HEre orginal "+co.tools);
+	console.log(tools);
   var arr = tools;
   var ids = arr.map(function(arr) {return arr._id; });
 
@@ -104,7 +105,7 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
 			tool.save();
       console.log("Point inserted is "+tool.point)
       console.log(tool)
-      // res.render("eval",{tool:tool,co:co})      //with query when we hit  submit to particular co in toolcos you can select individual tool(here its called tool)
+    
 			res.send({tool:tool,co:co});
 
   })
