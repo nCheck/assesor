@@ -70,7 +70,6 @@ app.use('/upload',uploadRoutes);
 
 var coCtrl     = require('./controllers/co.ctrlr');
 var toCtrl     = require('./controllers/tool.ctrlr');
-
 var usercntrlr = require('./controllers/user.ctrlr');
 
 
