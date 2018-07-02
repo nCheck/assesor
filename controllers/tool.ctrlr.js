@@ -18,13 +18,14 @@ module.exports.getAll = function (req , res) {
 //shouldnt this be found first by subject then all tools selected by that id
 module.exports.sendTool = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
-		res.render('toolsAdd', {subject : req.params.subject
+		res.render('toolUpload', {subject : req.params.subject
 			, coID : req.params.coID , tools : doc , toolData : {} });
 	});
 }
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
+		console.log(doc);
 		res.render('toolUpload', {subject : req.params.subject
 			, coID : req.params.coID , tools : doc });
 	});

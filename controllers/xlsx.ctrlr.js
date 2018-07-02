@@ -12,18 +12,26 @@ const  CO = mongoose.model('CO');
 module.exports.xlsxCal = (req , res )=>{
 header=req.body.header;
 var toolID=req.params.toolID;
-co_id=req.body.co_id;
+co_id=req.params.coID;
 console.log("Course id  "+req.body.co_id);
-CO.findById(req.body.co_id,function(err,co){
-ToolData.find({tool:toolID},function(err,tool){
-tool.forEach(function(splitool){        //DIFFERENT COS MAPPED TO SAME TOOL
+
+
+
+CO.findById(co_id).populate('tools').exec(function(err,co){
+	var tools = co.tools.map(function(a) { return a; });
+  var arr = tools;
+  var ids = arr.map(function(arr) {return arr._id; });
+
+ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
+
+
   var high,mid,low,student = 0 , aboveAvg = 0 , totalMarks = 0,c_high=0,c_mid=0,c_low=0;
-  high=splitool.high;
-  mid=splitool.mid;
-  low=splitool.low;
-  targetMark=splitool.targetMark;
-  targetStudent=splitool.targetStudent;
-  totalStud=splitool.totalStud;
+  high=tool.high;
+  mid=tool.mid;
+  low=tool.low;
+  targetMark=tool.targetMark;
+  targetStudent=tool.targetStudent;
+  totalStud=tool.totalStud;
   console.log("All information of the tool "+tool);
 
 //    console.log("req.body her is header name to search "+req.body.header[0]);
@@ -85,18 +93,18 @@ tool.forEach(function(splitool){        //DIFFERENT COS MAPPED TO SAME TOOL
           percentL=c_mid+c_high+c_low/totalStud*100;
           console.log("percnetage "+percentH+" "+percentM+" "+percentL)
       if(percentH>=targetStudent)
-        splitool.point=3;
+        tool.point=3;
       else if(percentM>=targetStudent)
-      splitool.point=2;
+      tool.point=2;
       else if(percentL>=targetStudent)
-      splitool.point=1;
+      tool.point=1;
       else {
-        splitool.point=0;
+        tool.point=0;
       }
-      console.log("POint inserted is "+splitool.point)
-      console.log(splitool)
-      res.render("eval",{tool:splitool,co:co})      //with query when we hit  submit to particular co in toolcos you can select individual tool(here its called splitool)
-})
+      console.log("POint inserted is "+tool.point)
+      console.log(tool)
+      res.render("eval",{tool:tool,co:co})      //with query when we hit  submit to particular co in toolcos you can select individual tool(here its called tool)
+
   })
 })
 

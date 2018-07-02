@@ -7,42 +7,29 @@
 		<script src="http://malsup.github.com/jquery.form.js"></script>
 		<style media="screen">
 			input {
-				display: block;
+				display: inline-block;
 
-				border-radius: 25px;
-				padding: 5px 20px;
+				border-radius: 5px;
 			}
 		</style>
 
+
+<select name="" id="dropdown" class="to-dropdown">
 		<% tools.forEach(function(tool){ %>
-			<a href="./tool/<%=tool._id%>/cos">
-				<%=tool.name%>
-			</a>
-			<br> <br>
-			<!-- <form class="" action="./tool/<%=tool._id%>/cos" method="get">
-				<input type="submit" name="button" value="<%=tool.name%>">
-
-				</input>
-				<br> -->
+			<option value="<%= tool._id %>">
+				<%= tool.name %>
+			</option>
+				<br>
 			<% });%>
-
-				</form>
-
-				</select>
-				<br>
-				<hr>
-				<form ref='uploadForm' id='upload-file' action="/upload " method='POST' encType="multipart/form-data ">
-					<input type="file " id="selected-file " name="selected-file ">
-				</form>
+</select>
 
 				<br>
 				<hr>
 
-				<ol name="coName " id="coList ">
+
+				<ol name="coName " id="coList">
 
 				</ol>
-
-
 
 
 
@@ -58,13 +45,16 @@
 								console.log(data);
 								var tools = [];
 								data.forEach(function(cos) {
-									tools.push('<form class=" " action="/ " method="post ">' +
-										'<li value= cos._id > ' + cos.name +
-										'  ' + '<input type="text " placeholder="header " name="header "/>' +
-										'<input type="submit " value="submit ">' + '</form>' + ' </li> '
+									console.log(cos.name);
+									tools.push(
+										'<form method=post action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + '>' +
+											'<li> ' + cos.name +
+											'  ' + '<input type="text" placeholder="header"/>'+
+											'<input type="submit" value="submit">' + '</form>' + ' </li> '
 									)
 								})
-								$('#coList').html(tools)
+								console.log(tools);
+								$('#coList').html(tools.join(' '))
 							});
 
 						})

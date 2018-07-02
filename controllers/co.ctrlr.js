@@ -52,16 +52,19 @@ module.exports.getCO = (req , res)=>{
 			model : 'ToolData'
 		}
 	}).exec((err , doc)=>{
+
 		doc.co.forEach(function (c) {
 			c.tools.forEach(function (t) {
 				if(t.tool == req.params.toolID){
 					dc.push(c);
 
+					console.log("pushed " + dc);
 					return ;
 				}
 			})
 		})
-		res.render('toolcos',{cos:dc,req:req})
+		console.log("this is dc " + dc);
+		res.send(dc);
 	})
 }
 

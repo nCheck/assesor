@@ -15,9 +15,13 @@ router
 router
   .route('/:subject/tool')   //Displays Current CO Info
     .get(toolCtrl.getToolDoc)
+
 router
-.route('/:subject/tool/:toolID/cos')
-.get(coCtrl.getCO)
-.post(xlsx.xlsxCal,
-)
+  .route('/:subject/toolUpload')
+    .get(toolCtrl.sendTool)
+
+router
+.route('/xlsx/:subject/:coID/:toolID')
+  .post(xlsx.xlsxCal)
+
 module.exports=router
