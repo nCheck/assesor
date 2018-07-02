@@ -36,9 +36,104 @@
 				<hr>
 
 
-				<ol name="coName " id="coList">
+				<div name="coName " id="coList">
 
-				</ol>
+				</div>
+
+
+
+				<button style="display:none" type="button" id="trigger-me" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+			    Trigger Me
+			  </button>
+
+				<!-- The Modal -->
+				<div class="modal fade" id="myModal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+
+				      <!-- Modal Header -->
+				      <div class="modal-header">
+				        <h4 class="modal-title" id="co-name">Course objective  </h4>
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				      </div>
+
+				      <!-- Modal body -->
+				      <div class="modal-body">
+
+				        <table class="table">
+
+
+				          <tbody>
+
+				            <tr>
+				              <td>Weightage:</td>
+				              <td id="weightage">
+				                <!--  -->
+				              </td>
+
+				            </tr>
+				            <tr>
+											<td> Target Student</td>
+				              <td id="targetStudent">
+				              </td>
+				              <td>
+				                <!--  -->
+				              </td>
+				              <tr>
+												<td>Target mark</td>
+				                <td id="targetMark"> </td>
+				                <td>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+												<td>Total students</td>
+				                <td id="totalStud"></td>
+				                <td>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+												<td>Type of tool</td>
+				                <td id="toolType"> </td>
+				                <td>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+												<td>Point assigned</td>
+				                <td id="point">
+				                </td>
+				                <td>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				          </tbody>
+				        </table>
+
+
+
+				      </div>
+
+				      <!-- Modal footer -->
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				      </div>
+
+				    </div>
+				  </div>
+				</div>
+
+
+<!-- ======end of model -->
+
+
+
+
+
+
+
+
 
 
 
@@ -47,26 +142,53 @@
 
 					<script>
 						// Dynamic Loading of Tools
+						//method="post" 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID cutted
 						$('.to-dropdown').click(function() {
 							var toolID = $("#dropdown option:selected ").val();
 							console.log(toolID);
 							$.get('/api/<%=subject%>/co/' + toolID, function(data, status) {
-								console.log(data);
 								var tools = [];
 								data.forEach(function(cos) {
 									console.log(cos.name);
 									tools.push(
-										'<form method="post" action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + '>' +
-											'<li> ' + cos.name +
+										'<div>' +
+										'<form method="post" ' + 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + ' >' +
+											 cos.name +
 											'  ' + '<input type="text" name="header" placeholder="header"/>'+
-											'<input type="submit" value="submit">' + '</form>' + ' </li> '
+											'<button class="done btn" >Done</button>' + '<br >'  + '</form>' + '</div>'
 									)
 								})
-								console.log(tools);
 								$('#coList').html(tools.join(' '))
+
+								$('.done').click(function (e) {
+									e.preventDefault();
+									var form = $(this).parent().parent().children('form');
+									var url =  form.attr('action');
+										$.ajax({
+								           type: "POST",
+													 url: url,
+								           data: form.serialize(), // serializes the form's elements.
+								           success: function(data)
+								           {
+								               // alert(data.tool.point + " ======== " + data.co.name); // show response from the php script.
+															 $("#co-name").html(data.co.name);
+															 $("#targetStudent").html( data.tool.targetStudent);
+															 $("#totalStud").html(data.tool.totalStud);
+															 $("#toolType").html(data.tool.toolType);
+															 $("#targetMark").html(data.tool.targetMark);
+															 $("#point").html(data.tool.point);
+															 $("#weightage").html(data.tool.weightage);
+															 $('#trigger-me').trigger("click");
+								           }
+								         });
+
+								})
 							});
 
 						})
+
+
+						// =========
 
 						$('#selected-file').change(function() {
 							console.log("file selected ");
@@ -88,6 +210,31 @@
 							});
 
 						})
+
+						// ============
+						$('#shit').click(function () {
+							console.log("you shited");
+						})
+
+						// $('.done').click(function () {
+						// 	console.log("shitted" + $(this).parent().attr('action'));
+						// 	// $.ajax({
+					  //   //        type: "POST",
+						// 	// 			 url:'/upload/xlsx/newday/5b39e07302afbc103f58674f/5b38e309cb5e6118a3c731c1',
+					  //   //        data: $(this).serialize(), // serializes the form's elements.
+					  //   //        success: function(data)
+					  //   //        {
+					  //   //            alert(data); // show response from the php script.
+					  //   //        }
+					  //   //      });
+						// 	//
+					  //   // e.preventDefault(); // avoid to execute the actual submit of the form.
+						// })
+
+
+
+
+
 					</script>
 	</body>
 
