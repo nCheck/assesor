@@ -2,12 +2,14 @@
 <html>
 <% include ./partials/header %>
 <style media="screen">
-table tr:nth-child(2){
-counter-reset: rowNumber;
+table {
+  counter-reset: section;
 }
-table tr td {
-  counter-increment: rowNumber;
+.count:before{
+  counter-increment: section;
+  content: counter(section);
 }
+
 </style>
   <body>
 
@@ -18,7 +20,7 @@ table tr td {
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Number </th>
               <th scope="col">Course Outcomes</th>
               <th scope="col">Co attainment</th>
             </tr>
@@ -26,7 +28,7 @@ table tr td {
           <tbody>
               <% cos.forEach(function (co) { %>
             <tr>
-              <td ></td>
+              <td class="count"></td>
               <td> <a href="cos/<%=co._id%>" ><%= co.name %></a> </td>
               <td> <%= co.attainment %> </td>
             </tr>
