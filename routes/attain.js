@@ -17,7 +17,7 @@ router
 
 
 router
-  .route('/:subject/:year/:coID')
+  .route('/:subject/:year/cos/:coID')
     .get(attainCtrl.getToolPage);
 
 

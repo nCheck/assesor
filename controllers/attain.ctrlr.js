@@ -26,6 +26,10 @@ module.exports.getToolPage = (req , res)=>{
 			model : 'Tool'
 		}
 	}).exec((err , doc)=>{
+    if(coID == undefined || err){
+      console.log("err " + err);
+      res.send(err)
+    }
     console.log("shited once "+doc);
 		var tools = doc.tools.map(function (t) {return t;})
     res.render('showTools' , {tools : tools , req : req , subject : subject})
