@@ -61,7 +61,9 @@ console.log("This is co "+cos);
       }
   })
 co_val=direct_type*0.8+indirect_type*0.2;
+console.log(co_val);
 cos.attainment=co_val;
-res.redirect('/attain/req.query.subject/req.query.year/cos')
+cos.save();
+res.redirect('/attain/'+req.query.subject+'/'+req.query.year+'/cos')
 });
 }
