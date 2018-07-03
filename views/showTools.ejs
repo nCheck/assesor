@@ -8,6 +8,7 @@
   border: 1px solid black;
   padding: 15px;
   border-collapse: collapse;
+  text-align: center;
 }
   </style>
 
@@ -24,7 +25,11 @@
           <% }) %>
         </table>
         <br>
-        <button type="button" class="btn btn-secondary btn-lg" id="calc" name="button" style="width:25%" > Calculate Attainment</button>
+
+
+          <a href="/attain/calC/<%=coID%>?subject=<%=subject%>&year=2018">
+          <button type="button" class="btn btn-secondary btn-lg" id="calc" name="button" style="width:25%" > Calculate Attainment</button>
+          </a>
 
 
 
@@ -35,10 +40,10 @@
 
     <script type="text/javascript">
 
-    $('#calc').click(function () {
-      console.log("going to " + '/attain/calC/<%=coID%>');
-      $.get('/attain/calC/<%=coID%>', {subject : '<%=subject%>' , year : 2018})
-    })
+    // $('#calc').click(function () {
+    //   console.log("going to " + '/attain/calC/<%=coID%>');
+    //   $.get('/upload/DBMS/toolUpload', {subject : '<%=subject%>' , year : 2018})
+    // })
 
 
     </script>
