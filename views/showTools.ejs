@@ -6,11 +6,16 @@
 
     <div class="row">
       <div class="col-12">
-        <ol>
+        <table>
+          <th>Tool Name</th>
+          <th>Point Achieved</th>
           <% tools.forEach(function (tool) { %>
-            <li> <a href=""> <%= tool.tool.name %> </a> </li>
+            <tr>
+              <td> <%= tool.tool.name %> </td>
+              <td> <%= tool.point %> </td>
+            </tr>
           <% }) %>
-        </ol>
+        </table>
 
 
 
