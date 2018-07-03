@@ -20,7 +20,9 @@ router
   .route('/:subject/:year/cos/:coID')
     .get(attainCtrl.getToolPage);
 
-
+router
+  .route('/:calC/:coID')
+  .get(attainCtrl.coattainment);
 
 
 

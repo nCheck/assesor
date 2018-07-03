@@ -32,8 +32,36 @@ module.exports.getToolPage = (req , res)=>{
     }
     console.log("shited once "+doc);
 		var tools = doc.tools.map(function (t) {return t;})
+
     res.render('showTools' , {tools : tools , req : req , subject : subject, coID : coID})
+
+
+    res.render('showTools' , {tools : tools , req : req , subject : subject})
+
 	})
 
 
+}
+module.exports.coattainment=(req,res)=>{
+var coID=req.params.coID;
+var direct_type=0,indirect_type=0,co_val=0;
+CO.findById(coID).populate({
+  path : 'tools' , populate : {
+    path : 'tool',
+    model : 'Tool'
+  }
+}).exec((err , cos)=>{
+	var tools = cos.tools.map(function (t) {return t;})
+console.log("This is co "+cos);
+  tools.forEach(function(tool){
+    if(tool.toolType==='Direct')
+      direct_type+=tool.weightage*tool.point;
+  else {
+        indirect_type+=tool.weightage*tool.point;
+      }
+  })
+co_val=direct_type*0.8+indirect_type*0.2;
+cos.attainment=co_val;
+res.redirect('/attain/req.query.subject/req.query.year/cos')
+});
 }

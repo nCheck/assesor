@@ -37,7 +37,7 @@ module.exports.assignCourse = (req, res)=> {
 
 				SubjectData.findOne({year:year , name:req.body.courseName} , (err , doc)=>{
 					if(err){
-						console.log(err);
+						console.log("here i am as an errror in subject data creation while assigning "+err);
 					}
 					else if (doc == null) {
 						console.log("Im inside null");

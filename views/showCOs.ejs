@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
 <% include ./partials/header %>
-
+<style media="screen">
+table tr:nth-child(2){
+counter-reset: rowNumber;
+}
+table tr td {
+  counter-increment: rowNumber;
+}
+</style>
   <body>
 
     <div class="row">
       <div class="col-12">
-        <ol>
-          <% cos.forEach(function (co) { %>
-            <li> <a href="cos/<%=co._id%>" > <%= co.name %> </a> </li>
-          <% }) %>
-        </ol>
 
 
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Course Outcomes</th>
+              <th scope="col">Co attainment</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% cos.forEach(function (co) { %>
+            <tr>
+              <td ></td>
+              <td> <a href="cos/<%=co._id%>" ><%= co.name %></a> </td>
+              <td> <%= co.attainment %> </td>
+            </tr>
+            <% }) %>
+
+          </tbody>
+        </table>
 
 
       </div>
