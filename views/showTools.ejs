@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+
+  <body>
+
+    <div class="row">
+      <div class="col-12">
+        <ol>
+          <% tools.forEach(function (tool) { %>
+            <li> <a href=""> <%= tool.tool.name %> </a> </li>
+          <% }) %>
+        </ol>
+
+
+
+
+      </div>
+
+    </div>
+
+
+    <% include ./partials/footer %>
+  </body>
+
+</html>

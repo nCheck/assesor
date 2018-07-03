@@ -1,6 +1,6 @@
 var exp=require('express'),
 	router=exp.Router(),
-	usercntrlr=require('../controllers/user.ctrlr.js');
+	userCtrlr=require('../controllers/user.ctrlr.js');
 var passport=require('passport')
 var User=require('../data/user')
 //===============Register page================
@@ -31,7 +31,7 @@ router
 .get(function(req,res){
 	res.render('login.ejs')
 })
-.post(passport.authenticate("local",),usercntrlr.viewingregion)//middleware for checking database
+.post(passport.authenticate("local",),userCtrlr.viewingRegion)//middleware for checking database
 function isLoggedIn(req, res, next){
 	console.log(req);
 	console.log(req.isAuthenticated());

@@ -3,6 +3,7 @@ var Subject = mongoose.model('Subject');
 var User = mongoose.model('User');
 var SubjectData = mongoose.model('SubjectData');
 var year = 2018;
+
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
 	Subject.find({} , function (err , doc) {
@@ -10,7 +11,6 @@ module.exports.getAll = function (req , res) {
 				console.log("Err in getAll of Subject.ctrlr");
 		}
 		else{
-			console.log(doc);
 			res.send(doc);
 		}
 	});
@@ -58,6 +58,26 @@ module.exports.assignCourse = (req, res)=> {
 		}
 	})
 }
+
+/////Sends all COS of Subject to API
+
+module.exports.getCOs = (req , res) =>{
+	subject = req.params.subject;
+	year = req.params.year;
+
+	SubjectData.findOne({name:subject , year : year} ).populate('co').exec( (err , doc)=>{
+		cos = doc.co.map(function (co) {
+			return co;
+		})
+		res.send(cos)
+	})
+}
+
+
+
+
+
+
 
 
 

@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 var Subject = mongoose.model('Subject');
 var User = mongoose.model('User');
 var Tool=mongoose.model('Tool');
+
+///// Sends List of All Subjects
+
 module.exports.getAll = function (req , res) {
 	console.log('Sending Data');
 	Subject.find({} , function (err , doc) {
@@ -9,14 +12,13 @@ module.exports.getAll = function (req , res) {
 				console.log("Err in getAll of User.ctrlr");
 		}
 		else{
-			console.log(doc);
 			res.send(doc);
 		}
 	});
 
 };
 //===To display all users =============
-module.exports.viewingregion=(req,res)=>{
+module.exports.viewingRegion=(req,res)=>{
 
 		if(req.user.role==='Admin')
 			res.redirect('/admin');			//All teachers
@@ -25,6 +27,7 @@ module.exports.viewingregion=(req,res)=>{
 		}
 	}
 
+/// User Creation (useless i suppose)
 
 module.exports.addOne = (req, res)=> {
 	User.create({

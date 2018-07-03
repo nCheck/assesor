@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+
+  <body>
+
+    <div class="row">
+      <div class="col-12">
+        <ol>
+          <% cos.forEach(function (co) { %>
+            <li> <a href="<%=co._id%>"> <%= co.name %> </a> </li>
+          <% }) %>
+        </ol>
+
+
+
+
+      </div>
+
+    </div>
+
+
+    <% include ./partials/footer %>
+  </body>
+
+</html>
