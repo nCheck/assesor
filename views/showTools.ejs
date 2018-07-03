@@ -3,9 +3,16 @@
 <% include ./partials/header %>
 
   <body>
+  <style media="screen">
+  th, td {
+  border: 1px solid black;
+  padding: 15px;
+  border-collapse: collapse;
+}
+  </style>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" style="align-content:center">
         <table>
           <th>Tool Name</th>
           <th>Point Achieved</th>
@@ -16,6 +23,8 @@
             </tr>
           <% }) %>
         </table>
+        <br>
+        <button type="button" class="btn btn-secondary btn-lg" id="calc" name="button" style="width:25%" > Calculate Attainment</button>
 
 
 
@@ -23,6 +32,17 @@
       </div>
 
     </div>
+
+    <script type="text/javascript">
+
+    $('#calc').click(function () {
+      console.log("going to " + '/attain/calC/<%=coID%>');
+      $.get('/attain/calC/<%=coID%>', {subject : '<%=subject%>' , year : 2018})
+    })
+
+
+    </script>
+
 
 
     <% include ./partials/footer %>

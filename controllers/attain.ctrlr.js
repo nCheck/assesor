@@ -32,7 +32,7 @@ module.exports.getToolPage = (req , res)=>{
     }
     console.log("shited once "+doc);
 		var tools = doc.tools.map(function (t) {return t;})
-    res.render('showTools' , {tools : tools , req : req , subject : subject})
+    res.render('showTools' , {tools : tools , req : req , subject : subject, coID : coID})
 	})
 
 
