@@ -7,7 +7,7 @@ module.exports.getAll = function (req , res) {
 	console.log('Sending Tool Data');
 	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
 		res.render('toolsAdd', {subject : req.params.subject
-			, coID : req.params.coID , tools : doc.tools });
+			, coID : req.params.coID , tools : doc.tools , req : req });
 	})
 
 };
@@ -18,14 +18,14 @@ module.exports.getAll = function (req , res) {
 module.exports.sendTool = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
 		res.render('toolAdd', {subject : req.params.subject
-			, coID : req.params.coID , tools : doc , toolData : {} });
+			, coID : req.params.coID , tools : doc , toolData : {} , req : req});
 	});
 }
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
 		res.render('toolUpload', {subject : req.params.subject
-			, coID : req.params.coID , tools : doc });
+			, coID : req.params.coID , tools : doc  , req : req});
 	});
 }
 
