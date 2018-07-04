@@ -10,6 +10,7 @@ var adminroutes           = require('./routes/admin');
 var dashRoutes            = require('./routes/dashboard');
 var uploadRoutes					= require('./routes/upload');
 var apiRoutes				  		= require('./routes/api');
+var attainRoutes				  = require('./routes/attain');
 // ======Passport=======
 var passport              = require('passport');
 var localstrategy         = require('passport-local');
@@ -64,6 +65,7 @@ app.use('/',authroutes);
 app.use('/dashboard',dashRoutes);
 app.use('/admin',adminroutes);
 app.use('/upload',uploadRoutes);
+app.use('/attain',attainRoutes);
 
 
 // =====Required Controllers======

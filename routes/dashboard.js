@@ -43,8 +43,6 @@ router
 router
   .route('/')
   .get((req,res)=>{
-
-      console.log("Hello from subjects");
       User.findOne({username:req.user.username}).populate('subjects').exec(function (err , user) {
         if(err){
             console.log("Err in getAll of User.ctrlr");

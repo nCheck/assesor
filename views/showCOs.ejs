@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+<style media="screen">
+table {
+  counter-reset: section;
+}
+.count:before{
+  counter-increment: section;
+  content: counter(section);
+}
+
+</style>
+  <body>
+
+    <div class="row">
+      <div class="col-12">
+
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Number </th>
+              <th scope="col">Course Outcomes</th>
+              <th scope="col">Co attainment</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% cos.forEach(function (co) { %>
+            <tr>
+              <td class="count"></td>
+              <td> <a href="cos/<%=co._id%>" ><%= co.name %></a> </td>
+              <td> <%= co.attainment %> </td>
+            </tr>
+            <% }) %>
+
+          </tbody>
+        </table>
+
+
+      </div>
+
+    </div>
+
+
+    <% include ./partials/footer %>
+  </body>
+
+</html>

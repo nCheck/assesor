@@ -5,7 +5,7 @@ var Subject = require('../controllers/subject.ctrl');
 
 //==========================================
 //Main admin page
-//========================================== 
+//==========================================
 router
   .route('/')
   .get((req,res)=>{
@@ -27,4 +27,6 @@ router
   .route('/addsubject')
   .get((req,res)=>res.render('addSubject.ejs',{req:req}))
   .post((Subject.addSubject))
+
+  
 module.exports=router;

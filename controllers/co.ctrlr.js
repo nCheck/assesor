@@ -95,20 +95,6 @@ module.exports.addOne = (req, res)=> {
 };
 
 
-	// SubjectData.update(
-	// 	{year : req.body.year}, //searches for the required co in which we wish to add tool
-	// 	{$push : {co : CO.find( {name : req.body.name} )
-	// 	 } },
-	// 	 function(err, doc) {
-	// 	 	if(err){
-	// 	 		console.log("Error in SubjectData.update of addOne in co.ctrlr");
-	// 	 	}
-	// 	 	else
-	// 	 	{
-	// 	 		console.log("updated++++++++++++++++ ",doc);
-	// 	 	}
-	// 	 }
-	// );
 
 
 
@@ -128,26 +114,26 @@ module.exports.removeOne = (req, res)=> {
 	)
 }
 
-// module.exports.sendBoth = function (req , res) {
-// 	CO.find({} , function(err , cos) {
-// 		console.log(cos + "======");
-// 	Tool.find({} , function(err , doc) {
-// 		console.log(doc + "======");
-// 		res.render('toolselector.ejs',{tools:doc,
-// 				cos:cos});
-// 	});
-// 	});
 
 
-// }
 
-// module.exports.insertTool = function (req , res) {
-// 	CO
-// 		.findOneAndUpdate({coName: req.body.cos} ,
-// 			{$push : {tools : req.body.tool}} ,
-// 			function(err , doc) {
-// 				console.log("updated =====",  doc);
-// 			}
-// 			);
-// 	res.send(req.body);
-// }
+
+
+// ======== Sends all the tools of A co to api
+
+module.exports.getTools = (req , res)=>{
+	var coID = req.params.coID;
+
+	CO.findById(coID).populate({
+		path : 'tools' , populate : {
+			path : 'tool',
+			model : 'Tool'
+		}
+	}).exec((err , doc)=>{
+		var tools = doc.tools.map(function (t) {
+			return t;
+		})
+		res.send(tools)
+	})
+
+}
