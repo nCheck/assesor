@@ -26,7 +26,7 @@
                 <label for="course">Select Course</label>
                 <select class="form-control" id='course' name="courseName">
                                                      <%subject.forEach(function(sub){%>
-                                                       <option value=<%= sub.name %> ><%= sub.name %></option>
+                                                       <option value="<%= sub.name %>"><%= sub.name %></option>
                                                          <%})%>
                                                    </select>
               </div>
@@ -36,7 +36,6 @@
             <button name="submit" type="submit" id="form-submit" class="btn btn-success btn-md pull-right ">Submit</button>
             <div id="msgSubmit" class="h3 text-center hidden"></div>
             <div class="clearfix"></div>
-          </form>
           </form>
         </div>
       </div>

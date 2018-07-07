@@ -86,7 +86,8 @@ module.exports.addSubject = (req, res)=> {
 		name : req.body.subjectName,
 		subjectCode : req.body.subjectCode,
 	},(err,sub)=>{
-		console.log(sub.name+" iS BORN  "+ sub)
+		console.log(sub.name+" iS BORN  "+ sub);
+	sub.save();
 	});
 	res.redirect('/admin')
 }
