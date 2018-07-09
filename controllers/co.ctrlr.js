@@ -137,3 +137,29 @@ module.exports.getTools = (req , res)=>{
 	})
 
 }
+
+//Co report page
+module.exports.COreport = (req , res)=>{
+	var dc = []
+	SubjectData.findOne({name:req.params.subject , year : 2018}).populate({
+		path : 'co' , populate : {
+			path : 'tools',
+			model : 'ToolData',populate :{
+				path:'tool',
+				model:'Tool'
+			}
+		}
+	}).exec((err , sub)=>{
+
+var  cos=sub.co;
+console.log("These are the cos of subject "+sub.name+" :    "+sub.co);
+		res.render('coReport',{cos:cos,req:req});
+	})
+
+
+
+
+
+
+
+}

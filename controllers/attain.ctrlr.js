@@ -56,7 +56,7 @@ console.log("This is co "+cos);
         indirect_type+=tool.weightage*tool.point;
       }
   })
-co_val=direct_type*0.8+indirect_type*0.2;
+co_val=(direct_type*0.8+indirect_type*0.2).toFixed(2);
 console.log(co_val);
 cos.attainment=co_val;
 cos.save();

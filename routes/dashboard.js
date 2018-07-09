@@ -61,9 +61,11 @@ router
 //==========================================
 router
   .route('/co/:coID/:toolID/delete')
-    .get(toolCtrl.removeOne)
+    .get(toolCtrl.removeOne);
 
 
-
+router
+  .route('/:subject/coReport')
+  .get(coCtrl.COreport);
 
 module.exports = router;

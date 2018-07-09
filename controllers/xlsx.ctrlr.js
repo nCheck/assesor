@@ -30,7 +30,6 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
   high=tool.high;
   mid=tool.mid;
   low=tool.low;
-  targetMark=tool.targetMark;
   targetStudent=tool.targetStudent;
   totalStud=tool.totalStud;
   console.log("All information of the tool "+tool);
@@ -90,22 +89,32 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
       }
       console.log("total students "+student);
       var percentH=c_high/totalStud*100,
-          percentM=c_mid+c_high/totalStud*100,
-          percentL=c_mid+c_high+c_low/totalStud*100;
+          percentM=(c_mid+c_high)/totalStud*100,
+          percentL=(c_mid+c_high+c_low)/totalStud*100;
           console.log("percnetage "+percentH+" "+percentM+" "+percentL)
       if(percentH>=targetStudent)
-        tool.point=3;
+        {
+					tool.point=3;
+					tool.studentsAchieved=c_high;
+				}
       else if(percentM>=targetStudent)
-      tool.point=2;
+      {
+				tool.point=2;
+				tool.studentsAchieved=c_mid+c_high;
+			}
       else if(percentL>=targetStudent)
-      tool.point=1;
+      {
+				tool.point=1;
+				tool.studentsAchieved=c_mid+c_high+c_low;
+			}
       else {
         tool.point=0;
+				tool.studentsAchieved=student-(c_mid+c_high+c_low);
       }
 			tool.save();
       console.log("Point inserted is "+tool.point)
       console.log(tool)
-    
+
 			res.send({tool:tool,co:co});
 
   })

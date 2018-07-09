@@ -35,7 +35,7 @@ module.exports.addOne = function (req , res) {
 		tool : req.body.tool,
 		weightage : req.body.weightage,
 		targetStudent : req.body.targetStudent,
-		targetMark : req.body.targetMark,
+		totalMark : req.body.totalMark,
 		totalStud : req.body.totalStud,
 		high : req.body.high,
 		mid : req.body.mid,

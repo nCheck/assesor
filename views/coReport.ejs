@@ -1,0 +1,118 @@
+<% include ./partials/header %>
+
+<style>
+.b {
+  border :2px solid black;
+  padding-top:  10px;
+padding-bottom:  10px;
+}
+hr {
+  width:100% !important;
+  border: 2px solid;
+}
+table ,th,td{
+  border: 1px solid black
+
+}
+</style>
+<h2><%=req.params.subject%></h2>
+<div class="container">
+
+<div class="row">
+<% cos.forEach(function(co){%>
+  <div class="col-md-12 col-sm-6 b">
+<td>
+    <h2><%= co.number +": "+co.name %>  <hr> </h2>
+
+<table>
+
+<tr>
+    <%co.tools.forEach(function(too){%>
+  <th>Tool:  <%= too.tool.name%>  </th>
+
+    <%})%>
+  </tr>
+
+
+<tr>
+  <%co.tools.forEach(function(too){%>
+
+  <td>Target :<%=too.targetStudent%> % students will get minimum <%= too.high%> marks</td>
+<%})%>
+</tr>
+<tr>
+    <%co.tools.forEach(function(too){%>
+    <td>Attainment : Total number of students <%= too.totalStud%></td>
+
+    <%})%>
+</tr>
+<tr>
+  <%co.tools.forEach(function(too){%>
+    <% if (too.point ===3 ){%>
+<td>Total number of students score <%=too.high%> out of <%=too.totalMark%> is <%=too.studentsAchieved%></td>
+    <%}
+     else if (too.point ===2 ){%>
+<td>Total number of students score <%=too.mid%> out of <%=too.totalMark%> is <%=too.studentsAchieved%></td>
+    <%}
+     else if  (too.point ===1 ){%>
+<td>Total number of students score <%=too.low%> out of <%=too.totalMark%> is <%=too.studentsAchieved%></td>
+    <%}
+     else{%>
+<td>Target failed </td>
+    <%}%>
+
+<%})%>
+</tr>
+<tr>
+    <%co.tools.forEach(function(too){%>
+    <td>Attainment = <%=(too.studentsAchieved/too.totalStud).toFixed(2)%> (<%=too.point%>)</td>
+
+    <%})%>
+</tr>
+<%var i,too=co.tools,direct=[],indirect=[];
+  for(i=0;i<too.length;i++){%>
+    <%if(too[i].toolType=== "Direct"){%>
+    <%  direct.push(too[i]);%>
+    <%}
+    else{%>
+    <%  indirect.push(too[i])%>
+      <%}%>
+      <%}%>
+<tr>
+  <td colspan="6">  <%if (direct.length||indirect.length){%>
+    Overall attainment= 0.8*(
+    <%}%>
+  <%var i,too=co.tools;
+    for(i=0;i<direct.length;i++){%>
+        <%if(i!=(direct.length-1)){%>
+          <%=direct[i].weightage%>*<%=direct[i].point%>+
+          <%}
+        else{%>
+          <%=direct[i].weightage%> * <%=direct[i].point%> )
+          <%}%>
+      <% }%>+0.2*(
+    <%for(i=0;i<direct.length;i++){%>
+          <%if(i!=(direct.length-1)){%>
+            <%=direct[i].weightage%>*<%=direct[i].point%>+
+            <%}
+          else{%>
+            <%=direct[i].weightage%> * <%=direct[i].point%> )
+            <%}%>
+        <% }%>
+        <%if (direct.length||indirect.length){%>
+        = <%=(co.attainment*1).toFixed(2)%>
+          <%}%>
+</td>
+</tr>
+
+
+  </table>
+
+
+</div>
+
+<%})%>
+</div>
+
+
+  </div>
