@@ -2,6 +2,7 @@ var express               = require('express');
 var parser                = require('body-parser');
 var mongoose              = require('mongoose');
 const dir                 = __dirname;
+var port = process.env.PORT || 2535;
 require('./data/db.js');
 var User                  = require('./data/user');
 // =====Require Routes====
@@ -86,6 +87,6 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 }
-app.listen(2535 , function () {
-	console.log('Site is active on 2535');
+app.listen(port , function () {
+	console.log('Site is active on' + port);
 });
