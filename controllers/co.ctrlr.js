@@ -150,11 +150,20 @@ module.exports.getCOGraph = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
-			console.log(doc);
-			res.render('graph' , {data : doc.co});
-			var attain=data.map(function(t){
-				return t.attainment;
-				})
+			//console.log(doc);
+			//res.render('graph' , {data : doc.co});
+
+			var attain=doc.co.map(function(t){
+				ignoreUndefined: true
+					return t.attainment;
+			
+			})
+
+			attain = attain.filter(function( element ) {
+   					return element !== undefined;
+		});
+			res.render('graph' , {attain : attain});
+			console.log(attain);
 	
 		}
 		
