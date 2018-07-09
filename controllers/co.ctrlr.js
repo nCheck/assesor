@@ -13,7 +13,6 @@ module.exports.getDataDoc = function (req , res) {
 			console.log("not found " + err);
 		}
 		else {
-			console.log(doc);
 			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] });
 		}
 	})
@@ -30,7 +29,6 @@ module.exports.getData = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
-			console.log(doc);
 			res.render('coPage' , {data : doc.co});
 		}
 	})
@@ -156,18 +154,22 @@ module.exports.getCOGraph = function (req , res , next) {
 			var attain=doc.co.map(function(t){
 				ignoreUndefined: true
 					return t.attainment;
-			
+
+			})
+
+			var labels=doc.co.map(function(t){
+				ignoreUndefined: true
+					return String(t.name);
+
 			})
 
 			attain = attain.filter(function( element ) {
    					return element !== undefined;
 		});
-			res.render('graph' , {attain : attain});
-			console.log(attain);
-	
+			res.render('graph' , {attain : attain, labels : labels , req : req , subject : req.params.subject});
+
 		}
-		
+
 	})
 
 };
-

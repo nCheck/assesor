@@ -20,14 +20,18 @@
   var ctx = canvas.getContext('2d');
 
   var data = [ <%=attain%> ];
-  console.log(data);
+  var labels = []
+  <% labels.forEach(function (label) { %>
+    labels.push("<%=label%>");
+  <% }) %>
+  console.log(labels);
 
   var chart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ["Red", "Blue", "Yellow"],
+          labels: labels,
           datasets: [{
-              label: '# of Votes',
+              label: 'Attainment Point',
               data: data,
 
               backgroundColor: [

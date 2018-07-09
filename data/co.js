@@ -8,7 +8,10 @@ var coSchema = new mongoose.Schema({
 	blooms : String,
 	number: Number,
 	tools:[{type:Schema.Types.ObjectId, ref: 'ToolData'}],
-	attainment : Number,
+	attainment : {
+		type : Number,
+		default : 0
+	},
 });
 
 module.exports.coSchema = coSchema;
