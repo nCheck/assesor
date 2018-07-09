@@ -41,13 +41,3 @@ module.exports.deleteFile = (req , res ) =>{
 	});
 	res.send('Done');
 }
-
-
-// try now! wait
-
-//in comments i have written meaning of each
-//Hi Shreya, you are just changing location here. haan wait
-//hey nehhhhalllllll
-//this is what i have done for deletion
-// google pe tha
-//kaha ho tum?

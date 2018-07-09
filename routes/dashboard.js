@@ -7,10 +7,13 @@ var toolCtrl = require('../controllers/tool.ctrlr');
 var User     = require('../data/user');
 
 
+// ============================
+// Graph Route
+// ============================
 
-
-
-
+router
+  .route('/graph/:subject')
+    .get(coCtrl.getCOGraph);
 
 
 //==========================================
@@ -67,5 +70,8 @@ router
 router
   .route('/:subject/coReport')
   .get(coCtrl.COreport);
+
+    })
+    });
 
 module.exports = router;

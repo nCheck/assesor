@@ -13,7 +13,6 @@ module.exports.getDataDoc = function (req , res) {
 			console.log("not found " + err);
 		}
 		else {
-			console.log(doc);
 			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] });
 		}
 	})
@@ -30,7 +29,6 @@ module.exports.getData = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
-			console.log(doc);
 			res.render('coPage' , {data : doc.co});
 		}
 	})
@@ -163,3 +161,41 @@ console.log("These are the cos of subject "+sub.name+" :    "+sub.co);
 
 
 }
+
+
+
+module.exports.getCOGraph = function (req , res , next) {
+
+	query = {name : req.params.subject , year : 2018};
+	console.log('Sending Data');
+	var ret;
+	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
+		if(err){
+			console.log("not found " + err);
+		}
+		else {
+			//console.log(doc);
+			//res.render('graph' , {data : doc.co});
+
+			var attain=doc.co.map(function(t){
+				ignoreUndefined: true
+					return t.attainment;
+
+			})
+
+			var labels=doc.co.map(function(t){
+				ignoreUndefined: true
+					return String(t.name);
+
+			})
+
+			attain = attain.filter(function( element ) {
+   					return element !== undefined;
+		});
+			res.render('graph' , {attain : attain, labels : labels , req : req , subject : req.params.subject});
+
+		}
+
+	})
+
+};
