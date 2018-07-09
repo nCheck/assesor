@@ -151,7 +151,7 @@ module.exports.COreport = (req , res)=>{
 
 var  cos=sub.co;
 console.log("These are the cos of subject "+sub.name+" :    "+sub.co);
-		res.render('coReport',{cos:cos,req:req});
+		res.render('coReport',{cos:cos,req:req ,subject:req.params.subject });
 	})
 
 
