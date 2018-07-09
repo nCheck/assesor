@@ -91,12 +91,12 @@ table ,th,td{
           <%=direct[i].weightage%> * <%=direct[i].point%> )
           <%}%>
       <% }%>+0.2*(
-    <%for(i=0;i<direct.length;i++){%>
-          <%if(i!=(direct.length-1)){%>
-            <%=direct[i].weightage%>*<%=direct[i].point%>+
+    <%for(i=0;i<indirect.length;i++){%>
+          <%if(i!=(indirect.length-1)){%>
+            <%=indirect[i].weightage%>*<%=indirect[i].point%>+
             <%}
           else{%>
-            <%=direct[i].weightage%> * <%=direct[i].point%> )
+            <%=indirect[i].weightage%> * <%=indirect[i].point%> )
             <%}%>
         <% }%>
         <%if (direct.length||indirect.length){%>
