@@ -54,4 +54,13 @@ router
     })
     });
 
+// ============================
+// Graph Route
+// ============================
+
+router
+  .route('/:subject/graph')
+    .get(coCtrl.getCOGraph);
+
+
 module.exports = router;
