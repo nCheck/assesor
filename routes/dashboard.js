@@ -6,6 +6,16 @@ var coCtrl   = require('../controllers/co.ctrlr');
 var toolCtrl = require('../controllers/tool.ctrlr');
 var User     = require('../data/user');
 
+
+// ============================
+// Graph Route
+// ============================
+
+router
+  .route('/graph/:subject')
+    .get(coCtrl.getCOGraph);
+
+
 //==========================================
 //Displays subject assigned to teacher
 //==========================================
@@ -53,14 +63,6 @@ router
 
     })
     });
-
-// ============================
-// Graph Route
-// ============================
-
-router
-  .route('/:subject/graph')
-    .get(coCtrl.getCOGraph);
 
 
 module.exports = router;

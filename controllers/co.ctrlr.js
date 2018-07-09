@@ -137,3 +137,28 @@ module.exports.getTools = (req , res)=>{
 	})
 
 }
+
+
+
+module.exports.getCOGraph = function (req , res , next) {
+
+	query = {name : req.params.subject , year : 2018};
+	console.log('Sending Data');
+	var ret;
+	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
+		if(err){
+			console.log("not found " + err);
+		}
+		else {
+			console.log(doc);
+			res.render('graph' , {data : doc.co});
+			var attain=data.map(function(t){
+				return t.attainment;
+				})
+	
+		}
+		
+	})
+
+};
+
