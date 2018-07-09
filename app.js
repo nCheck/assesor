@@ -22,7 +22,7 @@ var Tool =mongoose.model('Tool')
 // =======initialize data base =======
 var Subject = mongoose.model('Subject');
 app.set('view engine', 'ejs');
-app.use(express.static(dir + '/public'));
+app.use("/public" , express.static(dir + '/public'));
 app.use(parser.urlencoded({extended:true}));
 app.use(parser.json());
 
