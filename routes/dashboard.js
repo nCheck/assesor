@@ -71,7 +71,6 @@ router
   .route('/:subject/coReport')
   .get(coCtrl.COreport);
 
-    })
-    });
+
 
 module.exports = router;
