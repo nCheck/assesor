@@ -3,18 +3,23 @@
 <% include ./partials/header %>
 
 	<body>
-		<% for(t in toolData){ %>
-		<%= toolData[t].name + " ====== "+ toolData[t].weightage + " ====== "+ toolData[t].toolType + " ====== " %>
-		<a href=<%=  "/dashboard/co/"+ coID + "/" +tools[t]._id+"/delete" %> >Delete</a>
-		<br>
-		<hr>
-		<%}%>
-
-			<form action=<%= 'Tool' %> method="POST">
+	
+ 	<div class="offset-5 col-sm-6">
+ 	<span>
+ 	<h3>My Tools</h3>
+ 	<ul>
+		<% for (t in toolNames ){ %>
+		<li><h5> <%= toolNames[t].name %> </h5></li>
+	    <% } %>
+	</ul>
+	</span>		
+	</div>
+ 	<div class="col-sm-6">
+ 		<form action="/tool" %> method="POST">
 				<span>
 				<select name="tool" id="dropdown">
 				<% for(t in tools){ %>
-					<option value= <%=tools[t]._id%> > <%=tools[t].name%> </option>
+					<option value="<%=toolNames[t]._id%>" > <%= toolNames[t].name %> </option>
 				<%}%>
 				</select>
 				<br>
@@ -31,7 +36,10 @@
 				</select><br>
 				<button>Submit </button>
 			</span>
-			</form>
+		</form>
+	</div>
+
+			
 
 
 			<% include ./partials/footer %>

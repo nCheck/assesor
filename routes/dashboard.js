@@ -54,8 +54,8 @@ router
 //Gives user to input tool data information(target marks etc)
 //===========================================================
 router
-  .route('/:subject/co/:coID/Tool')
-  .get(toolCtrl.sendTool)
+  .route('/:subject/CO/:coID/tool')
+  .get(toolCtrl.getData)
     .post(toolCtrl.addOne);
 
 

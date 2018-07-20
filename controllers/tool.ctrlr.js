@@ -3,24 +3,46 @@ var Tool = mongoose.model('Tool');
 var ToolData = mongoose.model('ToolData');
 var CO = mongoose.model('CO');
 
-module.exports.getAll = function (req , res) {
-	console.log('Sending Tool Data');
-	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
-		res.render('toolsAdd', {subject : req.params.subject
-			, coID : req.params.coID , tools : doc.tools , req : req });
-	})
+// module.exports.getAll = function (req , res) {
+// 	console.log('Sending Tool Data');
+// 	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
+// 		res.render('toolsAdd', {subject : req.params.subject
+// 			, coID : req.params.coID , tools : doc.tools , req : req });
+// 	})
 
-};
+// };
 
+module.exports.getData = function (req, res) {
+	var toolA = [];
+	CO.findById(req.params.coID).populate({
+		path : 'tools' , populate : {
+			path : 'tool',
+			model : 'Tool'
+		}
+	}).lean().exec( (err, co )=>{
+		if(err){
+			console.log("in getData of tool.ctrl err is, ",err);
+		}
+		else {
+			
+			co.tools.forEach(function(t){
+				toolA.push(t.tool);
+			});
+			console.log("got tool names ",toolA);
+			console.log("CO Tools ",co.tools);
+			res.render("toolAdd",{toolNames : toolA , tools : co.tools });
+		}
+	});
+}
 
 // ================send toolsname ================
 //shouldnt this be found first by subject then all tools selected by that id
-module.exports.sendTool = (req , res)=>{
-	Tool.find({}, (err,doc)=>{
-		res.render('toolAdd', {subject : req.params.subject
-			, coID : req.params.coID , tools : doc , toolData : {} , req : req});
-	});
-}
+// module.exports.sendTool = (req , res)=>{
+// 	Tool.find({}, (err,doc)=>{
+// 		res.render('toolAdd', {subject : req.params.subject
+// 			, coID : req.params.coID , tools : doc , toolData : {} , req : req});
+// 	});
+// }
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
