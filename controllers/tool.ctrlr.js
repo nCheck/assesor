@@ -28,7 +28,7 @@ module.exports.getData = function (req, res) {
 		}
 	});
 
-	
+
 	CO.findById(req.params.coID).populate({
 		path : 'tools' , populate : {
 			path : 'tool',
@@ -39,13 +39,13 @@ module.exports.getData = function (req, res) {
 			console.log("in getData of tool.ctrl err is, ",err);
 		}
 		else {
-			
+			console.log("CO Tools ",co.tools);
 			co.tools.forEach(function(t){
 				toolA.push(t.tool.name);
 			});
-			console.log("got tool names ",toolA);
-			console.log("CO Tools ",co.tools);
-			console.log("allTools looks like this once more, ",allTools);
+			// console.log("got tool names ",toolA);
+			// console.log("CO Tools ",co.tools);
+			// console.log("allTools looks like this once more, ",allTools);
 			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
 		}
 	});
