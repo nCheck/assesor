@@ -21,7 +21,9 @@ module.exports.getData = function (req, res) {
 		}
 		else{
 			console.log("the array of all tool names is: ",doc);
-			allTools.concat(doc);
+			doc.forEach((t)=>{
+				allTools.push(t);
+			});
 			console.log("allTools looks like this, ",allTools);
 		}
 	});
@@ -43,6 +45,7 @@ module.exports.getData = function (req, res) {
 			});
 			console.log("got tool names ",toolA);
 			console.log("CO Tools ",co.tools);
+			console.log("allTools looks like this once more, ",allTools);
 			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
 		}
 	});
