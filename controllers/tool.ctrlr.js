@@ -14,17 +14,17 @@ var CO = mongoose.model('CO');
 var allTools = [];
 module.exports.getData = function (req, res) {
 	var toolA = [];
-	
+
 	Tool.find({}, (err, doc, next)=>{
 		if(err){
 			console.log("Err in Tool.find of getData n toolCtrlr is, ",err);
 		}
 		else{
-			console.log("the array of all tool names is: ",doc);
+			// console.log("the array of all tool names is: ",doc);
 			doc.forEach((t)=>{
 				allTools.push(t);
 			});
-			console.log("allTools looks like this, ",allTools);
+			// console.log("allTools looks like this, ",allTools);
 		}
 	});
 
@@ -39,7 +39,6 @@ module.exports.getData = function (req, res) {
 			console.log("in getData of tool.ctrl err is, ",err);
 		}
 		else {
-			console.log("CO Tools ",co.tools);
 			co.tools.forEach(function(t){
 				toolA.push(t.tool.name);
 			});
@@ -69,7 +68,7 @@ module.exports.getToolDoc = (req , res)=>{
 
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
-	if(req.body.name){
+	if(req.body.name != ''){
 		Tool.create({
 			name : req.body.name
 		}, (err, tool)=>{
@@ -120,7 +119,7 @@ module.exports.addOne = function (req , res) {
 	});
 
 	}
-	
+
 }
 
 //*****************To remove a tool*********************

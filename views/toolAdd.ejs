@@ -3,7 +3,7 @@
 <% include ./partials/header %>
 
 	<body>
-	
+
  	<div class="offset-5 col-sm-6">
  	<span>
  	<h3>My Tools</h3>
@@ -12,10 +12,10 @@
 		<li><h5> <%= thisToolNames[t] %> </h5></li>
 	    <% } %>
 	</ul>
-	</span>		
+	</span>
 	</div>
  	<div class="col-sm-6">
- 		<form action="/tool" %> method="POST">
+ 		<form method="POST">
 				<span>
 				<select name="tool" id="dropdown">
 				<% for(t in allTools){ %>
@@ -40,7 +40,7 @@
 		</form>
 	</div>
 
-			
+
 
 
 			<% include ./partials/footer %>
