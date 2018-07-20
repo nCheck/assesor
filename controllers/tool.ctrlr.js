@@ -14,6 +14,19 @@ var CO = mongoose.model('CO');
 
 module.exports.getData = function (req, res) {
 	var toolA = [];
+	var allTools = [];
+	Tool.find({}, (err, doc, next)=>{
+		if(err){
+			console.log("Err in Tool.find of getData n toolCtrlr is, ",err);
+		}
+		else{
+			console.log("the array of all tool names is: ",doc);
+			allTools.concat(doc);
+			console.log("allTools looks like this, ",allTools);
+		}
+	});
+
+	
 	CO.findById(req.params.coID).populate({
 		path : 'tools' , populate : {
 			path : 'tool',
@@ -26,11 +39,11 @@ module.exports.getData = function (req, res) {
 		else {
 			
 			co.tools.forEach(function(t){
-				toolA.push(t.tool);
+				toolA.push(t.tool.name);
 			});
 			console.log("got tool names ",toolA);
 			console.log("CO Tools ",co.tools);
-			res.render("toolAdd",{toolNames : toolA , tools : co.tools });
+			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
 		}
 	});
 }

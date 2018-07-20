@@ -8,8 +8,8 @@
  	<span>
  	<h3>My Tools</h3>
  	<ul>
-		<% for (t in toolNames ){ %>
-		<li><h5> <%= toolNames[t].name %> </h5></li>
+		<% for (t in thisToolNames ){ %>
+		<li><h5> <%= thisToolNames[t] %> </h5></li>
 	    <% } %>
 	</ul>
 	</span>		
@@ -18,8 +18,8 @@
  		<form action="/tool" %> method="POST">
 				<span>
 				<select name="tool" id="dropdown">
-				<% for(t in tools){ %>
-					<option value="<%=toolNames[t]._id%>" > <%= toolNames[t].name %> </option>
+				<% for(t in allTools){ %>
+					<option value="<%= allTools[t]._id%>" > <%= allTools[t].name %> </option>
 				<%}%>
 				</select>
 				<br>
