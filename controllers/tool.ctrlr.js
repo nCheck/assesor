@@ -11,10 +11,10 @@ var CO = mongoose.model('CO');
 // 	})
 
 // };
-
+var allTools = [];
 module.exports.getData = function (req, res) {
 	var toolA = [];
-	var allTools = [];
+	
 	Tool.find({}, (err, doc, next)=>{
 		if(err){
 			console.log("Err in Tool.find of getData n toolCtrlr is, ",err);
@@ -69,7 +69,35 @@ module.exports.getToolDoc = (req , res)=>{
 
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
-	ToolData.create({
+	if(req.body.name){
+		Tool.create({
+			name : req.body.name
+		}, (err, tool)=>{
+				ToolData.create({
+				tool : tool,
+				weightage : req.body.weightage,
+				targetStudent : req.body.targetStudent,
+				totalMark : req.body.totalMark,
+				totalStud : req.body.totalStud,
+				high : req.body.high,
+				mid : req.body.mid,
+				low : req.body.low,
+				toolType:req.body.toolType
+
+				}, (err , doc)=>{
+						var toolId = doc._id;
+						CO.findById(req.params.coID , (err,docc)=>{
+						docc.tools.push(toolId);
+						docc.save();
+						backURL=req.header('Referer')||'/';
+						res.redirect(backURL);
+					})
+
+			});
+		})
+	}
+	else{
+		ToolData.create({
 		tool : req.body.tool,
 		weightage : req.body.weightage,
 		targetStudent : req.body.targetStudent,
@@ -91,6 +119,8 @@ module.exports.addOne = function (req , res) {
 
 	});
 
+	}
+	
 }
 
 //*****************To remove a tool*********************
