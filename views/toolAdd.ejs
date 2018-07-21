@@ -3,17 +3,123 @@
 <% include ./partials/header %>
 
 	<body>
-
- 	<div class="offset-5 col-sm-6">
+	<div class="row">
+ 	<div class="col-sm-6">
  	<span>
- 	<h3>My Tools</h3>
- 	<ul>
+ 	<h3>        My Tools</h3>
+ 	<ul class="list-unstyled">
 		<% for (t in thisToolNames ){ %>
-		<li><h5> <%= thisToolNames[t] %> </h5></li>
+		<li class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button>
+		<form action="tool/<%= tools[t]._id %>" method="POST">
+			<button class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+		</form>
+		<br></li>
 	    <% } %>
 	</ul>
 	</span>
 	</div>
+
+	<!-- The Modal -->
+	<div class="modal fade" id="myMod">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+				    <h4 class="modal-title">My Tool </h4>
+				    <button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+			        <table class="table">
+			        	<tbody>
+			        		<tr>
+				              <td>Weightage : </td>
+				              <td id="weightage">
+				                <%= tools[t].weightage %>
+				              </td>
+
+				            </tr>
+				            <tr>
+							  <td>Target No. Of Student : </td>
+				              <td id="targetStudent">
+				              </td>
+				              <td>
+				              	<%= tools[t].targetStudent %>
+				                <!--  -->
+				              </td>
+				              <tr>
+								<td>Total marks : </td>
+				                <td id="totalMark"> </td>
+				                <td>
+				                	<%= tools[t].totalMark %>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+								<td>Total No. Of Students : </td>
+				                <td id="totalStud"> </td>
+				                <td>
+				                	<%= tools[t].totalStud %>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+								<td>No. Of Students Achieved Target : </td>
+				                <td id="studentsAchieved"> </td>
+				                <td>
+				                	<%= tools[t].studentsAchieved %>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+								<td>Type of Tool : </td>
+				                <td id="toolType"> </td>
+				                <td>
+				                  <!--  -->
+				                  <%= tools[t].toolType %>
+				                </td>
+				              </tr>
+				              <tr>
+								<td>High : </td>
+				                <td id="high"> </td>
+				                <td>
+				                  <!--  -->
+				                  <%= tools[t].high %>
+				                </td>
+				              </tr>
+				              <tr>
+								<td>Mid : </td>
+				                <td id="mid"> </td>
+				                <td>
+				                  <!--  -->
+				                  <%= tools[t].mid %>
+				                </td>
+				              </tr>
+				              <tr>
+								<td>Low : </td>
+				                <td id="low"> </td>
+				                <td>
+				                	<%= tools[t].low %>
+				                  <!--  -->
+				                </td>
+				              </tr>
+				              <tr>
+								<td>Point : </td>
+				                <td id="point"> 
+				                <%= tools[t].point %>
+				                  <!--  -->
+				                </td>
+				            </tr>
+				        </tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
  	<div class="col-sm-6">
  		<form method="POST">
 				<span>
@@ -39,11 +145,11 @@
 			</span>
 		</form>
 	</div>
-
+</div>
 
 
 
 			<% include ./partials/footer %>
-	</body>
+				</body>
 
 </html>
