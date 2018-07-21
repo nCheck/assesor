@@ -2,7 +2,14 @@
 
 <ol class="list-group">
   <%subjects.forEach(function(subject){%>
-  <li  class="list-group-item  list-group-item-action list-group-item-dark"><a  name="<%=subject.name%>"class='sublist' href="/dashboard/<%=subject.name%>" ><%=subject.name %></a> <select name="year">
+  <li  class="list-group-item  list-group-item-action list-group-item-dark"><a  name="<%=subject.name%>"class='sublist' href="/dashboard/<%=subject.name%>" ><%=subject.name %></a>
+    <select class="yeardropdown" name="year">
+    <option selected disabled hidden>Select Year</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
     <option value="2013">2013</option>
     <option value="2012">2012</option>
     <option value="2011">2011</option>
@@ -20,6 +27,14 @@
   </select></li>
 <%})%>
 </ol>
+<style media="screen">
+  select.yeardropdown{
+float: right;
+  margin-right: 950px;
+
+border-radius: 10px;
+  }
+</style>
 <script type="text/javascript">
   $('[name="year"]').change(function(){
     var year=$(this).val();
