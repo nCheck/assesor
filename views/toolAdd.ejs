@@ -9,7 +9,11 @@
  	<h3>        My Tools</h3>
  	<ul class="list-unstyled">
 		<% for (t in thisToolNames ){ %>
-		<li class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button><br></li>
+		<li class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button>
+		<form action="tool/<%= tools[t]._id %>" method="POST">
+			<button class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+		</form>
+		<br></li>
 	    <% } %>
 	</ul>
 	</span>

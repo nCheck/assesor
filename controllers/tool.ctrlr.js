@@ -45,9 +45,14 @@ module.exports.getData = function (req, res) {
 			// console.log("got tool names ",toolA);
 			// console.log("CO Tools ",co.tools);
 			// console.log("allTools looks like this once more, ",allTools);
-			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
+			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools, coID:req.params.coID});
 		}
 	});
+}
+
+//removes a single tool
+module.exports.removeOne = (req , res)=>{
+	res.send("reached the destroy route!");
 }
 
 // ================send toolsname ================

@@ -58,12 +58,19 @@ router
   .get(toolCtrl.getData)
     .post(toolCtrl.addOne);
 
+//==========================================================
+//Removes tool
+//==========================================================
+router
+  .route('/:subject/CO/:coID/tool/:toolID')
+  .post(toolCtrl.removeOne);
+
 
 //==========================================
 //Removes tools
 //==========================================
 router
-  .route('/co/:coID/:toolID/delete')
+  .route(':subject/CO/:coID/:toolID/delete')
     .get(toolCtrl.removeOne);
 
 
