@@ -14,14 +14,24 @@
 
       <% if (file) { %>
         File View <br>
-        <%=filename%>
+        <%= filename %>
       <% } %>
+      <%= typeof msg!='undefined'? msg:''%>
+       <form method="post" enctype="multipart/form-data" action="/files/<%= subject %>?file=<%= filename %>">
+           <input type="file" name="filename1">
+           <input type="submit" name="upload" value="submit">
+            <button type="submit" class="btn">Submit</button>
+         </form>
+        
+    <br>
+    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+  </div>
 
 
       <% if (!file) { %>
 
         Upload and Download Files
-        
+
       <% } %>
 
 
