@@ -6,10 +6,10 @@
 	<div class="row">
  	<div class="col-sm-6">
  	<span>
- 	<h3>My Tools</h3>
- 	<ul>
+ 	<h3>        My Tools</h3>
+ 	<ul class="list-unstyled">
 		<% for (t in thisToolNames ){ %>
-		<li><button name="<%= t %>" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button></li>
+		<li class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button><br></li>
 	    <% } %>
 	</ul>
 	</span>
@@ -33,7 +33,7 @@
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
-				                <%= tools[t].weightage
+				                <%= tools[t].weightage %>
 				              </td>
 
 				            </tr>
@@ -42,12 +42,14 @@
 				              <td id="targetStudent">
 				              </td>
 				              <td>
+				              	<%= tools[t].targetStudent %>
 				                <!--  -->
 				              </td>
 				              <tr>
 								<td>Total marks : </td>
 				                <td id="totalMark"> </td>
 				                <td>
+				                	<%= tools[t].totalMark %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -55,6 +57,7 @@
 								<td>Total No. Of Students : </td>
 				                <td id="totalStud"> </td>
 				                <td>
+				                	<%= tools[t].totalStud %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -62,6 +65,7 @@
 								<td>No. Of Students Achieved Target : </td>
 				                <td id="studentsAchieved"> </td>
 				                <td>
+				                	<%= tools[t].studentsAchieved %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -70,6 +74,7 @@
 				                <td id="toolType"> </td>
 				                <td>
 				                  <!--  -->
+				                  <%= tools[t].toolType %>
 				                </td>
 				              </tr>
 				              <tr>
@@ -77,6 +82,7 @@
 				                <td id="high"> </td>
 				                <td>
 				                  <!--  -->
+				                  <%= tools[t].high %>
 				                </td>
 				              </tr>
 				              <tr>
@@ -84,19 +90,21 @@
 				                <td id="mid"> </td>
 				                <td>
 				                  <!--  -->
+				                  <%= tools[t].mid %>
 				                </td>
 				              </tr>
 				              <tr>
 								<td>Low : </td>
 				                <td id="low"> </td>
 				                <td>
+				                	<%= tools[t].low %>
 				                  <!--  -->
 				                </td>
 				              </tr>
 				              <tr>
 								<td>Point : </td>
-				                <td id="point"> </td>
-				                <td>
+				                <td id="point"> 
+				                <%= tools[t].point %>
 				                  <!--  -->
 				                </td>
 				            </tr>
@@ -138,6 +146,6 @@
 
 
 			<% include ./partials/footer %>
-	</body>
+				</body>
 
 </html>
