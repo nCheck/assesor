@@ -21,8 +21,9 @@ module.exports.getDataDoc = function (req , res) {
 
 module.exports.getData = function (req , res , next) {
 
-	query = {name : req.params.subject , year : 2018};
-	console.log('Sending Data');
+	query = {name : req.params.subject , year : req.params.year};
+		console.log('Sending Data '+req.params.subject);
+
 	var ret;
 	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
 		if(err){
@@ -71,7 +72,7 @@ module.exports.getCO = (req , res)=>{
 
 module.exports.addOne = (req, res)=> {
 	console.log("im inside add one"+req.params.subject);
-	var query = {name : req.params.subject , year : 2018};
+	var query = {name : req.params.subject , year : req.params.year};
 	CO.create({
 		name : req.body.name,
 		blooms : req.body.blooms,

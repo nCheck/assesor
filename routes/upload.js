@@ -17,7 +17,7 @@ router
     .get(toolCtrl.getToolDoc)
 
 router
-  .route('/:subject/toolUpload')
+  .route('/:subject/:year/toolUpload')
     .get(toolCtrl.getToolDoc)
 
 router

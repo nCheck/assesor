@@ -45,7 +45,8 @@ module.exports.getData = function (req, res) {
 			// console.log("got tool names ",toolA);
 			// console.log("CO Tools ",co.tools);
 			// console.log("allTools looks like this once more, ",allTools);
-			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools, coID:req.params.coID});
+			console.log("this is type "+typeof(toolA));
+			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
 		}
 	});
 }
