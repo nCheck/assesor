@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+
+  <body>
+    <!-- Side navigation -->
+    <% include ./partials/files-side-nav %>
+
+    <!-- Page content -->
+    <div class="main">
+      <p>
+        This files page of <%= subject %>
+      </p>
+
+      <% if (file) { %>
+        File View <br>
+        <%=filename%>
+      <% } %>
+
+
+      <% if (!file) { %>
+
+        Upload and Download Files
+        
+      <% } %>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <% include ./partials/footer %>
+  </body>
+
+</html>
