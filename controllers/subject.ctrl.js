@@ -80,14 +80,14 @@ SubjectData.findOne({name:req.params.subject,year:req.query.year},(err,subData)=
 				docc.save();
 			})
 	}
-	res.render('dashboard', {subject : req.params.subject,year:req.query.year , req : req });
+	res.render('dashboard', {subject : req.params.subject,year:req.params.year , req : req });
 
 })
 }
 })
 }
 else {
-res.render('dashboard', {subject : req.params.subject,year:req.query.year , req : req });
+res.render('dashboard', {subject : req.params.subject,year:req.params.year , req : req });
 }
 }
 /////Sends all COS of Subject to API
