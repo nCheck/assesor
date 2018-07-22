@@ -65,17 +65,17 @@ router
 
 //==========================================================
 //Removes tool
-//==========================================================
-router
-  .route('/:subject/CO/:coID/tool/:toolID')
-  .post(toolCtrl.removeOne);
+// //==========================================================
+// router
+//   .route('/:subject/CO/:coID/tool/:toolID')
+//   .post(toolCtrl.removeOne);
 
 
 //==========================================
 //Removes tools
 //==========================================
 router
-  .route(':subject/CO/:coID/:toolID/delete')
+  .route('/:subject/:year/co/:coID/tool/:toolID/delete')
     .get(toolCtrl.removeOne);
 
 
