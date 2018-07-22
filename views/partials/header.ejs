@@ -35,22 +35,22 @@
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/files/<%=subject%>">My Files</a>
+        <a class="nav-link" href="/files/<%=subject%>/<%=req.params.year%>">My Files</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/<%=subject%>/CO">Course Outcomes</a>
+        <a class="nav-link" href="/dashboard/<%=subject%>/<%=req.params.year%>/CO">Course Outcomes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/upload/<%=subject%>/toolUpload">Upload ToolData</a>
+        <a class="nav-link" href="/upload/<%=subject%>/<%=req.params.year%>/toolUpload">Upload ToolData</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/attain/<%=subject%>/2018/cos">Attainments</a>
+        <a class="nav-link" href="/attain/<%=subject%>/<%=req.params.year%>/cos">Attainments</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/graph/<%=subject%>">Attainment Graph</a>
+        <a class="nav-link" href="/dashboard/graph/<%=subject%>/<%=req.params.year%>">Attainment Graph</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/<%=subject%>/coReport">CO report</a>
+        <a class="nav-link" href="/dashboard/<%=subject%>/<%=req.params.year%>/coReport">CO report</a>
       </li>
     </ul>
   </nav>

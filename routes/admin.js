@@ -27,6 +27,10 @@ router
   .route('/addsubject')
   .get((req,res)=>res.render('addSubject.ejs',{req:req}))
   .post((Subject.addSubject))
-
-  
+  //==========================================
+  //list of subjects present in database for admin
+  //==========================================
+router
+    .route('/subjects')
+    .get((Subject.getAll))
 module.exports=router;

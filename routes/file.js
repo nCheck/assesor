@@ -12,15 +12,7 @@ var fileCtrl = require('../controllers/file.ctrlr');
 router
   .route('/:subject')   //File HomePage
     .get(fileCtrl.loadPage)
-
-
-
-
-
-
-
-
-
+    .post(fileCtrl.uploadFile);
 
 
 
