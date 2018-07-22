@@ -3,7 +3,35 @@
 <% include ./partials/header %>
 
   <body>
-<div style="width:100%;border:1px solid black">
+  	<div class="row">
+ 	<div class="col-sm-6">
+ 	<h3>Add New Course Outcome : </h3>
+ 	<span>
+ 	<form action ='co' method="POST">
+ 			<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="CO Name"><br>
+			<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="number" placeholder="Course No."><br>
+			<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="blooms" placeholder="Blooms Level"><br>
+			<button class="btn btn-outline-success btn-lg btn-block">Submit</button>
+	</form>
+	</span>
+	</div>
+	<div>
+		<h3>My Course Outcomes : </h3>
+		<hr>
+		<table border="0" cellspacing="40" cellpadding="20">
+			<% for( var a in data ){%>
+			<tr>
+				<td><%=data[a].number %></td>
+				<td><%=data[a].name %></td>
+				<td><%=data[a].blooms %></td>
+				<td><a class="btn btn-outline-primary" href=<%= "co/" + data[a]._id + "/tool" %>>Add Tool</a></td>
+			</tr>
+			<% }%>
+		</table>
+	</div>
+	</div>
+
+<!-- <div style="width:100%;border:1px solid black">
   <h4> Your COs </h4>
 </div>
 <br>
@@ -16,15 +44,15 @@
 <% }%>
 <hr>
 <br>
-		<form action ='co' method="POST">
+		<form action ='co'  method="POST">
 			<input type="text" name="name" placeholder="CO Name">
 			<input type="text" name="number" placeholder="Course no">
 			<input type="text" name="blooms" placeholder="blooms level">
 			<button>Submit</button>
 		</form>
 
-
-    <% include ./partials/footer %>
+-->
+    <% include ./partials/footer %> 
   </body>
 
 </html>
