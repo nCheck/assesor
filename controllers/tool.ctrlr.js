@@ -3,14 +3,7 @@ var Tool = mongoose.model('Tool');
 var ToolData = mongoose.model('ToolData');
 var CO = mongoose.model('CO');
 
-// module.exports.getAll = function (req , res) {
-// 	console.log('Sending Tool Data');
-// 	CO.findById(req.params.coID).populate('tools').lean().exec ( (err , doc)=>{
-// 		res.render('toolsAdd', {subject : req.params.subject
-// 			, coID : req.params.coID , tools : doc.tools , req : req });
-// 	})
 
-// };
 var allTools = [];
 module.exports.getData = function (req, res) {
 	var toolA = [];
@@ -51,19 +44,7 @@ module.exports.getData = function (req, res) {
 	});
 }
 
-// //removes a single tool
-// module.exports.removeOne = (req , res)=>{
-// 	res.send("reached the destroy route!");
-// }
 
-// ================send toolsname ================
-//shouldnt this be found first by subject then all tools selected by that id
-// module.exports.sendTool = (req , res)=>{
-// 	Tool.find({}, (err,doc)=>{
-// 		res.render('toolAdd', {subject : req.params.subject
-// 			, coID : req.params.coID , tools : doc , toolData : {} , req : req});
-// 	});
-// }
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
@@ -130,7 +111,14 @@ module.exports.addOne = function (req , res) {
 
 //*****************To remove a tool*********************
 module.exports.removeOne = function (req, res) {
-	Tool.deleteOne({_id:req.params.toolID});
-		backURL=req.header('Referer');
-		res.redirect(backURL)
+	ToolData.deleteOne({_id:req.params.toolID} , (err)=>{
+		if(err){
+			res.send(err)
+		}
+		else{
+			backURL=req.header('Referer');
+			res.redirect(backURL)
+		}
+	});
+
 }

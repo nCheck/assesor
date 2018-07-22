@@ -76,7 +76,7 @@ router
 //==========================================
 router
   .route('/:subject/:year/co/:coID/tool/:toolID/delete')
-    .get(toolCtrl.removeOne);
+    .post(toolCtrl.removeOne);
 
 
 router
