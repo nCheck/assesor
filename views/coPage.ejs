@@ -6,6 +6,7 @@
   	<div class="row">
  	<div class="col-sm-6">
  	<h3>Add New Course Outcome : </h3>
+ 	<hr>
  	<span>
  	<form action ='co' method="POST">
  			<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="CO Name"><br>
@@ -15,10 +16,15 @@
 	</form>
 	</span>
 	</div>
-	<div>
+	<div class="col-sm-6">
 		<h3>My Course Outcomes : </h3>
 		<hr>
 		<table border="0" cellspacing="40" cellpadding="20">
+			<tr>
+				<td><b>Number</b></td>
+				<td><b>Name</b></td>
+				<td><b>Blooms Level</b></td>
+			</tr>
 			<% for( var a in data ){%>
 			<tr>
 				<td><%=data[a].number %></td>
