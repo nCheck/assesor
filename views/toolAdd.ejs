@@ -39,7 +39,8 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					
+					<% tools.forEach(function(tool){ %>
+					<% if(tool){ %>
 			        <table class="table">
 			        	<tbody>
 			        		<tr>
@@ -123,7 +124,8 @@
 				            </tr>
 				        </tbody>
 					</table>
-			
+				<% } %>
+				<% }) %>
 				</div>
 
 			</div>
