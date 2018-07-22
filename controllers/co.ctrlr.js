@@ -94,25 +94,21 @@ module.exports.addOne = (req, res)=> {
 };
 
 
-
-
-
-module.exports.removeOne = (req, res)=> {
-	SubjectData.update(
-		{year : req.body.year},
-		{$pull : {co : CO.find( {name : req.body.name})
-		}},
-		function(err, doc) {
-			if(err){
-				console.log("Err in SubjectData.update of RemoveOne in co.ctrlr");
-			}
-			else{
-				console.log("updated--------------",doc);
-			}
+// removes co
+module.exports.removeOne = function (req, res) {
+	console.log("smthg");
+	CO.deleteOne({_id:req.params.coID} , (err)=>{
+		if(err){
+			res.send(err)
 		}
-	)
-}
+		else{
+			backURL=req.header('Referer');
+			res.redirect(backURL)
+		}
+	});
 
+
+}
 
 
 

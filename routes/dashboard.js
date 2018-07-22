@@ -55,6 +55,13 @@ router
       .post(coCtrl.addOne)
 
 
+//=====================================================
+//Removes CO
+//=====================================================
+router
+  .route('/:subject/:year/CO/:coID/delete')
+    .post(toolCtrl.removeOne);
+
 //===========================================================
 //Gives user to input tool data information(target marks etc)
 //===========================================================
@@ -62,14 +69,6 @@ router
   .route('/:subject/:year/CO/:coID/tool')
   .get(toolCtrl.getData)
     .post(toolCtrl.addOne);
-
-//==========================================================
-//Removes tool
-// //==========================================================
-// router
-//   .route('/:subject/CO/:coID/tool/:toolID')
-//   .post(toolCtrl.removeOne);
-
 
 //==========================================
 //Removes tools
