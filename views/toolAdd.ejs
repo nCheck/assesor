@@ -6,16 +6,23 @@
 	<div class="row">
  	<div class="col-sm-6">
  	<span>
- 	<h3>        My Tools</h3>
- 	<ul class="list-unstyled">
+ 	<h3>           My Tools : </h3>
+ 	<hr>
+ 	<table border="0" cellspacing="40" cellpadding="20">
 		<% for (t in thisToolNames ){ %>
-		<li class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button>
+		
+		<tr>
+		<td class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button>
+		</td>
+		<td>
 		<form action="tool/<%= tools[t]._id %>" method="POST">
-			<button class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+			<button class="btn btn-outline-danger btn-lg"><span class="glyphicon glyphicon-trash"></span>Delete</button>
 		</form>
-		<br></li>
+		</td>
+		</tr>
+
 	    <% } %>
-	</ul>
+	</table>
 	</span>
 	</div>
 
@@ -32,11 +39,14 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
+					<% tools.forEach(function(tool){ %>
+					<% if(tool){ %>
 			        <table class="table">
 			        	<tbody>
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
+
 				                <%= tools[t].weightage %>
 				              </td>
 
@@ -114,6 +124,8 @@
 				            </tr>
 				        </tbody>
 					</table>
+				<% } %>
+				<% }) %>
 				</div>
 
 			</div>
@@ -123,25 +135,27 @@
  	<div class="col-sm-6">
  		<form method="POST">
 				<span>
-				<select name="tool" id="dropdown">
+				<select name="tool" id="dropdown" class="custom-select">
 				<% for(t in allTools){ %>
 					<option value="<%= allTools[t]._id%>" > <%= allTools[t].name %> </option>
 				<%}%>
 				</select>
-				<br>
-				<input type="text" name="name" placeholder="Add New Tool Name"><br>
-				<input type="text" name="weightage" placeholder="Weightage"><br>
-				<input type="text" name="targetStudent" placeholder="Target students"><br>
-				<input type="text" name="totalMark" placeholder="Total Marks"><br>
-				<input type="text" name="totalStud" placeholder="Total students"><br>
-				<input type="text" name="high" placeholder="high"><br>
-				<input type="text" name="mid" placeholder="mid"><br>
-				<input type="text" name="low" placeholder="low"><br>
-				<select name="toolType">
+				<br><br>
+			
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Add New Tool Name"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="weightage" placeholder="Weightage"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetStudent" placeholder="Target students"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalMark" placeholder="Total Marks"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalStud" placeholder="Total students"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="high" placeholder="high"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="mid" placeholder="mid"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="low" placeholder="low"><br>
+				<select name="toolType" class="custom-select">
 				<option value="Direct" >Direct</option>
 				<option value="Indirect" >Indirect</option>
-				</select><br>
-				<button>Submit </button>
+				<br>
+				</select><br><br>
+				<button class="btn btn-outline-success btn-lg btn-block">Submit </button>
 			</span>
 		</form>
 	</div>

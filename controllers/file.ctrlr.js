@@ -10,6 +10,7 @@ app.use(parser.urlencoded({extended:true}));
 const fs=require('fs');
 
 module.exports.uploadFile = (req , res , next) =>{
+	console.log(req.params.subject + " sub " + req.params.year);
 	const storage = multer.diskStorage({
 	  destination: './uploads/DBMS/2018/time-table',
 	  fname: function(req, file, cb){
@@ -60,6 +61,6 @@ module.exports.loadPage = (req , res)=>{
     var filename = req.query.file;
     var file = true;
   }
-    res.render('file-index', {subject : req.params.subject , req : req , filename : filename , file : file });
+    res.render('file-index', {subject : req.params.subject, year : req.params.year , req : req , filename : filename , file : file });
 
 }
