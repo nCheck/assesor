@@ -9,12 +9,15 @@ var app    = express();
 app.use(parser.urlencoded({extended:true}));
 const fs=require('fs');
 
-module.exports.uploadFile = (req , res , next) =>{
-	console.log(req.params.subject + " sub " + req.params.year);
+module.exports.uploadFile = (req , res) =>{
+	console.log(req.params.subject + " sub " + req.params.year + req.query.file);
+	var subject = req.params.subject , year = req.params.year
+								, filename = (req.query.file).replace(/ /g,''),
+								destination = './uploads/'+subject+'/'+year+'/'+filename;
 	const storage = multer.diskStorage({
-	  destination: './uploads/DBMS/2018/time-table',
-	  fname: function(req, file, cb){
-	    cb(null,"temp"  + path.extname(file.originalname));
+	  destination: destination,
+	  filename: function(req, file, cb){
+	    cb(null,filename  + path.extname(file.originalname));
 	  }
 
 	});
@@ -34,19 +37,12 @@ module.exports.uploadFile = (req , res , next) =>{
 			});
 			} else {
 				console.log("shitted");
-				// next();
-					res.send('done');
-        // res.render('file-index',{
-				//	   msg:'File uploaded',
-				 //
-          //  file:`uploads/DBMS/2018/temp.jpg`
-					//	 file: `DBMS/2018/${req.file.fname}`
-		//	filename:req.query.file,
-        //  file:'uploads/DBMS/2018/${req.query.file}'mp
+        res.render('file-index',{
+					   msg:'File uploaded',
+						 subject : req.params.subject, year : req.params.year , req : req , filename : filename , isfile : true ,
+						 file : destination
 
-
-        	//res.send('done');
-      //  });
+       });
 
 			}
 		}
@@ -59,8 +55,8 @@ module.exports.uploadFile = (req , res , next) =>{
 module.exports.loadPage = (req , res)=>{
   if(req.query.file){
     var filename = req.query.file;
-    var file = true;
+    var isfile = true;
   }
-    res.render('file-index', {subject : req.params.subject, year : req.params.year , req : req , filename : filename , file : file });
+    res.render('file-index', {subject : req.params.subject, year : req.params.year , req : req , filename : filename , isfile : isfile });
 
 }

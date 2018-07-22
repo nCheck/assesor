@@ -24,6 +24,7 @@ var Tool =mongoose.model('Tool')
 var Subject = mongoose.model('Subject');
 app.set('view engine', 'ejs');
 app.use("/public" , express.static(dir + '/public'));
+app.use("/uploads" , express.static(dir + '/uploads'));
 app.use(parser.urlencoded({extended:true}));
 app.use(parser.json());
 
