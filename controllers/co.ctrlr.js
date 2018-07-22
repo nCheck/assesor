@@ -13,7 +13,7 @@ module.exports.getDataDoc = function (req , res) {
 			console.log("not found " + err);
 		}
 		else {
-			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] });
+			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] , req : req });
 		}
 	})
 
@@ -30,7 +30,7 @@ module.exports.getData = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
-			res.render('coPage' , {data : doc.co});
+			res.render('coPage' , {data : doc.co  , req : req});
 		}
 	})
 

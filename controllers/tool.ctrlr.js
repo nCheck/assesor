@@ -39,7 +39,7 @@ module.exports.getData = function (req, res) {
 			// console.log("CO Tools ",co.tools);
 			// console.log("allTools looks like this once more, ",allTools);
 			console.log("this is type "+typeof(toolA));
-			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools });
+			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools , req : req });
 		}
 	});
 }

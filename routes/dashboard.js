@@ -12,7 +12,7 @@ var Subject = require('../controllers/subject.ctrl');
 // ============================
 
 router
-  .route('/graph/:subject')
+  .route('/graph/:subject/:year')
     .get(coCtrl.getCOGraph);
 
 
