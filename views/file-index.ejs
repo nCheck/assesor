@@ -6,46 +6,48 @@
     <!-- Side navigation -->
     <% include ./partials/files-side-nav %>
 
-    <!-- Page content -->
-    <div class="main">
-      <p>
-        This files page of <%= subject %>
-      </p>
+      <!-- Page content -->
+      <div class="main">
+        <p>
+          This files page of
+          <%= subject %>
+        </p>
 
-      <% if (file) { %>
-        File View <br>
-        <%= filename %>
-      <% } %>
-      <%= typeof msg!='undefined'? msg:''%>
-       <form method="post" enctype="multipart/form-data" action="/files/<%= subject %>?file=<%= filename %>">
-           <input type="file" name="filename1">
-           <input type="submit" name="upload" value="submit">
-            <button type="submit" class="btn">Submit</button>
-         </form>
-        
-    <br>
-    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
-  </div>
+        <% if (file) { %>
+          File View <br>
+          <%= filename %>
 
+            <%= typeof msg!='undefined'? msg:''%>
+              <form method="post" enctype="multipart/form-data">
+                <input type="file" name="filename1">
+                <input type="submit" name="upload" value="submit">
+                <button type="submit" class="btn">Submit</button>
+              </form>
 
-      <% if (!file) { %>
+              <br>
+              <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
 
-        Upload and Download Files
+              <% } %>
 
-      <% } %>
+                <% if (!file) { %>
 
+                  Upload and Download Files
 
+                  <% } %>
 
-
-    </div>
+      </div>
 
 
 
+      </div>
 
 
 
 
-    <% include ./partials/footer %>
+
+
+
+      <% include ./partials/footer %>
   </body>
 
 </html>
