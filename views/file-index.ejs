@@ -11,23 +11,23 @@
 
         <% if (isfile) { %>
 
-            <%= typeof msg!='undefined'? msg:''%>
-              <form method="post" enctype="multipart/form-data">
-                <input type="file" name="filename1">
-                <button type="submit" class="btn">Submit</button>
-              </form>
+          <%= typeof msg!='undefined'? msg:''%>
+            <form method="post" enctype="multipart/form-data">
+              <input type="file" name="filename1">
+              <button type="submit" class="btn">Submit</button>
+            </form>
 
-              <br>
-              <img src="/uploads/<%=subject%>/<%=year%>/<%=filename%>/<%=filename%>.png" alt="No File" class="responsive-img">
+            <br>
+            <img src="/uploads/<%=subject%>/<%=year%>/<%=filename%>/<%=filename%>.png" alt="No File" class="responsive-img">
 
 
-              <% } %>
+            <% } %>
 
-                <% if (!isfile) { %>
+              <% if (!isfile) { %>
 
-                  Upload and Download Files
+                Upload and Download Files
 
-                  <% } %>
+                <% } %>
 
       </div>
 
