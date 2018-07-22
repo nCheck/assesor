@@ -51,10 +51,10 @@ module.exports.getData = function (req, res) {
 	});
 }
 
-//removes a single tool
-module.exports.removeOne = (req , res)=>{
-	res.send("reached the destroy route!");
-}
+// //removes a single tool
+// module.exports.removeOne = (req , res)=>{
+// 	res.send("reached the destroy route!");
+// }
 
 // ================send toolsname ================
 //shouldnt this be found first by subject then all tools selected by that id
@@ -131,10 +131,6 @@ module.exports.addOne = function (req , res) {
 //*****************To remove a tool*********************
 module.exports.removeOne = function (req, res) {
 	Tool.deleteOne({_id:req.params.toolID});
-	CO.findById(req.params.coID,(err , doc)=>{
-		doc.tools.splice( doc.tools.indexOf(req.params.toolID), 1 );
-		doc.save();
-	})
 		backURL=req.header('Referer');
 		res.redirect(backURL)
 }
