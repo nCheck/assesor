@@ -6,7 +6,13 @@
 
 <h3> My dashboard is Lit</h3>
 <h5> <%= "Subject is " + subject+" and year is  "+ year%> </h5>
-
+<h6>Want to Change Year??</h6>
+<select name="year" id="newYear">
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+</select>
+<button class="btn change-btn"> Change </button>
 <br>
 <br>
 <br>
@@ -16,5 +22,12 @@
 
     <% include ./partials/footer %>
   </body>
+
+  <script>
+    $('.change-btn').click(function(){
+      var year = $("#newYear option:selected ").val();
+      window.location.href = "/dashboard/<%=subject%>/"+year;
+    })
+  </script>
 
 </html>
