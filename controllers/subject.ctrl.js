@@ -67,7 +67,7 @@ console.log("Admin access of subject  ");
 		console.log("Cannot find it "+err);
 		else{
 			console.log(docc);
-SubjectData.findOne({name:req.params.subject,year:req.query.year},(err,subData)=>{
+SubjectData.findOne({name:req.params.subject,year:req.params.year},(err,subData)=>{
 
 	if(err){
 		console.log("here i am as an errror in subject data creation while assigning "+err);
@@ -79,6 +79,9 @@ SubjectData.findOne({name:req.params.subject,year:req.query.year},(err,subData)=
 				docc.subjectData.push(sub._id);
 				docc.save();
 			})
+	}
+	else if(subData!=null) {
+		console.log("Data of this year has been created");
 	}
 	res.render('dashboard', {subject : req.params.subject,year:req.params.year , req : req });
 
