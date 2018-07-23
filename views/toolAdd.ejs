@@ -17,7 +17,7 @@
 				<br><br>
 			
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Add New Tool Name"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="weightage" placeholder="Weightage"><br>
+				<input type="text" class="form-control" id="inputWeight" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="weightage" placeholder="Weightage"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetStudent" placeholder="Target students"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalMark" placeholder="Total Marks"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalStud" placeholder="Total students"><br>
@@ -29,7 +29,7 @@
 				<option value="Indirect" >Indirect</option>
 				<br>
 				</select><br><br>
-				<button class="btn btn-outline-success btn-lg btn-block">Submit </button>
+				<button id="formSubmit" class="btn btn-outline-success btn-lg btn-block">Submit </button>
 			</span>
 		</form>
 	</div>
@@ -42,7 +42,7 @@
 		<% for (t in thisToolNames ){ %>
 		
 		<tr>
-		<td class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#myMod"> <%= thisToolNames[t] %> </button>
+		<td class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block"> <%= thisToolNames[t] %> </button>
 		</td>
 		<td>
 		<form action="tool/<%= tools[t]._id %>/delete" method="POST">
@@ -53,6 +53,7 @@
 
 	    <% } %>
 	</table>
+	<h5> <span data-toggle="modal" class="btn btn-block" data-target="#myMod">View Detailed Info</span> </h5>
 	</span>
 	
 
@@ -70,13 +71,19 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<% for(tool in tools) { %>
-					<% if(tool == 0){ %>
 			        <table class="table">
-			        	<tbody>
+								<tbody>
+
+								<tr>
+								<td>Name : </td>
+								<td id="weightage">
+									<td><%= thisToolNames[tool] %></td>
+								</td>
+							</tr>							
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
-				              	<td><%= tools[t].weightage %></td>
+				              	<td class="weight" id="<%= tools[tool].weightage %>"><%= tools[tool].weightage %></td>
 				              </td>
 
 				            </tr>
@@ -85,14 +92,14 @@
 				              <td id="targetStudent">
 				              </td>
 				              <td>
-				              	<%= tools[t].targetStudent %>
+				              	<%= tools[tool].targetStudent %>
 				                <!--  -->
 				              </td>
 				              <tr>
 								<td>Total marks : </td>
 				                <td id="totalMark"> </td>
 				                <td>
-				                	<%= tools[t].totalMark %>
+				                	<%= tools[tool].totalMark %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -100,7 +107,7 @@
 								<td>Total No. Of Students : </td>
 				                <td id="totalStud"> </td>
 				                <td>
-				                	<%= tools[t].totalStud %>
+				                	<%= tools[tool].totalStud %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -108,7 +115,7 @@
 								<td>No. Of Students Achieved Target : </td>
 				                <td id="studentsAchieved"> </td>
 				                <td>
-				                	<%= tools[t].studentsAchieved %>
+				                	<%= tools[tool].studentsAchieved %>
 				                  <!--  -->
 				                </td>
 				              </tr>
@@ -117,7 +124,7 @@
 				                <td id="toolType"> </td>
 				                <td>
 				                  <!--  -->
-				                  <%= tools[t].toolType %>
+				                  <%= tools[tool].toolType %>
 				                </td>
 				              </tr>
 				              <tr>
@@ -125,7 +132,7 @@
 				                <td id="high"> </td>
 				                <td>
 				                  <!--  -->
-				                  <%= tools[t].high %>
+				                  <%= tools[tool].high %>
 				                </td>
 				              </tr>
 				              <tr>
@@ -133,27 +140,27 @@
 				                <td id="mid"> </td>
 				                <td>
 				                  <!--  -->
-				                  <%= tools[t].mid %>
+				                  <%= tools[tool].mid %>
 				                </td>
 				              </tr>
 				              <tr>
 								<td>Low : </td>
 				                <td id="low"> </td>
 				                <td>
-				                	<%= tools[t].low %>
+				                	<%= tools[tool].low %>
 				                  <!--  -->
 				                </td>
 				              </tr>
 				              <tr>
 								<td>Point : </td>
 				                <td id="point">
-				                <%= tools[t].point %>
+				                <%= tools[tool].point %>
 				                  <!--  -->
 				                </td>
-				            </tr>
+										</tr>
+									<hr>
 				        </tbody>
 					</table>
-				<% } %>
 				<% } %>
 				</div>
 
@@ -164,6 +171,28 @@
  			</div>
 
 
+
+
+			 <script>
+				 var totW = 0;
+				 $('.weight').each(function(item){
+					 totW+= parseFloat($(this).attr('id')); 
+				 });
+
+				 $('#inputWeight').keyup(function(){
+					 if( $(this).val() > (1-totW) ){
+						 console.log("dis")
+						 $('#formSubmit').prop('disabled', 'true');
+					 }
+					 else{
+						console.log("abl")
+						$('#formSubmit').removeAttr('disabled');
+					 }
+				 })
+
+				 
+
+			 </script>
 
 
 			<% include ./partials/footer %>
