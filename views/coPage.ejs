@@ -32,8 +32,8 @@
 				<td><%=data[a].blooms %></td>
 				<td><a class="btn btn-outline-primary" href=<%= "co/" + data[a]._id + "/tool" %>>Add Tool</a></td>
 				<td>
-					<form action=<%= "CO/" + data[a]._id + "/delete" %> method="POST">
-					<button class="btn btn-outline-danger">Delete</button>
+					<form action="<%= "co/" + data[a]._id + "/delete" %>" method="POST">
+					<button type="submit" class="btn btn-outline-danger">Delete</button>
 					</form>
 				</td>
 			</tr>

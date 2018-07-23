@@ -60,7 +60,7 @@ router
 //=====================================================
 router
   .route('/:subject/:year/CO/:coID/delete')
-    .post(toolCtrl.removeOne);
+    .post(coCtrl.removeOneCO);
 
 //===========================================================
 //Gives user to input tool data information(target marks etc)
