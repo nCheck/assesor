@@ -70,14 +70,13 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<% for(tool in tools) { %>
-					<% if(tools[0]){ %>
+					<% if(tool == 0){ %>
 			        <table class="table">
 			        	<tbody>
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
-
-				                <%= tools[t].weightage %>
+				              	<td><%= tools[t].weightage %></td>
 				              </td>
 
 				            </tr>

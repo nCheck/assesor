@@ -96,7 +96,7 @@ module.exports.addOne = (req, res)=> {
 
 // removes co
 module.exports.removeOneCO = function (req, res) {
-	console.log("Deleting CO" + _req.params.coID);
+	console.log("Deleting CO" + req.params.coID);
 	CO.deleteOne({_id:req.params.coID} , (err)=>{
 		if(err){
 			res.send(err)
