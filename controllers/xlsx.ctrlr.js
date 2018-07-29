@@ -26,14 +26,14 @@ CO.findById(co_id).populate('tools').exec(function(err,co){
 ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
 
 
-  var high,mid,low,student = 0 , aboveAvg = 0 , totalMarks = 0,c_high=0,c_mid=0,c_low=0;
+  var high,mid,low,student = 0 , aboveAvg = 0 , totalMarks = 0,targetMark,c_count=0;
   high=tool.high;
   mid=tool.mid;
   low=tool.low;
-  targetStudent=tool.targetStudent;
-  totalStud=tool.totalStud;
-  console.log("All information of the tool "+tool);
 
+	targetMark=tool.targetMark/100*tool.totalMark;
+  console.log("All information of the tool "+tool);
+console.log("Target marks not in percentage  "+targetMark);
 //    console.log("req.body her is header name to search "+req.body.header[0]);
   //console.log("her is header name to search "+header[0]);
   const workbook = XLSX.readFile('./uploads/temp.xlsx');
@@ -76,40 +76,30 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
       }
       else{
 
-        if(parseFloat(Cell.w)>=high)
-          c_high++;
-          else if(parseFloat(Cell.w)>=mid)
-          c_mid++;
-          else if(parseFloat(Cell.w)>=low)
-          c_low++;
-        totalMarks = totalMarks+ parseFloat(Cell.w);
-        // if(parseFloat(Cell.w) > 15){  //   aboveAvg++;
-        }
+        if(parseFloat(Cell.w)>=targetMark)
+          c_count++;
         student++;
       }
+		}
+			tool.totalStud=student;
+			tool.studentsAchieved=c_count;
       console.log("total students "+student);
-      var percentH=c_high/totalStud*100,
-          percentM=(c_mid+c_high)/totalStud*100,
-          percentL=(c_mid+c_high+c_low)/totalStud*100;
-          console.log("percnetage "+percentH+" "+percentM+" "+percentL)
-      if(percentH>=targetStudent)
+      var percentH=c_count/student*100;
+          console.log("percentage OF STUDENT ACHIEVING TARGET : "+percentH);
+			if(percentH>=high)
         {
 					tool.point=3;
-					tool.studentsAchieved=c_high;
 				}
-      else if(percentM>=targetStudent)
+      else if(percentH>=mid)
       {
 				tool.point=2;
-				tool.studentsAchieved=c_mid+c_high;
 			}
-      else if(percentL>=targetStudent)
+      else if(percentH>=low)
       {
 				tool.point=1;
-				tool.studentsAchieved=c_mid+c_high+c_low;
 			}
       else {
         tool.point=0;
-				tool.studentsAchieved=student-(c_mid+c_high+c_low);
       }
 			tool.save();
       console.log("Point inserted is "+tool.point)
@@ -117,7 +107,7 @@ ToolData.findOne( { _id :{$in : ids} , tool : toolID } ,function(err,tool){
 
 			res.send({tool:tool,co:co});
 
-  })
+})
 })
 
 }

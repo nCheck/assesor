@@ -15,12 +15,12 @@
 				<%}%>
 				</select>
 				<br><br>
-			
+
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Add New Tool Name"><br>
 				<input type="text" class="form-control" id="inputWeight" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="weightage" placeholder="Weightage"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetStudent" placeholder="Target students"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalMark" placeholder="Total Marks"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalStud" placeholder="Total students"><br>
+				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetMark" placeholder="Target Marks"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="high" placeholder="high"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="mid" placeholder="mid"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="low" placeholder="low"><br>
@@ -40,7 +40,7 @@
  	<hr>
  	<table border="0" cellspacing="40" cellpadding="20">
 		<% for (t in thisToolNames ){ %>
-		
+
 		<tr>
 		<td class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block"> <%= thisToolNames[t] %> </button>
 		</td>
@@ -55,7 +55,7 @@
 	</table>
 	<h5> <span data-toggle="modal" class="btn btn-block" data-target="#myMod">View Detailed Info</span> </h5>
 	</span>
-	
+
 
 	<!-- The Modal -->
 	<div class="modal fade" id="myMod">
@@ -79,7 +79,7 @@
 								<td id="weightage">
 									<td><%= thisToolNames[tool] %></td>
 								</td>
-							</tr>							
+							</tr>
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
@@ -176,7 +176,7 @@
 			 <script>
 				 var totW = 0;
 				 $('.weight').each(function(item){
-					 totW+= parseFloat($(this).attr('id')); 
+					 totW+= parseFloat($(this).attr('id'));
 				 });
 
 				 $('#inputWeight').keyup(function(){
@@ -190,7 +190,7 @@
 					 }
 				 })
 
-				 
+
 
 			 </script>
 
