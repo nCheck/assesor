@@ -30,7 +30,7 @@
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="high" placeholder="high"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="mid" placeholder="mid"><br>
 				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="low" placeholder="low"><br>
-				<select name="toolType" class="custom-select">
+				<select id="tool-dropdown" name="toolType" class="to-dropdown custom-select">
 				<option value="Direct" >Direct</option>
 				<option value="Indirect" >Indirect</option>
 				<br>
@@ -89,7 +89,7 @@
 			        		<tr>
 				              <td>Weightage : </td>
 				              <td id="weightage">
-				              	<td class="weight" id="<%= tools[tool].weightage %>"><%= tools[tool].weightage %></td>
+				              	<td class="weight" data-type="<%= tools[tool].toolType %>" id="<%= tools[tool].weightage %>"><%= tools[tool].weightage %></td>
 				              </td>
 
 				            </tr>
@@ -180,19 +180,51 @@
 
 
 			 <script>
-				 var totW = 0;
+				 var totDW = 0 , totIDW = 0;
 				 $('.weight').each(function(item){
-					 totW+= parseFloat($(this).attr('id'));
-				 });
-
-				 $('#inputWeight').keyup(function(){
-					 if( Number($(this).val()) + Number(totW) > 1 ){
-						 $('#formSubmit').prop('disabled', 'true');
+					 if($(this).attr('data-type') == "Direct"){
+						totDW+= parseFloat($(this).attr('id'));
 					 }
 					 else{
-						$('#formSubmit').removeAttr('disabled');
+						totIDW+= parseFloat($(this).attr('id'));
 					 }
-				 })
+				 });
+
+				 weightChecker = function (){
+					console.log(" weichkr called")
+					 var inp = parseFloat(Number($('#inputWeight').val()).toPrecision(2))
+					 totDW = parseFloat(totDW.toPrecision(2))
+					 var toolT = $("#tool-dropdown option:selected ").val();
+					 console.log(toolT , " ", inp , " " , totDW , " " , totIDW)
+					 if (toolT == "Direct" && inp + totDW > 1){
+						 return true;
+					 }
+					 else if( toolT == "Indirect" && inp + totIDW > 1 ){
+						 return true;
+					 }
+					 else{
+						return false;
+					 }
+				 }
+
+				 $('#inputWeight').keyup(function(){
+					if( weightChecker() ){
+						$('#formSubmit').prop('disabled', 'true');
+					}
+					else{
+						$('#formSubmit').removeAttr('disabled');
+					}
+					}
+				 );
+				 $('.to-dropdown').click(function(){
+					if( weightChecker() ){
+						$('#formSubmit').prop('disabled', 'true');
+					}
+					else{
+						$('#formSubmit').removeAttr('disabled');
+					}
+					}
+				 );
 
 
 
