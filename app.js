@@ -91,5 +91,5 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 app.listen(port , function () {
-	console.log('Site is active on' + port);
+	console.log('Site is active on localhost:' + port+'/');
 });

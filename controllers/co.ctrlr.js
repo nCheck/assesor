@@ -30,7 +30,9 @@ module.exports.getData = function (req , res , next) {
 			console.log("not found " + err);
 		}
 		else {
-			res.render('coPage' , {data : doc.co  , req : req});
+			res.render('coPage' , {data : doc.co  , req : req ,
+				 subject : req.params.subject , year : req.params.year
+				});
 		}
 	})
 
@@ -45,7 +47,7 @@ module.exports.getData = function (req , res , next) {
 
 module.exports.getCO = (req , res)=>{
 	var dc = []
-	SubjectData.findOne({name:req.params.subject , year : 2018}).populate({
+	SubjectData.findOne({name:req.params.subject , year : req.params.year}).populate({
 		path : 'co' , populate : {
 			path : 'tools',
 			model : 'ToolData'
