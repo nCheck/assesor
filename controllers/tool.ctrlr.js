@@ -39,7 +39,10 @@ module.exports.getData = function (req, res) {
 			// console.log("CO Tools ",co.tools);
 			// console.log("allTools looks like this once more, ",allTools);
 			console.log("this is type "+typeof(toolA));
-			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools , allTools : allTools , req : req });
+			res.render("toolAdd",{thisToolNames : toolA , tools : co.tools
+				 , allTools : allTools , req : req ,
+				subject : req.params.subject , year : req.params.year
+			});
 		}
 	});
 }
@@ -48,7 +51,7 @@ module.exports.getData = function (req, res) {
 
 module.exports.getToolDoc = (req , res)=>{
 	Tool.find({}, (err,doc)=>{
-		res.render('toolUpload', {subject : req.params.subject
+		res.render('toolUpload', {subject : req.params.subject , year : req.params.year
 			, coID : req.params.coID , tools : doc  , req : req});
 	});
 }

@@ -53,19 +53,24 @@ module.exports.getCO = (req , res)=>{
 			model : 'ToolData'
 		}
 	}).exec((err , doc)=>{
-
-		doc.co.forEach(function (c) {
-			c.tools.forEach(function (t) {
-				if(t.tool == req.params.toolID){
-					dc.push(c);
-
-					console.log("pushed " + dc);
-					return ;
-				}
+		console.log(doc)
+		if(err || doc == null){
+			res.send(err || doc)
+		}
+		else{
+			doc.co.forEach(function (c) {
+				c.tools.forEach(function (t) {
+					if(t.tool == req.params.toolID){
+						dc.push(c);
+	
+						console.log("pushed " + dc);
+						return ;
+					}
+				})
 			})
-		})
-		console.log("this is dc " + dc);
-		res.send(dc);
+			console.log("this is dc " + dc);
+			res.send(dc);
+		}
 	})
 }
 

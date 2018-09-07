@@ -10,7 +10,7 @@ var subjectCtrl = require('../controllers/subject.ctrl');
 //Displays tool and depending on which tool selected corresponding cos linked to it will be displayed
 //====================================================================================================
 router
-  .route('/:subject/co/:toolID')
+  .route('/:subject/:year/co/:toolID')
   .get(coCtrl.getCO)
   .post(coCtrl.getCO)
 

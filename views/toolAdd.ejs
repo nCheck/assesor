@@ -186,12 +186,10 @@
 				 });
 
 				 $('#inputWeight').keyup(function(){
-					 if( $(this).val() > (1-totW) ){
-						 console.log("dis")
+					 if( Number($(this).val()) + Number(totW) > 1 ){
 						 $('#formSubmit').prop('disabled', 'true');
 					 }
 					 else{
-						console.log("abl")
 						$('#formSubmit').removeAttr('disabled');
 					 }
 				 })

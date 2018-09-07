@@ -146,7 +146,7 @@
 						$('.to-dropdown').click(function() {
 							var toolID = $("#dropdown option:selected ").val();
 							console.log(toolID);
-							$.get('/api/<%=subject%>/co/' + toolID, function(data, status) {
+							$.get('/api/<%=subject%>/<%=year%>/co/' + toolID, function(data, status) {
 								var tools = [];
 								data.forEach(function(cos) {
 									console.log(cos.name);
