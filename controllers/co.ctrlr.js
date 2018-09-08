@@ -201,7 +201,7 @@ module.exports.getCOGraph = function (req , res , next) {
 
 			var labels=doc.co.map(function(t){
 				ignoreUndefined: true
-					return String(t.name);
+					return "CO"+String(t.number);
 
 			})
 
