@@ -70,13 +70,16 @@ router
   .get(toolCtrl.getData)
     .post(toolCtrl.addOne);
 
+router
 //==========================================
 //Removes tools
 //==========================================
-router
   .route('/:subject/:year/co/:coID/tool/:toolID/delete')
     .post(toolCtrl.removeOne);
 
+//===============================================================
+//Displays final table of co and its tools split up for a subject
+//===============================================================
 
 router
   .route('/:subject/:year/coReport')

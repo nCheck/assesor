@@ -21,7 +21,7 @@ router
     .get(attainCtrl.getToolPage);
 
 router
-  .route('/:calC/:coID')
+  .route('/calC/:subject/:year/:coID')
   .get(attainCtrl.coattainment);
 
 

@@ -10,6 +10,7 @@ const  CO      = mongoose.model('CO');
 
 module.exports.xlsxCal = (req , res )=>{
 var header=req.body.header;
+console.log("Header name ot be searched "+header );
 console.log(req.body);
 var toolID=req.params.toolID , co_id = req.params.coID;
 console.log("Course id  "+co_id);
@@ -53,7 +54,8 @@ console.log("Target marks not in percentage  "+targetMark);
       else
       {
         if(!(Cell.t == 's' || Cell.t == 'str')) continue; //skip if cell is not text
-          if(Cell.v == header){
+		// 			console.log("cell name "+Cell.v);
+				  if(Cell.v == header){
             var rowTarget=rowNum+1;
             var colTarget=colNum;
             flag=1;
@@ -76,7 +78,7 @@ console.log("Target marks not in percentage  "+targetMark);
       }
       else{
 
-        if(parseFloat(Cell.w)>=targetMark)
+        if(4*(parseFloat(Cell.w))>=targetMark)
           c_count++;
         student++;
       }
