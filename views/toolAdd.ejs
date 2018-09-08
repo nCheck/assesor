@@ -49,12 +49,58 @@
 			<button class="btn btn-outline-danger btn-lg">Delete</button>
 		</form>
 		</td>
+		<td>
+			<span data-toggle="modal" class="btn btn-block" data-target="#myForm"><button type="submit"
+				data-toolIndex="<%=t%>"
+				class="tool-editor btn btn-outline-warning">Edit Tool</button></span>
+		</td>
 		</tr>
 
 	    <% } %>
 	</table>
 	<h5> <span data-toggle="modal" class="btn btn-block" data-target="#myMod">View Detailed Info</span> </h5>
 	</span>
+
+
+	<div class="modal fade" id="myForm">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header" align='center'>
+	          <h4 class="modal-title">     Edit Tool Outcome      </h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+	      <div class="modal-body">
+
+	            <form action="" class="edit-form" method="post">
+	                <div class="form-group" align='center'>
+
+	          			<input type="text" id="eweightage" name="weightage" placeholder="" value=""><br><br>
+	          			<input type="text" id="etargetStudent" name="targetStudent" placeholder="Course no" value=""><br><br>
+	          			<input type="text" id="etotalMark" name="totalMark" placeholder="blooms level" value=""><br><br>
+									<input type="text" id="etotalStud" name="totalStud" placeholder="Course no" value=""><br><br>
+									<input type="text" id="etargetMark" name="targetMark" placeholder="Course no" value=""><br><br>
+									<input type="text" id="estudentsAchieved" name="studentsAchieved" placeholder="Course no" value=""><br><br>
+									<input type="text" id="etoolType" name="toolType" placeholder="Course no" value=""><br><br>
+									<input type="text" id="ehigh" name="high" placeholder="Course no" value=""><br><br>
+									<input type="text" id="emid" name="mid" placeholder="Course no" value=""><br><br>
+									<input type="text" id="elow" name="low" placeholder="Course no" value=""><br><br>
+
+	          			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+	              </div>
+	            </form>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+
+
+
+
 
 
 	<!-- The Modal -->
