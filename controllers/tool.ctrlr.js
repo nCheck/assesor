@@ -162,3 +162,18 @@ module.exports.getAllTools=function(req,res){
 
 	});
 }
+
+//Edits a tool
+module.exports.editOneTool = function (req, res) {
+	var subject = req.params.subject , year = req.params.year , coID = req.params.coID;
+	console.log(req.params.toolID)
+	console.log(req.body.tool)
+	ToolData.findByIdAndUpdate(req.params.toolID, req.body.tool , function(err,updatedTool){
+				if(err){
+					console.log(err, ' in editOneTool')
+				}else{
+					console.log(updatedTool,' in here');
+					res.redirect('/dashboard/'+subject+'/'+year+'/CO/'+coID+'/tool')
+				}
+	})
+}
