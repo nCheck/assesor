@@ -58,10 +58,20 @@ module.exports.getToolDoc = (req , res)=>{
 
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
-
-	if(req.body.name != ''){
+	var toolName=req.body.name;
+	var f=0;
+	var tool_id=0;
+	Tool.findOne({ name: toolName}, function (err, doc){
+if(err){
+f=1;
+}
+else{
+	tool_id=doc._id;
+}
+	})
+if(f==1){
 		Tool.create({
-			name : req.body.name
+			name : req.body.name	
 		}, (err, tool)=>{
 				ToolData.create({
 				tool : tool,
@@ -86,9 +96,10 @@ module.exports.addOne = function (req , res) {
 			});
 		})
 	}
+	
 	else{
 		ToolData.create({
-		tool : req.body.tool,
+		tool : tool_id,
 		weightage : req.body.weightage,
 		targetStudent : req.body.targetStudent,
 		totalMark : req.body.totalMark,
@@ -110,8 +121,8 @@ module.exports.addOne = function (req , res) {
 	});
 
 	}
-
-}
+	
+}//end of tool.findone
 
 //*****************To remove a tool*********************
 module.exports.removeOne = function (req, res) {
