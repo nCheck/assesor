@@ -62,17 +62,19 @@ module.exports.addOne = function (req , res) {
 	var f=0;
 	var tool_id=0;
 	Tool.findOne({ name: toolName}, function (err, doc){
-if(err){
+if(err || doc == null){
+	console.log(err || doc)
 f=1;
 }
 else{
 	tool_id=doc._id;
 }
-	})
-if(f==1){
+
+	if(f==1){
 		Tool.create({
 			name : req.body.name	
 		}, (err, tool)=>{
+			// console.log("toool creation " , tool)
 				ToolData.create({
 				tool : tool,
 				weightage : req.body.weightage,
@@ -85,6 +87,7 @@ if(f==1){
 				toolType:req.body.toolType
 
 				}, (err , doc)=>{
+					// console.log("tooolData creation " , doc)
 						var toolId = doc._id;
 						CO.findById(req.params.coID , (err,docc)=>{
 						docc.tools.push(toolId);
@@ -96,7 +99,7 @@ if(f==1){
 			});
 		})
 	}
-	
+
 	else{
 		ToolData.create({
 		tool : tool_id,
@@ -111,6 +114,7 @@ if(f==1){
 
 	}, (err , doc)=>{
 		var toolId = doc._id;
+		// console.log("tooldata creation " , doc , "tool id" , tool_id)
 		CO.findById(req.params.coID , (err,docc)=>{
 			docc.tools.push(toolId);
 			docc.save();
@@ -120,7 +124,10 @@ if(f==1){
 
 	});
 
-	}
+}
+
+	})
+
 	
 }//end of tool.findone
 
@@ -140,18 +147,18 @@ module.exports.removeOne = function (req, res) {
 }
 //Get all tools
 module.exports.getAllTools=function(req,res){
-	ToolData.find({},(err,tools)=>{
-var alltools=[];
-
+	var allTools=[];
+	Tool.find({} , (err , doc)=>{
 		if(err){
-	console.log('error in getting tools');
-}
-else{
-	tools.forEach(toolss){
-		alltools.push(toolss);
-	}
+			console.log(err);
+			res.send(err)
+		}
+		else{
+			doc.forEach((tool)=>{
+				allTools.push(tool.name);
+			})
+			res.send(allTools);
+		}
 
-}
-res.send(alltools);
-})
+	});
 }

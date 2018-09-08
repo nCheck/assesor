@@ -16,7 +16,6 @@
  	<form method="POST">
 				<span>
 				<br><br>
-				<span  class="center-content"> <h5> Or </h5> </span>
 				<input type="text" id="name-auto" class="form-control" name="name" placeholder="Tool Name"><br>
 				<input type="text" class="form-control" id="inputWeight" name="weightage" placeholder="Weightage"><br>
 				<input type="text" class="form-control" name="targetStudent" placeholder="Target students"><br>
@@ -175,8 +174,10 @@
 
 
 			 <script>
-			 	url = "/api/tools"
+			 	url = "/api/tools";
 			 	$.get(url , function(data , status){
+					 console.log(data , "hello data");
+
 					$( "#name-auto" ).autocomplete({
 						source: data
 					});
