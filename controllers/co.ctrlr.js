@@ -62,7 +62,7 @@ module.exports.getCO = (req , res)=>{
 				c.tools.forEach(function (t) {
 					if(t.tool == req.params.toolID){
 						dc.push(c);
-	
+
 						console.log("pushed " + dc);
 						return ;
 					}
@@ -117,8 +117,10 @@ module.exports.removeOneCO = function (req, res) {
 
 }
 
-
-
+//edits CO
+module.exports.editOneCO = function (req, res) {
+	console.log("Editing CO" + req.params.coID);
+}
 
 
 // ======== Sends all the tools of A co to api

@@ -36,6 +36,13 @@
 					<button type="submit" class="btn btn-outline-danger">Delete</button>
 					</form>
 				</td>
+        <td>
+          <span data-toggle="modal" class="btn btn-block" data-target="#myMod"><button type="submit"
+            data-coID="<%=data[a]._id%>"
+            data-cname="<%=data[a].name %>"
+            data-cnumber="<%=data[a].number %>" data-cblooms="<%=data[a].blooms %>"
+             id="co-editor" class="btn btn-outline-warning">Edit CO</button></span>
+        </td>
 			</tr>
 			<% }%>
 		</table>
@@ -63,7 +70,57 @@
 		</form>
 
 -->
-    <% include ./partials/footer %> 
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myMod">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" align='center'>
+          <h4 class="modal-title">     Edit Course Outcome      </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+            <form action="" class="edit-form" method="post">
+                <div class="form-group" align='center'>
+
+          			<input type="text" id="ename" name="name" placeholder="CO Name" value=""><br><br>
+          			<input type="text" id="enumber" name="number" placeholder="Course no" value=""><br><br>
+          			<input type="text" id="eblooms" name="blooms" placeholder="blooms level" value=""><br><br>
+          			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('#co-editor').click(function(){
+    var coId = $(this).attr('data-coID');
+    var cname = $(this).attr('data-cname');
+    var cnumber = $(this).attr('data-cnumber');
+    var cblooms = $(this).attr('data-cblooms');
+    console.log(coId , " " , cname , " im here " )
+    var url = "co/" + coId + "/edit"
+    $('.edit-form').attr('action' , url)
+    var nameF = $('.edit-form').children('div').children('#ename').attr('value' , cname);
+    var numberF = $('.edit-form').children('div').children('#enumber').attr('value' , cnumber);
+    var bloomsF = $('.edit-form').children('div').children('#eblooms').attr('value' , cblooms);
+    console.log(nameF , " " , numberF , " im here " )
+  })
+</script>
+
+</div>
+    <% include ./partials/footer %>
   </body>
 
 </html>

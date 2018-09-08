@@ -1,6 +1,7 @@
 var express               = require('express');
 var parser                = require('body-parser');
 var mongoose              = require('mongoose');
+var methodOverride				= require('method-override');
 const dir                 = __dirname;
 var port = process.env.PORT || 2535;
 require('./data/db.js');
@@ -27,6 +28,7 @@ app.use("/public" , express.static(dir + '/public'));
 app.use("/uploads" , express.static(dir + '/uploads'));
 app.use(parser.urlencoded({extended:true}));
 app.use(parser.json());
+app.use(methodOverride("_method"));
 
 // === Passport Setup ===
 

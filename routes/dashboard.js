@@ -54,13 +54,19 @@ router
     .get(coCtrl.getData)
       .post(coCtrl.addOne)
 
-
 //=====================================================
 //Removes CO
 //=====================================================
 router
   .route('/:subject/:year/CO/:coID/delete')
     .post(coCtrl.removeOneCO);
+
+//=====================================================
+//Edit CO
+//=====================================================
+router
+  .route('/:subject/:year/CO/:coID/edit')
+    .post(coCtrl.editOneCO);
 
 //===========================================================
 //Gives user to input tool data information(target marks etc)
