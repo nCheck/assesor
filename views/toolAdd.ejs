@@ -29,7 +29,7 @@
 				<option value="Indirect" >Indirect</option>
 				<br>
 				</select><br><br>
-				<button id="formSubmit" class="btn btn-outline-success btn-lg btn-block">Submit </button>
+				<button id="formSubmit" data-toggle="tooltip" title="Please Enter Valid Weightage" class="btn btn-outline-success btn-lg btn-block">Submit </button>
 			</span>
 		</form>
 	</div>
@@ -215,15 +215,19 @@
 				 $('#inputWeight').keyup(function(){
 					if( weightChecker() ){
 						$('#formSubmit').prop('disabled', 'true');
+						$('#formSubmit').tooltip('enable')
 					}
 					else{
 						$('#formSubmit').removeAttr('disabled');
+						$('#formSubmit').tooltip('disable')
 					}
 					}
 				 );
 				 $('.to-dropdown').click(function(){
 					if( weightChecker() ){
+						$('#formSubmit').tooltip('enable')
 						$('#formSubmit').prop('disabled', 'true');
+						$('#formSubmit').tooltip('disable')
 					}
 					else{
 						$('#formSubmit').removeAttr('disabled');
