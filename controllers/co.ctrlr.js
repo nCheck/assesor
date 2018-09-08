@@ -119,7 +119,17 @@ module.exports.removeOneCO = function (req, res) {
 
 //edits CO
 module.exports.editOneCO = function (req, res) {
-	console.log("Editing CO" + req.params.coID);
+	var subject = req.params.subject , year = req.params.year;
+	console.log(req.params.coID)
+	console.log(req.body.co)
+	CO.findByIdAndUpdate(req.params.coID, req.body.co , function(err,updatedCO){
+				if(err){
+					console.log(err, ' in editOneCO')
+				}else{
+					console.log(updatedCO);
+					res.redirect('/dashboard/'+subject+'/'+year+'/CO')
+				}
+	})
 }
 
 
