@@ -30,6 +30,7 @@
     "express-session": "^1.15.6",
     "file-system": "^2.2.2",
     "jquery": "^3.3.1",
+    "method-override": "^3.0.0",
     "mkdirp": "^0.5.1",
     "mongodb": "^3.0.10",
     "mongoose": "^5.1.6",
