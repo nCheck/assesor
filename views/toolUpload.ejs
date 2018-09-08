@@ -16,6 +16,7 @@
 
 		<form ref='uploadForm' id="upload-file"  action='/upload' method='post' encType="multipart/form-data">
 			<input type="file" id='selected-file' name="selected-file" />
+		
 		</form>
 
 
@@ -154,7 +155,7 @@
 										'<div>' +
 										'<form method="post" ' + 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + ' >' +
 											 cos.name +
-											'  ' + '<input type="text" name="header" placeholder="header"/>'+
+											'  ' + '	<input type="text" id="sheet_no" name="sheet_no" placeholder="Enter sheet number" /> '+'<input type="text" name="header" placeholder="header"/>'+
 											'<button class="done btn" >Done</button>' + '<br >'  + '</form>' + '</div>'
 									)
 								})
