@@ -145,7 +145,7 @@ module.exports.getTools = (req , res)=>{
 //Co report page
 module.exports.COreport = (req , res)=>{
 	var dc = []
-	SubjectData.findOne({name:req.params.subject , year : 2018}).populate({
+	SubjectData.findOne({name:req.params.subject , year : req.params.year}).populate({
 		path : 'co' , populate : {
 			path : 'tools',
 			model : 'ToolData',populate :{
@@ -172,7 +172,7 @@ console.log("These are the cos of subject "+sub.name+" :    "+sub.co);
 
 module.exports.getCOGraph = function (req , res , next) {
 
-	query = {name : req.params.subject , year : 2018};
+	query = {name : req.params.subject , year :req.params.year};
 	console.log('Sending Data');
 	var ret;
 	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
@@ -198,7 +198,7 @@ module.exports.getCOGraph = function (req , res , next) {
 			attain = attain.filter(function( element ) {
    					return element !== undefined;
 		});
-			res.render('graph' , {attain : attain, labels : labels , req : req , subject : req.params.subject});
+			res.render('graph' , {attain : attain, labels : labels , req : req,year:req.params.year , subject : req.params.subject});
 
 		}
 

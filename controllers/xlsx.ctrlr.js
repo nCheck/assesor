@@ -78,7 +78,7 @@ console.log("Target marks not in percentage  "+targetMark);
       }
       else{
 
-        if(4*(parseFloat(Cell.w))>=targetMark)
+        if((parseFloat(Cell.w))>=targetMark)
           c_count++;
         student++;
       }
