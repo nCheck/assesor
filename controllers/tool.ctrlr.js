@@ -58,6 +58,7 @@ module.exports.getToolDoc = (req , res)=>{
 
 //For this to work the req.body shud contain name of the co in which we wish to add the tool
 module.exports.addOne = function (req , res) {
+
 	if(req.body.name != ''){
 		Tool.create({
 			name : req.body.name
@@ -119,9 +120,27 @@ module.exports.removeOne = function (req, res) {
 			res.send(err)
 		}
 		else{
+
 			backURL=req.header('Referer');
 			res.redirect(backURL)
 		}
 	});
 
+}
+//Get all tools
+module.exports.getAllTools=function(req,res){
+	ToolData.find({},(err,tools)=>{
+var alltools=[];
+
+		if(err){
+	console.log('error in getting tools');
+}
+else{
+	tools.forEach(toolss){
+		alltools.push(toolss);
+	}
+
+}
+res.send(alltools);
+})
 }
