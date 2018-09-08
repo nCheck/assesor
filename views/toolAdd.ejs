@@ -15,21 +15,16 @@
  	<hr>
  	<form method="POST">
 				<span>
-				<select name="tool" id="dropdown" class="custom-select">
-				<% for(t in allTools){ %>
-					<option value="<%= allTools[t]._id%>" > <%= allTools[t].name %> </option>
-				<%}%>
-				</select>
 				<br><br>
 				<span  class="center-content"> <h5> Or </h5> </span>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Add New Tool Name"><br>
-				<input type="text" class="form-control" id="inputWeight" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="weightage" placeholder="Weightage"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetStudent" placeholder="Target students"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="totalMark" placeholder="Total Marks"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetMark" placeholder="Target Marks"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="high" placeholder="high"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="mid" placeholder="mid"><br>
-				<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="low" placeholder="low"><br>
+				<input type="text" id="name-auto" class="form-control" name="name" placeholder="Tool Name"><br>
+				<input type="text" class="form-control" id="inputWeight" name="weightage" placeholder="Weightage"><br>
+				<input type="text" class="form-control" name="targetStudent" placeholder="Target students"><br>
+				<input type="text" class="form-control" name="totalMark" placeholder="Total Marks"><br>
+				<input type="text" class="form-control" name="targetMark" placeholder="Target Marks"><br>
+				<input type="text" class="form-control" name="high" placeholder="high"><br>
+				<input type="text" class="form-control" name="mid" placeholder="mid"><br>
+				<input type="text" class="form-control" name="low" placeholder="low"><br>
 				<select id="tool-dropdown" name="toolType" class="to-dropdown custom-select">
 				<option value="Direct" >Direct</option>
 				<option value="Indirect" >Indirect</option>
@@ -180,6 +175,15 @@
 
 
 			 <script>
+			 	url = "/api/tools"
+			 	$.get(url , function(data , status){
+					$( "#name-auto" ).autocomplete({
+						source: data
+					});
+				 });
+
+
+
 				 var totDW = 0 , totIDW = 0;
 				 $('.weight').each(function(item){
 					 if($(this).attr('data-type') == "Direct"){
