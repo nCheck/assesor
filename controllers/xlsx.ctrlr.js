@@ -15,8 +15,8 @@ console.log(req.body);
 var toolID=req.params.toolID , co_id = req.params.coID;
 console.log("Course id  "+co_id);
 
-
-
+var sheetNo=req.body.sheet_no;
+console.log("In xlsx.cntrllr and sheet no is "+sheetNo);
 CO.findById(co_id).populate('tools').exec(function(err,co){
 	var tools = co.tools.map(function(a) { return a; });
 	console.log("HEre orginal "+co.tools);
@@ -39,7 +39,7 @@ console.log("Target marks not in percentage  "+targetMark);
   //console.log("her is header name to search "+header[0]);
   const workbook = XLSX.readFile('./uploads/temp.xlsx');
   var flag=0;
-  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const sheet = workbook.Sheets[workbook.SheetNames[parseInt(sheetNo)]];
    var range = XLSX.utils.decode_range(sheet['!ref']);
 
   for (var rowNum = range.s.r ; rowNum <= range.e.r; rowNum++)
