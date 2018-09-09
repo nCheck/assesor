@@ -11,6 +11,9 @@
 
 				border-radius: 5px;
 			}
+			input[type="text"]{
+				border:2px solid black;
+			}
 		</style>
 
 
@@ -155,8 +158,9 @@
 										'<div>' +
 										'<form method="post" ' + 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + ' >' +
 											 cos.name +
-											'  ' + '	<input type="text" id="sheet_no" name="sheet_no" placeholder="Enter sheet number" /> '+'<input type="text" name="header" placeholder="header"/>'+
-											'<button class="done btn" >Done</button>' + '<br >'  + '</form>' + '</div>'
+											' <br/> ' + '	<input type="text" id="sheet_no" name="sheet_no" placeholder="Enter sheet number" /> '+
+											'<input type="text" style="margin-left:10px;margin-right:10px;" name="header" placeholder="header"/>'+
+											'<button class="done btn btn-dark" >Done</button>' + '<br >'  + '</form>' + '</div>'
 									)
 								})
 								$('#coList').html(tools.join(' '))
