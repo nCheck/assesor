@@ -11,16 +11,16 @@ const  CO      = mongoose.model('CO');
 module.exports.xlsxCal = (req , res )=>{
 var header=req.body.header;
 console.log("Header name ot be searched "+header );
-console.log(req.body);
+// console.log(req.body);
 var toolID=req.params.toolID , co_id = req.params.coID;
-console.log("Course id  "+co_id);
+// console.log("Course id  "+co_id);
 
-var sheetNo=req.body.sheet_no;
+var sheetNo=req.body.sheet_no-1;
 console.log("In xlsx.cntrllr and sheet no is "+sheetNo);
 CO.findById(co_id).populate('tools').exec(function(err,co){
 	var tools = co.tools.map(function(a) { return a; });
-	console.log("HEre orginal "+co.tools);
-	console.log(tools);
+	// console.log("HEre orginal "+co.tools);
+	// console.log(tools);
   var arr = tools;
   var ids = arr.map(function(arr) {return arr._id; });
 
