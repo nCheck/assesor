@@ -10,7 +10,7 @@
 
 	<body>
 	<div class="row">
- 	<div class="col-sm-6">
+ 	<div class="col-sm-4">
  	<h3>Add New Tool : </h3>
  	<hr>
  	<form method="POST">
@@ -34,7 +34,7 @@
 		</form>
 	</div>
 
- 	<div class="col-sm-6">
+ 	<div class="col-sm-8">
  	<span>
  	<h3>           My Tools : </h3>
  	<hr>
@@ -42,12 +42,40 @@
 		<% for (t in thisToolNames ){ %>
 
 		<tr>
-		<td class="<%= t %>"><button class="btn btn-outline-dark btn-lg btn-block"> <%= thisToolNames[t] %> </button>
+		<td class="<%= t %>"><span data-toggle="modal" class="btn btn-block" data-target="#myTool"><button class="toolDisplay btn btn-outline-primary btn-lg btn-block"
+			data-toolID="<%=tools[t]._id%>"
+				data-weightage="<%=tools[t].weightage%>"
+				data-targetStudent="<%=tools[t].targetStudent%>"
+				data-totalMark="<%=tools[t].totalMark%>"
+				data-totalStud="<%=tools[t].totalStud%>"
+				data-targetMark ="<%=tools[t].targetMark%>"
+				data-studentsAchieved ="<%=tools[t].studentsAchieved%>"
+				data-toolType ="<%=tools[t].toolType%>"
+				data-high ="<%=tools[t].high%>"
+				data-mid ="<%=tools[t].mid%>"
+				data-low ="<%=tools[t].low%>"
+				data-toolName="<%=thisToolNames[t]%>"> <%= thisToolNames[t] %> </button></span>
 		</td>
 		<td>
 		<form action="tool/<%= tools[t]._id %>/delete" method="POST">
 			<button class="btn btn-outline-danger btn-lg">Delete</button>
 		</form>
+		</td>
+		<td>
+			<span data-toggle="modal" class="btn btn-block" data-target="#myForm"><button type="submit"
+				data-toolID="<%=tools[t]._id%>"
+				data-weightage="<%=tools[t].weightage%>"
+				data-targetStudent="<%=tools[t].targetStudent%>"
+				data-totalMark="<%=tools[t].totalMark%>"
+				data-totalStud="<%=tools[t].totalStud%>"
+				data-targetMark ="<%=tools[t].targetMark%>"
+				data-studentsAchieved ="<%=tools[t].studentsAchieved%>"
+				data-toolType ="<%=tools[t].toolType%>"
+				data-high ="<%=tools[t].high%>"
+				data-mid ="<%=tools[t].mid%>"
+				data-low ="<%=tools[t].low%>"
+
+				class="tool-editor btn btn-outline-warning btn-lg">Edit Tool</button></span>
 		</td>
 		</tr>
 
@@ -55,6 +83,142 @@
 	</table>
 	<h5> <span data-toggle="modal" class="btn btn-block" data-target="#myMod">View Detailed Info</span> </h5>
 	</span>
+
+
+
+
+<div class="modal fade" id="myTool">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header" align='center'>
+	          <h4 class="modal-title">My Tool</h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<div class="tool-Display">
+	      		Weightage : <div id ="weightage"></div></span><br><br>
+	      		Target Students : <span id ="targetStudent"></span><br><br>
+	      		Total Marks : <span id ="totalMark"></span><br><br>
+	      		Total Students : <span id ="totalStud"></span><br><br>
+	      		Target Marks : <span id ="targetMark"></span><br><br>
+	      		Students Achieved : <span id ="studentsAchieved"></span><br><br>
+	      		Tool Type : <span id ="toolType"></span><br><br>
+	      		High : <span id ="high"></span><br><br>
+	      		Low : <span id ="low"></span><br><br>
+	      		Mid : <span id ="mid"></span><br><br>
+
+	      	</div>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+	<script>
+		$('.toolDisplay').click(function(){
+			var toolID           = $(this).attr('data-toolID');
+			var weightage        = $(this).attr('data-weightage');
+			var	targetStudent    = $(this).attr('data-targetStudent');
+			var	totalMark        = $(this).attr('data-totalMark');
+			var	totalStud        = $(this).attr('data-totalStud');
+			var	targetMark       = $(this).attr('data-targetMark');
+			var	studentsAchieved = $(this).attr('data-studentsAchieved');
+			var	toolType         = $(this).attr('data-toolType');
+			var	high             = $(this).attr('data-high');
+			var	mid              = $(this).attr('data-mid');
+			var	low              = $(this).attr('data-low');
+			var toolName 		 = $(this).attr('data-toolName');
+			$('.tool-Display').children('#weightage').attr('html',weightage);
+			$('.tool-Display').children('#targetStudent').attr('text',targetStudent);
+			$('.tool-Display').children('#totalMark').attr('text',totalMark);
+			$('.tool-Display').children('#studentsAchieved').attr('text',studentsAchieved);
+			$('.tool-Display').children('#toolType').attr('text',toolType);
+			$('.tool-Display').children('#high').attr('text',high);
+			$('.tool-Display').children('#mid').attr('text',mid);
+			$('.tool-Display').children('#low').attr('text',low);
+			$('.tool-Display').children('#totalStud').attr('text',totalStud);
+			$('.tool-Display').children('#targetMark').attr('text',targetMark);
+
+		})
+	</script>
+
+
+
+
+	<div class="modal fade" id="myForm">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header" align='center'>
+	          <h4 class="modal-title">     Edit Tool Outcome      </h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+	      <div class="modal-body">
+
+	            <form action="" class="edit-form" method="post">
+	                <div class="form-group">
+
+	          			Weightage : <input type="text" id="eweightage" name="tool[weightage]" placeholder="weightage" value=""><br><br>
+	          			Target Students : <input type="text" id="etargetStudent" name="tool[targetStudent]" placeholder="Target Students" value=""><br><br>
+	          			Total Marks : <input type="text" id="etotalMark" name="tool[totalMark]" placeholder="Total Marks" value=""><br><br>
+						Total Students : <input type="text" id="etotalStud" name="tool[totalStud]" placeholder="Total Students" value=""><br><br>
+						Target Marks : <input type="text" id="etargetMark" name="tool[targetMark]" placeholder="Target Marks" value=""><br><br>
+						Students Achieved : <input type="text" id="estudentsAchieved" name="tool[studentsAchieved]" placeholder="Students Achieved" value=""><br><br>
+						Tool Type : <input type="text" id="etoolType" name="tool[toolType]" placeholder="Tool Type" value=""><br><br>
+						High : <input type="text" id="ehigh" name="tool[high]" placeholder="High" value=""><br><br>
+						Mid : <input type="text" id="emid" name="tool[mid]" placeholder="Mid" value=""><br><br>
+						Low : <input type="text" id="elow" name="tool[low]" placeholder="Low" value=""><br><br>
+
+	          			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+	              </div>
+	            </form>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+
+	<script>
+		$('.tool-editor').click(function(){
+			var toolID           = $(this).attr('data-toolID');
+			var weightage        = $(this).attr('data-weightage');
+			var	targetStudent    = $(this).attr('data-targetStudent');
+			var	totalMark        = $(this).attr('data-totalMark');
+			var	totalStud        = $(this).attr('data-totalStud');
+			var	targetMark       = $(this).attr('data-targetMark');
+			var	studentsAchieved = $(this).attr('data-studentsAchieved');
+			var	toolType         = $(this).attr('data-toolType');
+			var	high             = $(this).attr('data-high');
+			var	mid              = $(this).attr('data-mid');
+			var	low              = $(this).attr('data-low');
+				console.log('weightage  ',weightage,'   high  ',high,'     i m here');
+				var url = "tool/" + toolID + "/edit"
+    			$('.edit-form').attr('action' , url)
+				var fwei=$('.edit-form').children('div').children('#eweightage').attr('value' , weightage);
+   
+var ftars=$('.edit-form').children('div').children('#etargetStudent').attr('value' , targetStudent);
+var ftm=$('.edit-form').children('div').children('#etotalMark').attr('value' , totalMark);
+var fts=$('.edit-form').children('div').children('#etotalStud').attr('value' , totalStud);
+   
+var ftarm=$('.edit-form').children('div').children('#etargetMark').attr('value' , targetMark);
+var fsa=$('.edit-form').children('div').children('#estudentsAchieved').attr('value' , studentsAchieved);
+var ftt=$('.edit-form').children('div').children('#etoolType').attr('value' , toolType);
+   
+var fh=$('.edit-form').children('div').children('#ehigh').attr('value' , high);
+var fm=$('.edit-form').children('div').children('#emid').attr('value' , mid);
+var fl=$('.edit-form').children('div').children('#elow').attr('value' , low);
+console.log('high ',high,'    fh ',fh);
+
+		})
+	</script>
+
+
 
 
 	<!-- The Modal -->
