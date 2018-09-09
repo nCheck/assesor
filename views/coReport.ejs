@@ -80,23 +80,26 @@ table ,th,td{
       <%}%>
 <tr>
   <td colspan="6">  <%if (direct.length||indirect.length){%>
-    Overall attainment= 0.8*(
+    Overall attainment= 0.8 x(
     <%}%>
   <%var i,too=co.tools;
     for(i=0;i<direct.length;i++){%>
         <%if(i!=(direct.length-1)){%>
-          <%=direct[i].weightage%>ds*<%=direct[i].point%>+
+          <%=direct[i].weightage%> x <%=direct[i].point%> +
           <%}
         else{%>
-          <%=direct[i].weightage%> * <%=direct[i].point%> )
+          <%=direct[i].weightage%> x <%=direct[i].point%> )
           <%}%>
-      <% }%>+0.2*(
+      <% }%>
+      <%if(indirect.length){%>
+        +0.2 x(
+        <%}%>
     <%for(i=0;i<indirect.length;i++){%>
           <%if(i!=(indirect.length-1)){%>
-            <%=indirect[i].weightage%>*<%=indirect[i].point%>+
+            <%=indirect[i].weightage%> x <%=indirect[i].point%>+
             <%}
           else{%>
-            <%=indirect[i].weightage%> * <%=indirect[i].point%> )
+            <%=indirect[i].weightage%> x <%=indirect[i].point%> )
             <%}%>
         <% }%>
         <%if (direct.length||indirect.length){%>
