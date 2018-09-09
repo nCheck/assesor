@@ -28,7 +28,7 @@ router
             console.log("Err in getAll of User.ctrlr");
         }
         else{
-            res.render('index' , {subjects : user.subjects , hidenav : true})
+            res.render('index' , {subjects : user.subjects , hidenav : true , req:req})
         }
 
     })
