@@ -3,22 +3,27 @@
 <% include ./partials/header %>
   <body>
 
+<div class="container" style="text-align:center;align-content:center">
+  <h3> Welcome to your Dashboard </h3>
+  <h4> <%= "Subject is " + subject+" and year is  "+ year%> </h4>
+  <br>
+  <div style="border:1px solid black;padding:10px">
+  <h4>Want to Change Year??</h4>
+  <select name="year" id="newYear">
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+  </select>
+  <button class="btn change-btn"> Change </button>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br><br>
+</div>
 
-<h3> My dashboard is Lit</h3>
-<h5> <%= "Subject is " + subject+" and year is  "+ year%> </h5>
-<h6>Want to Change Year??</h6>
-<select name="year" id="newYear">
-  <option value="2016">2016</option>
-  <option value="2017">2017</option>
-  <option value="2018">2018</option>
-</select>
-<button class="btn change-btn"> Change </button>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
 
     <% include ./partials/footer %>
   </body>

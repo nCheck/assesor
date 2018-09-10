@@ -11,6 +11,9 @@
 
 				border-radius: 5px;
 			}
+			input[type="text"]{
+				border:2px solid black;
+			}
 		</style>
 
 
@@ -23,7 +26,8 @@
 		<br>
 		<hr>
 
-
+<h6> <u> Select the tool name , whose data you would like to upload , Mapped COs will automatically load </u> </h6>
+<br>
 <select name="" id="dropdown" class="to-dropdown">
 		<% tools.forEach(function(tool){ %>
 			<option value="<%= tool._id %>">
@@ -36,7 +40,7 @@
 				<br>
 				<hr>
 
-
+			
 				<div name="coName " id="coList">
 
 				</div>
@@ -152,11 +156,13 @@
 								data.forEach(function(cos) {
 									console.log(cos.name);
 									tools.push(
-										'<div>' +
+										'<h6> <u> Enter Sheet Number in Excel and Header of the column from where you want to extract data </u><h6> <br>'
+										+'<div>' +
 										'<form method="post" ' + 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + ' >' +
 											 cos.name +
-											'  ' + '	<input type="text" id="sheet_no" name="sheet_no" placeholder="Enter sheet number" /> '+'<input type="text" name="header" placeholder="header"/>'+
-											'<button class="done btn" >Done</button>' + '<br >'  + '</form>' + '</div>'
+											' <br/> ' + '	<input type="text" id="sheet_no" name="sheet_no" placeholder="Enter sheet number" /> '+
+											'<input type="text" style="margin-left:10px;margin-right:10px;" name="header" placeholder="header"/>'+
+											'<button class="done btn btn-dark" >Done</button>' + '<br >'  + '</form>' + '</div>'
 									)
 								})
 								$('#coList').html(tools.join(' '))
@@ -213,9 +219,6 @@
 						})
 
 						// ============
-						$('#shit').click(function () {
-							console.log("you shited");
-						})
 
 						// $('.done').click(function () {
 						// 	console.log("shitted" + $(this).parent().attr('action'));
