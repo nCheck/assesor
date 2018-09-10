@@ -150,13 +150,13 @@
 						//method="post" 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID cutted
 						$('.to-dropdown').click(function() {
 							var toolID = $("#dropdown option:selected ").val();
-							console.log(toolID);
+							// console.log(toolID);
 							$.get('/api/<%=subject%>/<%=year%>/co/' + toolID, function(data, status) {
 								var tools = [];
 								data.forEach(function(cos) {
-									console.log(cos.name);
+									// console.log(cos.name);
 									tools.push(
-										'<h6> <u> Enter Sheet Number in Excel and Header of the column from where you want to extract data </u><h6> <br>'
+										'<h6> <u> Enter Sheet Number from Excel and Header of the column from where you want to extract data </u><h6> <br>'
 										+'<div>' +
 										'<form method="post" ' + 'action=/upload/xlsx/<%=subject%>' + '/'+cos._id+'/'+toolID + ' >' +
 											 cos.name +
@@ -177,15 +177,21 @@
 								           data: form.serialize(), // serializes the form's elements.
 								           success: function(data)
 								           {
-								               // alert(data.tool.point + " ======== " + data.co.name); // show response from the php script.
-															 $("#co-name").html(data.co.name);
-															 $("#targetStudent").html( data.tool.targetStudent);
-															 $("#totalStud").html(data.tool.totalStud);
-															 $("#toolType").html(data.tool.toolType);
-															 $("#totalMark").html(data.tool.totalMark);
-															 $("#point").html(data.tool.point);
-															 $("#weightage").html(data.tool.weightage);
-															 $('#trigger-me').trigger("click");
+														 		console.log(data)
+															 // alert(data.tool.point + " ======== " + data.co.name); // show response from the php script.
+															 if( data.error == true ){
+																 alert("Wrong Input");
+															 }
+															 else{
+																		$("#co-name").html(data.co.name);
+																		$("#targetStudent").html( data.tool.targetStudent);
+																		$("#totalStud").html(data.tool.totalStud);
+																		$("#toolType").html(data.tool.toolType);
+																		$("#totalMark").html(data.tool.totalMark);
+																		$("#point").html(data.tool.point);
+																		$("#weightage").html(data.tool.weightage);
+																		$('#trigger-me').trigger("click");
+															 }
 								           }
 								         });
 

@@ -16,6 +16,7 @@
  	<form method="POST">
 				<span>
 				<br><br>
+				<label> Please select tool name from suggestions if already available* </label>
 				<input type="text" id="name-auto" class="form-control" name="name" placeholder="Tool Name"><br>
 				<input type="text" class="form-control" id="inputWeight" name="weightage" placeholder="Weightage"><br>
 				<input type="text" class="form-control" name="targetStudent" placeholder="Target students"><br>
@@ -340,10 +341,11 @@ console.log('high ',high,'    fh ',fh);
 			 <script>
 			 	url = "/api/tools";
 			 	$.get(url , function(data , status){
-					 console.log(data , "hello data");
-
+					//  console.log(data , "hello data");
+					 mdata = data.filter((e)=> { return e });
+					//  console.log(mdata)
 					$( "#name-auto" ).autocomplete({
-						source: data
+						source: mdata
 					});
 				 });
 

@@ -68,47 +68,51 @@ console.log("Target marks not in percentage  "+targetMark);
   }
   console.log("row"+rowTarget);
   console.log("col"+colTarget);
+  if( isNaN(rowTarget) || isNaN(colTarget) ){
+    res.send({tool:[] , co: [] , error : true})
+  }
 
+else{
 
+    for (let rowNum = rowTarget; rowNum <= range.e.r; rowNum++) {
+        const Cell = sheet[XLSX.utils.encode_cell({r: rowNum, c: colTarget})];
+        if(Cell==undefined  || isNaN(Cell.w)){
+          break;
+        }
+        else{
 
-  for (let rowNum = rowTarget; rowNum <= range.e.r; rowNum++) {
-      const Cell = sheet[XLSX.utils.encode_cell({r: rowNum, c: colTarget})];
-      if(Cell==undefined  || isNaN(Cell.w)){
-        break;
+          if((parseFloat(Cell.w))>=targetMark)
+            c_count++;
+          student++;
+        }
       }
-      else{
-
-        if((parseFloat(Cell.w))>=targetMark)
-          c_count++;
-        student++;
-      }
-		}
-			tool.totalStud=student;
-			tool.studentsAchieved=c_count;
-      console.log("total students "+student);
-      var percentH=c_count/student*100;
-          console.log("percentage OF STUDENT ACHIEVING TARGET : "+percentH);
-			if(percentH>=high)
+        tool.totalStud=student;
+        tool.studentsAchieved=c_count;
+        console.log("total students "+student);
+        var percentH=c_count/student*100;
+            console.log("percentage OF STUDENT ACHIEVING TARGET : "+percentH);
+        if(percentH>=high)
+          {
+            tool.point=3;
+          }
+        else if(percentH>=mid)
         {
-					tool.point=3;
-				}
-      else if(percentH>=mid)
-      {
-				tool.point=2;
-			}
-      else if(percentH>=low)
-      {
-				tool.point=1;
-			}
-      else {
-        tool.point=0;
-      }
-			tool.save();
-      console.log("Point inserted is "+tool.point)
-      console.log(tool)
+          tool.point=2;
+        }
+        else if(percentH>=low)
+        {
+          tool.point=1;
+        }
+        else {
+          tool.point=0;
+        }
+        tool.save();
+        console.log("Point inserted is "+tool.point)
+        console.log(tool)
 
-			res.send({tool:tool,co:co});
+        res.send({tool:tool,co:co , error : false});
 
+    }
 })
 })
 
