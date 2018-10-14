@@ -6,3 +6,8 @@ module.exports.getDefaulter = (req , res)=>{
 			req : req});
 	
 }
+
+module.exports.defaulterCal = (req , res)=>{
+
+
+}
