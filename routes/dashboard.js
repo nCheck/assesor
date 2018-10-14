@@ -6,7 +6,7 @@ var coCtrl   = require('../controllers/co.ctrlr');
 var toolCtrl = require('../controllers/tool.ctrlr');
 var User     = require('../data/user');
 var Subject = require('../controllers/subject.ctrl');
-var defaulterCtrl = require('../controllers/defaulter.ctrl');
+
 
 // ============================
 // Graph Route
