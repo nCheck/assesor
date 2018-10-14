@@ -104,18 +104,6 @@ router
   .get(coCtrl.COreport);
 
 
-<<<<<<< HEAD
-//===========================================================
-//Upload defaulters
-//============================================================
-router
-  .route('/:subject/:year/defaulterUpload') 
-    .get(defaulterCtrl.getDefaulter)
-   .post(defaulterCtrl.defaulterCal);
-
-//==============================================================
-=======
->>>>>>> master
 
 
 module.exports = router;

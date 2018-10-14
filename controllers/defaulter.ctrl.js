@@ -5,17 +5,14 @@ module.exports.getDefaulter = (req , res)=>{
 
 		res.render('defaulterUpload', {subject : req.params.subject , year : req.params.year,
 			req : req});
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
 }
 
-module.exports.defaulterCal = (req , res)=>{
+
+//=======
 
 
-}
-=======
-
-}
 module.exports.defaulterCal = (req , res )=>{
 var sheetNo=Integer.parseInt(req.body.Sheet_Number) - 1 ;
 console.log("In defaulter.cntrllr and sheet no is "+sheetNo);
@@ -90,4 +87,4 @@ else{
 
 	}
 }
->>>>>>> master
+
