@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  
+
     <link rel="stylesheet" href="/public/styles.css">
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -73,6 +73,9 @@
                     <a class="nav-link" href="/upload/<%=subject%>/<%=req.params.year%>/toolUpload">Upload ToolData</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/upload/<%=subject%>/<%=req.params.year%>defaulterUpload">Attendance</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/attain/<%=subject%>/<%=req.params.year%>/cos">Attainments</a>
                 </li>
                 <li class="nav-item">
@@ -108,7 +111,7 @@
                 </li>
             </ul>
         </nav>
-        
+
 
         <% }%>
 
@@ -140,7 +143,3 @@
                     </div>
                 </div>
             </nav>
-
-            
-
-            
