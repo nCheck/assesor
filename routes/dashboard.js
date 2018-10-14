@@ -6,6 +6,7 @@ var coCtrl   = require('../controllers/co.ctrlr');
 var toolCtrl = require('../controllers/tool.ctrlr');
 var User     = require('../data/user');
 var Subject = require('../controllers/subject.ctrl');
+var defaulterCtrl = require('../controllers/defaulter.ctrl');
 
 // ============================
 // Graph Route
@@ -22,7 +23,7 @@ router
 router
   .route('/')
   .get((req,res)=>{
-    console.log("You clicked the main list of all subejcts for the teacher ")
+    console.log("You clicked the main list of all subjects for the teacher ")
       User.findOne({username:req.user.username}).populate('subjects').exec(function (err , user) {
         if(err){
             console.log("Err in getAll of User.ctrlr");
@@ -102,6 +103,16 @@ router
   .route('/:subject/:year/coReport')
   .get(coCtrl.COreport);
 
+
+//===========================================================
+//Upload defaulters
+//============================================================
+router
+  .route('/:subject/:year/defaulterUpload') 
+    .get(defaulterCtrl.getDefaulter)
+    .post(defaulterCtrl.defaulterCal);
+
+//==============================================================
 
 
 module.exports = router;
