@@ -110,7 +110,7 @@ router
 router
   .route('/:subject/:year/defaulterUpload') 
     .get(defaulterCtrl.getDefaulter)
-    .post(defaulterCtrl.defaulterCal);
+   // .post(defaulterCtrl.defaulterCal);
 
 //==============================================================
 
