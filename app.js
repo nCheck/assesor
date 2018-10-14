@@ -11,7 +11,7 @@ var authroutes            = require('./routes/index');
 var adminroutes           = require('./routes/admin');
 var dashRoutes            = require('./routes/dashboard');
 var uploadRoutes					= require('./routes/upload');
-
+var apiRoutes             = require('./routes/api')
 var attainRoutes				  = require('./routes/attain');
 var fileRoutes				  		= require('./routes/file');
 // ======Passport=======
