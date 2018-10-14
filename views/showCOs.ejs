@@ -23,14 +23,16 @@ table {
               <th scope="col">Number </th>
               <th scope="col">Course Outcomes</th>
               <th scope="col">Co attainment</th>
+              <th scope="col">Calculate</th>
             </tr>
           </thead>
           <tbody>
               <% cos.forEach(function (co) { %>
             <tr>
               <td class="count"></td>
-              <td> <a href="cos/<%=co._id%>" ><%= co.name %></a> </td>
-              <td> <%= co.attainment %> </td>
+              <td> <%= co.name %> </td>
+              <td> <%= co.attainment %>  </td>
+              <td> <div class="btn btn-dark"> <a href="cos/<%=co._id%>" > calculate </a>  </div>  </td>
             </tr>
             <% }) %>
 

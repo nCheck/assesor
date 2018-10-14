@@ -5,12 +5,13 @@ var Subject = mongoose.model('Subject');
 
 module.exports.getDataDoc = function (req , res) {
 
-	query = {name : req.params.subject , year : 2018};
+	query = {name : req.params.subject , year : req.params.year};
 	console.log('Sending DataDoc');
 	var ret;
 	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
-		if(err){
+		if(err || doc == null ){
 			console.log("not found " + err);
+			res.send('ERROR , please go back n try again');
 		}
 		else {
 			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] , req : req });
@@ -26,8 +27,9 @@ module.exports.getData = function (req , res , next) {
 
 	var ret;
 	SubjectData.findOne(query).populate('co').lean().exec((err , doc)=>{
-		if(err){
+		if(err || doc == null){
 			console.log("not found " + err);
+			res.send('ERROR , please go back n try again');
 		}
 		else {
 			res.render('coPage' , {data : doc.co  , req : req ,
