@@ -6,6 +6,7 @@ var coCtrl     = require('../controllers/co.ctrlr');
 var toolCtrl   = require('../controllers/tool.ctrlr');
 var uploadCtrl = require('../controllers/upload.ctrlr');
 var xlsx       = require('../controllers/xlsx.ctrlr');
+var defaulterCtrl = require('../controllers/defaulter.ctrl');
 
 router
 .route('/')
@@ -25,4 +26,13 @@ router
 .route('/xlsx/:subject/:coID/:toolID')
   .post(xlsx.xlsxCal)
 
+//===========================================================
+//Upload defaulters
+//============================================================
+router
+  .route('/:subject/:year/defaulterUpload') 
+    .get(defaulterCtrl.getDefaulter)
+   // .post(defaulterCtrl.defaulterCal);
+
+//==============================================================  
 module.exports=router
