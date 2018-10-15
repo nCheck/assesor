@@ -14,7 +14,8 @@ module.exports.getDataDoc = function (req , res) {
 			res.send('ERROR , please go back n try again');
 		}
 		else {
-			res.render('toolUpload' , {coData : doc.co , tools: [{name:"Test1"},{name:"Test2"}] , req : req });
+			res.render('toolUpload' , {coData : doc.co ,
+				tools: [{name:"Test1"},{name:"Test2"}] , req : req });
 		}
 	})
 
