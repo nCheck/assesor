@@ -14,6 +14,11 @@ router
 .get((req,res)=>res.render('upload'))
 .post( uploadCtrl.uploadFile);
 // , xlsx.xlsxCal , uploadCtrl.deleteFile
+
+router
+  .route('/email')
+    .post(defaulterCtrl.sendMail) //Sending Mail to Defaulters
+
 router
   .route('/:subject/tool')   //Displays Current CO Info
     .get(toolCtrl.getToolDoc)

@@ -23,7 +23,7 @@ module.exports.uploadFile = (req , res , next) =>{
 			if(req.file == undefined){
 				res.send('Error: No File Selected!');
 			} else {
-				console.log("shitted");
+				console.log("Uploaded");
 				// next();
 				res.send('done');
 			}

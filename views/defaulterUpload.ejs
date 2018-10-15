@@ -3,27 +3,53 @@
 
 <html>
 <% include ./partials/header %>
-
+		<!-- Awesome script to Uploading Jquery Form -->
+		<script src="/public/ajaxForm.js"></script>
   <body>
 
 
 
     <%# WRITE YOUR HTML INSIDE THIS %>
 
-      <form ref='uploadForm' id="upload-file"  method='post' encType="multipart/form-data">
+      <form ref='uploadForm' action="/upload" id="upload-file"  method='post' encType="multipart/form-data">
         <input type="file" id='selected-file' name="selected-file" />
+      </form>
+      <form method="post">
+        <input type="text"  name="sno" placeholder="Sheet Number" value=""><br><br>
+          <input type="text"  name="shno" placeholder="Student Rollno Header Name " value="Roll No"><br><br>
+        <input type="text"  name="ah" placeholder="Attendance Header Name" value=""><br><br>
+        <input type="text"  name="minp" placeholder="Minimum Percentage" value=""><br><br>
 
-    <!--    <input type="text" name="header" placeholder="filename"> -->
-        <input type='submit' value='Upload!' /><br><br>
-        <input type="text"  name="Sheet_Number" placeholder="Sheet Number" value=""><br><br>
-          <input type="text"  name="Student_Name__Header" placeholder="Student Header Name " value=""><br><br>
-        <input type="text"  name="Attendance__Header" placeholder="Attendance Header Name" value=""><br><br>
-        <input type="text"  name="Minimum_Percentage" placeholder="Minimum Percentage" value=""><br><br>
+
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
       </form>
 
 
       <% include ./partials/footer %>
   </body>
 
+
+  <script>
+    $('#selected-file').change(function() {
+      console.log("file selected ");
+      $("#upload-file ").trigger('submit');
+    })
+
+    var fil = $("#upload-file ");
+
+    fil.submit(function(e) {
+
+      console.log("inside submit ");
+      e.preventDefault();
+      var url = "/upload ";
+      $(this).ajaxSubmit({
+        contentType: 'application/json',
+        success: function(data) {
+          console.log(data);
+        }
+      });
+
+    })
+  </script>
 </html>

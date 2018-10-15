@@ -20,7 +20,7 @@ var localstrategy         = require('passport-local');
 var passportlocalmongoose = require('passport-local-mongoose');
 var app		               	=express();
 var Tool =mongoose.model('Tool')
-
+var Student = mongoose.model('Student')
 // =======initialize data base =======
 var Subject = mongoose.model('Subject');
 app.set('view engine', 'ejs');

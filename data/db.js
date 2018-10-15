@@ -13,3 +13,4 @@ require('./co');
 require('./subjectData');
 require('./subject');
 require('./user');
+require('./student')
