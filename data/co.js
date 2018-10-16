@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Tool=require('./tool.js');
-
+var lastMod = require('./lastMod');
 
 var coSchema = new mongoose.Schema({
 	name : String,
@@ -14,5 +14,8 @@ var coSchema = new mongoose.Schema({
 	},
 });
 
+coSchema.plugin(lastMod)
+
 module.exports.coSchema = coSchema;
 mongoose.model('CO' , coSchema);
+mongoose.model('CODump' , coSchema);

@@ -6,3 +6,4 @@ var toolSchema = new Schema({
 })
 
 mongoose.model('Tool' , toolSchema);
+mongoose.model('ToolDump' , toolSchema);
