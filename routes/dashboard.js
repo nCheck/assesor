@@ -96,7 +96,7 @@ router
 
 
 //===============================================================
-//Displays final table of co and its tools split up for a subject
+//Displays FINAL  TABLE of co and its tools split up for a subject
 //===============================================================
 
 router

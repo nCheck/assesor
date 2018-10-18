@@ -37,3 +37,7 @@ router
     .get(coCtrl.getTools)
 
 module.exports=router
+
+router
+.route('/:subject/:year/coReport')
+.get(coCtrl.genpdf);
