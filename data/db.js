@@ -9,6 +9,7 @@ mongoose.connection.on('connected' , () =>{
 
 require('./tool');
 require('./toolData');
+require('./coDump')
 require('./co');
 require('./subjectData');
 require('./subject');

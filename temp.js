@@ -24,13 +24,23 @@ var SubjectData = mongoose.model('SubjectData');
 var CO = mongoose.model('CO');
 
 // *****************Creates CO ******************
-CO.create({
-	name : 'Sample Number 2',
-	blooms : 'Doin',
-	number : 3,
-	attainment : 0
-}).then((doc,err)=>{
-	console.log(doc)
-});
 
 
+// CO.create({
+// 	name : 'Sample Number 2',
+// 	blooms : 'Doin',
+// 	number : 3,
+// 	attainment : 0
+// }).then((doc,err)=>{
+// 	console.log(doc)
+// });
+
+// CO.remove({_id : '5bc5637ff70624205c65ab87'} , (err , doc)=>{
+// 	console.log("firs" , typeof doc)
+// })
+
+CO.findById('5bc56a16933b6426c8e74fa5' , (err , doc)=>{
+	doc.remove();
+})
+
+// CO.findById()

@@ -5,6 +5,8 @@ module.exports = exports = function lastModifiedPlugin (schema, options) {
       this.lastMod = new Date();
       next();
     });
+
+
   
     if (options && options.index) {
       schema.path('lastMod').index(options.index);
