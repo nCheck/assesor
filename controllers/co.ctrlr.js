@@ -78,7 +78,8 @@ module.exports.getCO = (req , res)=>{
 }
 
 
-//waste create then find better find sub inside it create n oush
+//waste create then find ......
+//Better find subject first and inside it create co n  push
 
 module.exports.addOne = (req, res)=> {
 	console.log("im inside add one"+req.params.subject);
@@ -155,6 +156,12 @@ module.exports.getTools = (req , res)=>{
 
 }
 
+var data;
+var fs = require('fs'),
+	pdf = require('html-pdf'),
+	ejs=require('ejs');
+var coFile;
+
 //Co report page
 module.exports.COreport = (req , res)=>{
 	var dc = []
@@ -169,19 +176,40 @@ module.exports.COreport = (req , res)=>{
 	}).exec((err , sub)=>{
 
 var  cos=sub.co;
-console.log("These are the cos of subject "+sub.name+" :    "+sub.co);
-		res.render('coReport',{cos:cos,req:req ,subject:req.params.subject });
+data={cos:cos,req:req ,subject:req.params.subject,year : req.params.year};
+console.log(data+"      kokok\n")
+
+	ejs.renderFile('./views/coReport.ejs', data , function(err, result) {
+
+		if (result) {
+	coFile = result;
+		}
+
+		else {
+		   res.end('An error occurred');
+		   console.log(err);
+		}
+	});
+
+
+
+		res.render('coReport',{cos:cos,req:req ,subject:req.params.subject,year : req.params.year });
 	})
-
-
-
-
-
-
 
 }
 
+//Generates the report to PDF format 
 
+module.exports.genpdf=(req ,res )=>{
+
+console.log('Here i am in pdf generator!!');
+var options = {        
+	format:'tabloid',orientation:'landscape',margin:{left:'200px'} };
+	pdf.create(coFile, options).toFile('./data/coReport.pdf',function(err, res) {
+		if (err) return console.log(err);
+			 console.log(res);
+		});
+}
 
 module.exports.getCOGraph = function (req , res , next) {
 

@@ -83,6 +83,10 @@ var usercntrlr = require('./controllers/user.ctrlr');
 
 
 
+
+
+
+
 // ========upload page temp==========
 
 
